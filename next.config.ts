@@ -11,7 +11,12 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ['lucide-react']
-  }
+  },
+  skipTrailingSlashRedirect: true,
+  
+  // For single-page application behavior
+  generateEtags: false,
+  poweredByHeader: false
 };
 
 export default nextConfig;
