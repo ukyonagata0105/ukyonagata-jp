@@ -78,7 +78,7 @@ export default function Home() {
           <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
             Featured Projects
           </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
               <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                 Liquitous
@@ -156,6 +156,35 @@ export default function Home() {
                   Governance
                 </span>
               </div>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+              <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                Marp Template
+              </h4>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                Professional presentation template using Marp (Markdown Presentation) 
+                with structured guidelines and enhanced styling for creating slides.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                <span className="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 px-2 py-1 rounded text-sm">
+                  Markdown
+                </span>
+                <span className="bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 px-2 py-1 rounded text-sm">
+                  Marp
+                </span>
+                <span className="bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 px-2 py-1 rounded text-sm">
+                  Templates
+                </span>
+              </div>
+              <a 
+                href="https://github.com/ukyonagata0105/marptemplate" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
+              >
+                View on GitHub →
+              </a>
             </div>
           </div>
         </section>
