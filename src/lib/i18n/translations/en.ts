@@ -52,7 +52,7 @@ export const en = {
     publicTransport: {
       title: 'Regional Public Transportation Policy Research',
       description:
-        'Research on policy formation, governance, and subsidy systems for regional public transportation. Exploring the positioning of MaaS as "transportation community development" and seeking new approaches to public transportation policy that move beyond deficit compensation.',
+        'Research on policy formation, governance, and subsidy systems for regional public transportation. Exploring new approaches to public transportation policy from the perspective of restrained operation of "collaboration and co-creation" among various organizations, which is the central concept in the MaaS concept.',
     },
     aiPolicy: {
       title: 'AI Utilization and Policy Creativity',
