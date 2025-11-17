@@ -37,7 +37,7 @@ export const en = {
     liquitous: {
       title: 'Liquitous',
       description:
-        'Civic engagement platform for participatory governance and consensus-building. Operating in Kamakura City and Kashiwanoha Smart City.',
+        'A company that develops civic engagement platforms for participatory governance and consensus-building. Involved in public transportation projects.',
       visitProject: 'Visit Project →',
     },
     marpTemplate: {

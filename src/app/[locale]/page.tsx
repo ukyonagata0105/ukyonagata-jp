@@ -102,17 +102,6 @@ export default async function Home({ params }: PageParams) {
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 {t.projects.maasCreative.description}
               </p>
-              <div className="flex flex-wrap gap-2 mb-3">
-                <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded text-sm">
-                  AI/LLM
-                </span>
-                <span className="bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200 px-2 py-1 rounded text-sm">
-                  Public Tech
-                </span>
-                <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-2 py-1 rounded text-sm">
-                  Communication
-                </span>
-              </div>
               <a href="https://maas-creative.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
                 {t.projects.maasCreative.visitProject}
               </a>
@@ -125,20 +114,6 @@ export default async function Home({ params }: PageParams) {
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 {t.projects.policyEvaluation.description}
               </p>
-              <div className="flex flex-wrap gap-2 mb-3">
-                <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-sm">
-                  React
-                </span>
-                <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded text-sm">
-                  Supabase
-                </span>
-                <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded text-sm">
-                  Gemini API
-                </span>
-                <span className="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-2 py-1 rounded text-sm">
-                  RAG
-                </span>
-              </div>
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
@@ -148,17 +123,6 @@ export default async function Home({ params }: PageParams) {
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 {t.projects.liquitous.description}
               </p>
-              <div className="flex flex-wrap gap-2 mb-3">
-                <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded text-sm">
-                  Nuxt.js
-                </span>
-                <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-sm">
-                  Vue.js
-                </span>
-                <span className="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-2 py-1 rounded text-sm">
-                  Firebase
-                </span>
-              </div>
               <a href="https://liquitous.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
                 {t.projects.liquitous.visitProject}
               </a>
@@ -171,17 +135,6 @@ export default async function Home({ params }: PageParams) {
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 {t.projects.marpTemplate.description}
               </p>
-              <div className="flex flex-wrap gap-2 mb-3">
-                <span className="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 px-2 py-1 rounded text-sm">
-                  Markdown
-                </span>
-                <span className="bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 px-2 py-1 rounded text-sm">
-                  Marp
-                </span>
-                <span className="bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 px-2 py-1 rounded text-sm">
-                  Templates
-                </span>
-              </div>
               <a href="https://github.com/ukyonagata0105/marptemplate" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
                 {t.projects.marpTemplate.viewOnGithub}
               </a>
@@ -237,9 +190,22 @@ export default async function Home({ params }: PageParams) {
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 mb-6">
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              {t.research.publications.title}
-            </h4>
+            <div className="flex justify-between items-center mb-4">
+              <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
+                {t.research.publications.title}
+              </h4>
+              <a
+                href="https://researchmap.jp/ukyonagata"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-sm flex items-center"
+              >
+                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                ResearchMap
+              </a>
+            </div>
             <div className="space-y-4">
               <div className="border-l-4 border-blue-500 pl-4">
                 <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
