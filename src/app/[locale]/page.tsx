@@ -14,8 +14,48 @@ export default async function Home({ params }: PageParams) {
   const locale = resolvedParams.locale as Locale;
   const t = getTranslation(locale);
 
+  // 構造化データ（JSON-LD）
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: t.hero.name,
+    jobTitle: t.hero.subtitle,
+    description: t.hero.description,
+    url: 'https://ukyonagata.jp',
+    sameAs: [
+      'https://x.com/ukyokyongt',
+      'https://researchmap.jp/ukyonagata',
+      'https://github.com/ukyonagata0105',
+    ],
+    affiliation: [
+      {
+        '@type': 'Organization',
+        name: '岩手県立大学',
+        url: 'https://www.iwate-pu.ac.jp/',
+      },
+      {
+        '@type': 'Organization',
+        name: '株式会社MaaS Creative',
+        url: 'https://maas-creative.com',
+      },
+    ],
+    alumniOf: [
+      {
+        '@type': 'EducationalOrganization',
+        name: '慶應義塾大学',
+        url: 'https://www.keio.ac.jp/',
+      },
+    ],
+    knowsAbout: t.research.researchKeywords.keywords,
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+      {/* 構造化データの挿入 */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Header */}
       <header className="border-b bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -277,6 +317,56 @@ export default async function Home({ params }: PageParams) {
                 <p className="text-sm text-gray-600 dark:text-gray-300">
                   {t.research.publications.paper3.subtitle}
                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Presentations Section */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 mb-6">
+            <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              {t.research.presentations.title}
+            </h4>
+            <div className="space-y-4">
+              <div className="border-l-4 border-orange-500 pl-4">
+                <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
+                  {t.research.presentations.presentation1.title}
+                </h5>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                  {t.research.presentations.presentation1.conference} / {t.research.presentations.presentation1.date}
+                </p>
+                {t.research.presentations.presentation1.subtitle && (
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    {t.research.presentations.presentation1.subtitle}
+                  </p>
+                )}
+              </div>
+
+              <div className="border-l-4 border-pink-500 pl-4">
+                <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
+                  {t.research.presentations.presentation2.title}
+                </h5>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                  {t.research.presentations.presentation2.conference} / {t.research.presentations.presentation2.date}
+                </p>
+                {t.research.presentations.presentation2.subtitle && (
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    {t.research.presentations.presentation2.subtitle}
+                  </p>
+                )}
+              </div>
+
+              <div className="border-l-4 border-teal-500 pl-4">
+                <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
+                  {t.research.presentations.presentation3.title}
+                </h5>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                  {t.research.presentations.presentation3.conference} / {t.research.presentations.presentation3.date}
+                </p>
+                {t.research.presentations.presentation3.subtitle && (
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    {t.research.presentations.presentation3.subtitle}
+                  </p>
+                )}
               </div>
             </div>
           </div>

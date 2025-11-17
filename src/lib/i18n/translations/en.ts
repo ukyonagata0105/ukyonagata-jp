@@ -88,6 +88,27 @@ export const en = {
           'Critical examination of regional public transportation revitalization/regeneration policies and proposal for introducing ATMA (Area Transit Management Authority)',
       },
     },
+    presentations: {
+      title: 'Key Presentations',
+      presentation1: {
+        title: 'A Study on "Regional Public Transportation" Policy Domain and Policy Development as a Wicked Problem',
+        conference: 'Japan Association for Public Policy Studies',
+        date: 'June 2025',
+        subtitle: 'Based on discourse analysis grounded in the "New Public" concept',
+      },
+      presentation2: {
+        title: 'AI Utilization and Public Policy',
+        conference: '20th Annual Conference of Japan Society for Policy Informatics',
+        date: 'December 2024',
+        subtitle: 'The concept of "administrative creativity" to counter artificial intelligence',
+      },
+      presentation3: {
+        title: 'Study on the Operation of Regional Public Transportation Activation and Regeneration Law for Purpose Setting',
+        conference: 'Infrastructure Planning Review',
+        date: '2022',
+        subtitle: '',
+      },
+    },
     education: {
       title: 'Education & Affiliation',
       doctorate: 'Doctoral Program - Iwate Prefectural University',

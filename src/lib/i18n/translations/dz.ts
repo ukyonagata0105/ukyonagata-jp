@@ -86,6 +86,27 @@ export const dz = {
         subtitle: 'ས་གནས་ཀྱི་མི་མང་གི་འགྲུལ་བསྐྱོད།',
       },
     },
+    presentations: {
+      title: 'གལ་ཆེའི་བཤད་པ།',
+      presentation1: {
+        title: 'མི་མང་འགྲུལ་བསྐྱོད་སྲིད་ཇུས་ཞིབ་འཇུག',
+        conference: 'ཉི་ཧོང་མི་མང་སྲིད་ཇུས།',
+        date: '2025 ཟླ་དྲུག',
+        subtitle: 'མི་མང་གསར་པའི་འཆར་གཞི།',
+      },
+      presentation2: {
+        title: 'AI དང་མི་མང་སྲིད་ཇུས།',
+        conference: 'སྲིད་ཇུས་གཞི་འགྲེམས་ཚོགས་འདུ།',
+        date: '2024 ཟླ་༡༢',
+        subtitle: 'བཅའ་ཁྲིམས་གསར་གཏོད།',
+      },
+      presentation3: {
+        title: 'མི་མང་འགྲུལ་བསྐྱོད་ཁྲིམས།',
+        conference: 'འགྲུལ་བསྐྱོད་ཚོགས་འདུ།',
+        date: '2022',
+        subtitle: '',
+      },
+    },
     education: {
       title: 'སློབ་སྦྱོང་།',
       doctorate: 'ཕ་ད། - Iwate University',

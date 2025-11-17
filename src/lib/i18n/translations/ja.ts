@@ -87,6 +87,27 @@ export const ja = {
           '地域公共交通活性化・再生政策の批判的考察と地域交通経営公社(ATMA)導入の提案',
       },
     },
+    presentations: {
+      title: '主要な講演・口頭発表',
+      presentation1: {
+        title: 'ウィキッド・プロブレムとしての「地域公共交通」政策領域と政策展開に関する一考察',
+        conference: '日本公共政策学会',
+        date: '2025年6月',
+        subtitle: '「新しい公共」概念に基づく言説の分析を下敷きに',
+      },
+      presentation2: {
+        title: 'AI活用と公共政策',
+        conference: '第20回政策情報学会研究大会',
+        date: '2024年12月',
+        subtitle: '人工知能に対抗するための『執政の創造性』概念',
+      },
+      presentation3: {
+        title: '地域公共交通政策のパーパス設定に係る地域公共交通活性化・再生法の運用検討',
+        conference: '土木計画学研究・講演集',
+        date: '2022年',
+        subtitle: '',
+      },
+    },
     education: {
       title: '学歴・所属',
       doctorate: '博士後期課程 - 岩手県立大学',

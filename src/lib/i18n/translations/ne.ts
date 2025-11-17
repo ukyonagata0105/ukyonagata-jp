@@ -86,6 +86,27 @@ export const ne = {
         subtitle: 'क्षेत्रीय सार्वजनिक यातायात',
       },
     },
+    presentations: {
+      title: 'मुख्य प्रस्तुतीकरण',
+      presentation1: {
+        title: 'सार्वजनिक यातायात नीति अनुसन्धान',
+        conference: 'जापान सार्वजनिक नीति संघ',
+        date: 'जुन 2025',
+        subtitle: 'नयाँ सार्वजनिक अवधारणा',
+      },
+      presentation2: {
+        title: 'AI र सार्वजनिक नीति',
+        conference: 'नीति सूचना समाज सम्मेलन',
+        date: 'डिसेम्बर 2024',
+        subtitle: 'प्रशासनिक रचनात्मकता',
+      },
+      presentation3: {
+        title: 'सार्वजनिक यातायात कानून',
+        conference: 'पूर्वाधार योजना समीक्षा',
+        date: '2022',
+        subtitle: '',
+      },
+    },
     education: {
       title: 'शिक्षा',
       doctorate: 'डक्टरल - Iwate University',
