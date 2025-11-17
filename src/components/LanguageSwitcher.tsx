@@ -1,36 +1,36 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { locales, localeNames, type Locale } from '@/lib/i18n/locales';
 
-export function LanguageSwitcher({ currentLocale }: { currentLocale: Locale }) {
-  const pathname = usePathname();
-  const router = useRouter();
+interface LanguageSwitcherProps {
+  currentLocale: Locale;
+}
 
-  const switchLanguage = (newLocale: Locale) => {
-    // Remove current locale from pathname
-    const pathnameWithoutLocale = pathname.replace(`/${currentLocale}`, '');
-    // Navigate to new locale
-    router.push(`/${newLocale}${pathnameWithoutLocale}`);
+export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newLocale = e.target.value as Locale;
+    // 現在のロケールを新しいロケールに置き換え
+    const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
+    router.push(newPath);
   };
 
   return (
-    <div className="flex items-center space-x-2">
+    <select
+      onChange={handleChange}
+      value={currentLocale}
+      className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      aria-label="言語を選択"
+    >
       {locales.map((locale) => (
-        <button
-          key={locale}
-          onClick={() => switchLanguage(locale)}
-          className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
-            currentLocale === locale
-              ? 'bg-blue-600 text-white'
-              : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-          }`}
-          aria-label={`Switch to ${localeNames[locale]}`}
-        >
+        <option key={locale} value={locale}>
           {localeNames[locale]}
-        </button>
+        </option>
       ))}
-    </div>
+    </select>
   );
 }
 

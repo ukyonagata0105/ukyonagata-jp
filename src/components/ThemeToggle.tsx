@@ -1,9 +1,22 @@
 'use client';
 
 import { useTheme } from '@/app/providers';
+import { useEffect, useState } from 'react';
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // マウント前は何も表示しない
+  if (!mounted) {
+    return (
+      <div className="p-2 w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800" />
+    );
+  }
 
   return (
     <button
