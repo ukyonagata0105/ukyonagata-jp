@@ -17,7 +17,7 @@ export const en = {
   about: {
     title: 'About Me',
     paragraph1:
-      "I'm a researcher in public administration and management science, dedicated to maximizing human creativity and improving society in the era of generative AI. My work focuses on evaluation research and transforming public spaces through innovative approaches.",
+      "I'm a researcher in public administration and management science, dedicated to maximizing human creativity and improving society in the era of generative AI. My work focuses on evaluation research and transforming public spaces through approaches centered on human cognition.",
     paragraph2:
       'Currently developing platforms for citizen engagement and consensus-building through MaaS Creative, including AI-powered policy evaluation systems and innovative D-to-D (Democracy-to-Democracy) communication technologies.',
   },
