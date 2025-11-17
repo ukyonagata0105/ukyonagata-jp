@@ -8,7 +8,7 @@ export const en = {
   },
   hero: {
     name: 'Ukyo Nagata',
-    subtitle: 'Toward a Society Where Everyone Can "Imagine and Create" Society',
+    subtitle: 'Exploring policy technologies that let everyone "imagine and co-create" society',
     description:
       'Researcher in public administration and management science, specializing in evaluation research focused on public transportation policy including railways, buses, aviation, maritime transport, and taxis. Committed to developing and validating technologies that maximize human creativity in the age of generative AI.',
     viewProjects: 'View Projects',
