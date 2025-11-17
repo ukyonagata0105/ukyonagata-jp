@@ -49,6 +49,14 @@ export const dz = {
   },
   research: {
     title: 'ཞིབ་འཇུག་དང་སློབ་སྦྱོང་།',
+    researchFields: {
+      title: 'ཞིབ་འཇུག་ཁོངས།',
+      fields: ['མི་མང་སྲིད་ཇུས།', 'སྲིད་དོན་རིག་པ།'],
+    },
+    researchKeywords: {
+      title: 'ཞིབ་འཇུག་ཚིག་གལ།',
+      keywords: ['གསར་གཏོད།', 'དམངས་གཞུང་མཉམ་ལས།', 'འགྲུལ་བསྐྱོད།', 'མི་མང་འགྲུལ་བསྐྱོད།', 'MaaS', 'དཀའ་གནད།', 'མི་མང་གསར་པ།', 'སྲིད་ཇུས་གཏན་འབེབས།'],
+    },
     publicTransport: {
       title: 'ས་གནས་ཀྱི་མི་མང་གི་འགྲུལ་བསྐྱོད་སྲིད་ཇུས་ཞིབ་འཇུག',
       description:
@@ -81,6 +89,7 @@ export const dz = {
     education: {
       title: 'སློབ་སྦྱོང་།',
       doctorate: 'ཕ་ད། - Iwate University',
+      company: 'གཙོ་འཛིན། - MaaS Creative Inc.',
       masters: 'མཁས་དབང། - Keio University (2024)',
       bachelor: 'སློབ་དཔོན། - Keio University (2022)',
       lecturer: 'Taisho University',

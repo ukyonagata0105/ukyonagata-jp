@@ -147,6 +147,42 @@ export default async function Home({ params }: PageParams) {
           <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
             {t.research.title}
           </h3>
+          
+          {/* Research Fields and Keywords */}
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                {t.research.researchFields.title}
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {t.research.researchFields.fields.map((field, index) => (
+                  <span
+                    key={index}
+                    className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded text-sm"
+                  >
+                    {field}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                {t.research.researchKeywords.title}
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {t.research.researchKeywords.keywords.map((keyword, index) => (
+                  <span
+                    key={index}
+                    className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded text-sm"
+                  >
+                    {keyword}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
               <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
@@ -251,6 +287,7 @@ export default async function Home({ params }: PageParams) {
             </h4>
             <div className="space-y-2 text-gray-600 dark:text-gray-300">
               <p>• {t.research.education.doctorate}</p>
+              <p>• {t.research.education.company}</p>
               <p>• {t.research.education.masters}</p>
               <p>• {t.research.education.bachelor}</p>
               <p>• {t.research.education.lecturer}</p>

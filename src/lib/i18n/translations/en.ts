@@ -49,15 +49,23 @@ export const en = {
   },
   research: {
     title: 'Research & Academic Work',
+    researchFields: {
+      title: 'Research Fields',
+      fields: ['Public Policy', 'Political Science'],
+    },
+    researchKeywords: {
+      title: 'Research Keywords',
+      keywords: ['Creativity', 'Public-Private Partnership', 'Mobility', 'Public Transportation', 'MaaS', 'Wicked Problem', 'New Public', 'Policy Formation'],
+    },
     publicTransport: {
       title: 'Regional Public Transportation Policy Research',
       description:
         'Research on policy formation, governance, and subsidy systems for regional public transportation. Exploring new approaches to public transportation policy from the perspective of restrained operation of "collaboration and co-creation" among various organizations, which is the central concept in the MaaS concept.',
     },
     aiPolicy: {
-      title: 'AI Utilization and Policy Creativity',
+      title: 'AI Utilization and Administrative Creativity',
       description:
-        'Proposing the concept of "administrative creativity" to counter artificial intelligence. Conducting discourse analysis based on new public concepts in the field of regional public transportation policy as a wicked problem.',
+        'Research on "Regional Public Transportation" policy domain and policy development as a wicked problem. Proposing the concept of "administrative creativity" to counter artificial intelligence, based on discourse analysis grounded in the "New Public" concept.',
     },
     publications: {
       title: 'Key Publications',
@@ -83,9 +91,10 @@ export const en = {
     education: {
       title: 'Education & Affiliation',
       doctorate: 'Doctoral Program - Iwate Prefectural University',
+      company: 'CEO - MaaS Creative Inc.',
       masters: 'Master of Policy and Media - Keio University (March 2024)',
       bachelor: 'Bachelor of Policy Management - Keio University (March 2022)',
-      lecturer: 'Part-time Lecturer - Taisho University',
+      lecturer: 'Part-time Lecturer - Taisho University (Broadcasting and Visual Media Studies)',
       researchMap: 'View ResearchMap Profile →',
     },
   },

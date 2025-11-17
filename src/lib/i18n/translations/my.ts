@@ -49,6 +49,14 @@ export const my = {
   },
   research: {
     title: 'သုတေသနနှင့် ပညာရေးလုပ်ငန်း',
+    researchFields: {
+      title: 'သုတေသနနယ်ပယ်',
+      fields: ['အများပြည်သူမူဝါဒ', 'နိုင်ငံရေးသိပ္ပံ'],
+    },
+    researchKeywords: {
+      title: 'သုတေသနသော့ချက်စကားလုံး',
+      keywords: ['ဖန်တီးမှု', 'အများပြည်သူ-ပုဂ္ဂလိကမိတ်ဖက်', 'သွားလာရေး', 'အများပြည်သူသယ်ယူပို့ဆောင်ရေး', 'MaaS', 'ရှုပ်ထွေးသောပြဿနာ', 'အသစ်သောအများပြည်သူ', 'မူဝါဒဖွဲ့စည်းမှု'],
+    },
     publicTransport: {
       title: 'ဒေသဆိုင်ရာအများပြည်သူသယ်ယူပို့ဆောင်ရေးမူဝါဒသုတေသန',
       description:
@@ -81,6 +89,7 @@ export const my = {
     education: {
       title: 'ပညာရေး',
       doctorate: 'ပါရဂူ - Iwate University',
+      company: 'အမှုဆောင်အရာရှိချုပ် - MaaS Creative Inc.',
       masters: 'မဟာဘွဲ့ - Keio University (2024)',
       bachelor: 'ဘွဲ့ - Keio University (2022)',
       lecturer: 'Taisho University',

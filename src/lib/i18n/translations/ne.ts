@@ -49,6 +49,14 @@ export const ne = {
   },
   research: {
     title: 'अनुसन्धान र शैक्षिक कार्य',
+    researchFields: {
+      title: 'अनुसन्धान क्षेत्र',
+      fields: ['सार्वजनिक नीति', 'राजनीति विज्ञान'],
+    },
+    researchKeywords: {
+      title: 'अनुसन्धान मुख्य शब्द',
+      keywords: ['रचनात्मकता', 'सार्वजनिक-निजी साझेदारी', 'गतिशीलता', 'सार्वजनिक यातायात', 'MaaS', 'जटिल समस्या', 'नयाँ सार्वजनिक', 'नीति निर्माण'],
+    },
     publicTransport: {
       title: 'क्षेत्रीय सार्वजनिक यातायात नीति अनुसन्धान',
       description:
@@ -81,6 +89,7 @@ export const ne = {
     education: {
       title: 'शिक्षा',
       doctorate: 'डक्टरल - Iwate University',
+      company: 'सीईओ - MaaS Creative Inc.',
       masters: 'मास्टर - Keio University (2024)',
       bachelor: 'स्नातक - Keio University (2022)',
       lecturer: 'Taisho University',
