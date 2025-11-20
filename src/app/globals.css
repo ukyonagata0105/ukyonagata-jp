@@ -13,6 +13,17 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* 流動的フォントサイズ */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --font-size-lg: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
+  --font-size-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --font-size-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+  --font-size-3xl: clamp(1.875rem, 1.65rem + 1.125vw, 2.5rem);
+  --font-size-4xl: clamp(2.25rem, 1.95rem + 1.5vw, 3rem);
+  --font-size-5xl: clamp(3rem, 2.55rem + 2.25vw, 4rem);
 }
 
 /* ダークモード対応 */
@@ -40,4 +51,41 @@ body {
   transition-property: background-color, border-color, color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
+}
+
+/* 流動的フォントサイズクラス */
+.text-fluid-xs {
+  font-size: var(--font-size-xs);
+}
+
+.text-fluid-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-fluid-base {
+  font-size: var(--font-size-base);
+}
+
+.text-fluid-lg {
+  font-size: var(--font-size-lg);
+}
+
+.text-fluid-xl {
+  font-size: var(--font-size-xl);
+}
+
+.text-fluid-2xl {
+  font-size: var(--font-size-2xl);
+}
+
+.text-fluid-3xl {
+  font-size: var(--font-size-3xl);
+}
+
+.text-fluid-4xl {
+  font-size: var(--font-size-4xl);
+}
+
+.text-fluid-5xl {
+  font-size: var(--font-size-5xl);
 }
