@@ -451,9 +451,11 @@ export default async function Home({ params }: PageParams) {
             {t.contact.title}
           </h3>
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 sm:p-8 mb-6">
-            <p className="text-fluid-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">
-              {t.contact.description}
-            </p>
+            {t.contact.description && (
+              <p className="text-fluid-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">
+                {t.contact.description}
+              </p>
+            )}
             
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
               <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-5 sm:p-6">
@@ -522,7 +524,9 @@ export default async function Home({ params }: PageParams) {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
           <div className="text-center text-gray-600 dark:text-gray-400">
             <p className="text-fluid-sm">{t.footer.copyright}</p>
-            <p className="mt-2 text-fluid-xs">{t.footer.builtWith}</p>
+            {t.footer.builtWith && (
+              <p className="mt-2 text-fluid-xs">{t.footer.builtWith}</p>
+            )}
           </div>
         </div>
       </footer>

@@ -27,7 +27,7 @@ export const ne = {
     maasCreative: {
       title: 'MaaS Creative',
       description:
-        '"More Creative Public" स्थानहरू सिर्जना गर्ने प्रविधि पहल।',
+        '"More Creative Public." को विषयवस्तुमा AI र मानव सहयोगको माध्यमबाट मानव क्षमतालाई अधिकतम बनाउने प्रविधि विकास गर्ने व्यवसायिक कम्पनी। उत्पन्न AI लाई उपकरण र UI दुवैमा प्रयोग गर्दै, मूल्याङ्कन प्रणाली र योजना प्रविधि समर्थन उपकरणहरू विकास गर्दै।',
       visitProject: 'परियोजना हेर्नुहोस् →',
     },
     policyEvaluation: {
@@ -128,8 +128,7 @@ export const ne = {
   },
   contact: {
     title: 'सम्पर्क',
-    description:
-      'नागरिक प्रविधि, लोकतान्त्रिक नवप्रवर्तन वा AI सहयोगमा रुचि?',
+    description: '',
     businessInquiry: 'व्यावसायिक सोधपुछ',
     businessInquiryLink: 'MaaS Creative वेबसाइट',
     personalInquiry: 'व्यक्तिगत सम्पर्क',
@@ -137,8 +136,8 @@ export const ne = {
     researchMap: 'ResearchMap',
   },
   footer: {
-    copyright: '© 2024 Ukyo Nagata',
-    builtWith: 'Next.js 15',
+    copyright: '© 2025 Ukyo Nagata',
+    builtWith: '',
   },
   theme: {
     toggle: 'थिम',

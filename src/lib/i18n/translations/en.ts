@@ -27,7 +27,7 @@ export const en = {
     maasCreative: {
       title: 'MaaS Creative',
       description:
-        'Technology initiative creating "More Creative Public" spaces by developing technologies that maximize human potential through AI-human collaboration. Leading projects in D-to-D Communication and evaluation format systems.',
+        'A business company developing technologies that maximize human potential through AI-human collaboration under the theme "More Creative Public." Utilizing generative AI in both tools and UI, developing evaluation systems and planning technology support tools.',
       visitProject: 'Visit Project →',
     },
     policyEvaluation: {
@@ -130,8 +130,7 @@ export const en = {
   },
   contact: {
     title: 'Contact',
-    description:
-      'Interested in civic technology, democratic innovation, or AI-human collaboration?',
+    description: '',
     businessInquiry: 'Business Inquiries',
     businessInquiryLink: 'Visit MaaS Creative Website',
     personalInquiry: 'Personal Contact',
@@ -139,8 +138,8 @@ export const en = {
     researchMap: 'ResearchMap',
   },
   footer: {
-    copyright: '© 2024 Ukyo Nagata. All rights reserved.',
-    builtWith: 'Built with Next.js 15, TypeScript, and Tailwind CSS',
+    copyright: '© 2025 Ukyo Nagata. All rights reserved.',
+    builtWith: '',
   },
   theme: {
     toggle: 'Toggle theme',

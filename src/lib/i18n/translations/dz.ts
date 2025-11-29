@@ -27,7 +27,7 @@ export const dz = {
     maasCreative: {
       title: 'MaaS Creative',
       description:
-        '"More Creative Public" ས་ཁོངས་གསར་གཏོད་བྱེད་པའི་འཕྲུལ་རིག་གི་འགོ་འཛུགས།',
+        '"More Creative Public." གི་བསམ་བློ་འོག་ AI དང་མི་ལུགས་ཀྱི་མཉམ་ལས་བརྒྱུད་དེ་མི་ལུགས་ཀྱི་ནུས་པ་མང་དུ་གཏོང་བའི་འཕྲུལ་རིག་གསར་གཏོད་བྱེད་པའི་ལས་ཁུངས། AI གསར་གཏོད་ལག་ཆ་དང་ UI གཉིས་ཀར་སྤྱད་དེ་ངོས་འཛིན་ལམ་ལུགས་དང་འཆར་གཞི་འཕྲུལ་རིག་རོགས་རམ་ལག་ཆ་གསར་གཏོད།',
       visitProject: 'ལས་འཆར་ལྟ། →',
     },
     policyEvaluation: {
@@ -128,8 +128,7 @@ export const dz = {
   },
   contact: {
     title: 'འབྲེལ་གཏུག',
-    description:
-      'མི་དམངས་འཕྲུལ་རིག དམངས་གཙོའི་གསར་གཏོད།',
+    description: '',
     businessInquiry: 'ལས་ཁུངས་འབྲེལ་གཏུག',
     businessInquiryLink: 'MaaS Creative',
     personalInquiry: 'མི་སྒེར་འབྲེལ་གཏུག',
@@ -137,8 +136,8 @@ export const dz = {
     researchMap: 'ResearchMap',
   },
   footer: {
-    copyright: '© 2024 Ukyo Nagata',
-    builtWith: 'Next.js 15',
+    copyright: '© 2025 Ukyo Nagata',
+    builtWith: '',
   },
   theme: {
     toggle: 'བརྗོད་གཞི།',

@@ -27,7 +27,7 @@ export const my = {
     maasCreative: {
       title: 'MaaS Creative',
       description:
-        '"More Creative Public" နေရာများကို ဖန်တီးသော နည်းပညာစတင်မှု။',
+        '"More Creative Public." ခေါင်းစဉ်ဖြင့် AI နှင့်လူသားပူးပေါင်းမှုမှတစ်ဆင့် လူသားအလားအလာကို အများဆုံးဖြစ်စေသော နည်းပညာများကို ဖွံ့ဖြိုးတိုးတက်စေသော စီးပွားရေးကုမ္ပဏီ။ ဖန်တီးထားသော AI ကို ကိရိယာနှင့် UI နှစ်ခုစလုံးတွင် အသုံးပ်း၍ အကဲဖြတ်ရေးစနစ်များနှင့် စီမံကိန်းနည်းပညာပံ့ပိုးမှုကိရိယာများကို ဖွံ့ဖြိုးတိုးတက်စေနေသည်။',
       visitProject: 'ပရောဂျက်သို့သွားရန် →',
     },
     policyEvaluation: {
@@ -128,8 +128,7 @@ export const my = {
   },
   contact: {
     title: 'ဆက်သွယ်ရန်',
-    description:
-      'နိုင်ငံသားနည်းပညာ၊ ဒီမိုကရေစီဆန်းသစ်မှု သို့မဟုတ် AI ပူးပေါင်းမှုတွင် စိတ်ဝင်စားပါသလား။',
+    description: '',
     businessInquiry: 'စီးပွားရေးဆိုင်ရာ မေးမြန်းမှုများ',
     businessInquiryLink: 'MaaS Creative ဝက်ဘ်ဆိုဒ်',
     personalInquiry: 'ကိုယ်ပိုင်ဆက်သွယ်ရန်',
@@ -137,8 +136,8 @@ export const my = {
     researchMap: 'ResearchMap',
   },
   footer: {
-    copyright: '© 2024 Ukyo Nagata',
-    builtWith: 'Next.js 15',
+    copyright: '© 2025 Ukyo Nagata',
+    builtWith: '',
   },
   theme: {
     toggle: 'အပြင်အဆင်',

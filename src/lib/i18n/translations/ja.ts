@@ -27,7 +27,7 @@ export const ja = {
     maasCreative: {
       title: 'MaaS Creative',
       description:
-        'AIと人間の協働を通じて人間の可能性を最大化する技術を開発することで「More Creative Public」空間を創造する技術イニシアティブ。D-to-Dコミュニケーションと評価フォーマットシステムのプロジェクトをリードしています。',
+        '「More Creative Public.」をテーマに、AIと人間の協働を通じて人間の可能性を最大化する技術を開発する事業会社です。生成AIをツール、UIの両面で活用し、評価に関するシステムや計画技術の支援ツールなどを開発しています。',
       visitProject: 'プロジェクトを見る →',
     },
     policyEvaluation: {
@@ -129,8 +129,7 @@ export const ja = {
   },
   contact: {
     title: 'お問い合わせ',
-    description:
-      'シビックテクノロジー、民主主義のイノベーション、またはAIと人間の協働に興味がありますか？',
+    description: '',
     businessInquiry: '法人様からのご依頼',
     businessInquiryLink: 'MaaS Creative ウェブサイトへ',
     personalInquiry: '個人的なお問い合わせ',
@@ -138,8 +137,8 @@ export const ja = {
     researchMap: 'ResearchMap',
   },
   footer: {
-    copyright: '© 2024 永田右京. All rights reserved.',
-    builtWith: 'Next.js 15, TypeScript, Tailwind CSSで構築',
+    copyright: '© 2025 永田右京. All rights reserved.',
+    builtWith: '',
   },
   theme: {
     toggle: 'テーマ切り替え',
