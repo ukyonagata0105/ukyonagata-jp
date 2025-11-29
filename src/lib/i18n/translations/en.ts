@@ -20,7 +20,7 @@ export const en = {
     paragraph1:
       "I'm a researcher in public administration and management science, dedicated to maximizing human creativity and improving society in the era of generative AI. My work focuses on evaluation research and transforming public spaces through approaches centered on human cognition.",
     paragraph2:
-      'Currently developing platforms for citizen engagement and consensus-building through MaaS Creative, including AI-powered policy evaluation systems and innovative D-to-D (Democracy-to-Democracy) communication technologies.',
+      'Currently serving as CEO of MaaS Creative Inc., developing evaluation systems and planning technology support tools that utilize generative AI in both tools and UI. Working on implementing technologies that maximize human potential through AI-human collaboration under the theme "More Creative Public."',
   },
   projects: {
     title: 'Featured Projects',
