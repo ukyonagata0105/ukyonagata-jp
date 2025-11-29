@@ -16,7 +16,12 @@ const nextConfig: NextConfig = {
   
   // For single-page application behavior
   generateEtags: false,
-  poweredByHeader: false
+  poweredByHeader: false,
+  
+  // Generate index.html for root that redirects to /ja
+  async generateBuildId() {
+    return 'build-id';
+  }
 };
 
 export default nextConfig;
