@@ -13,6 +13,7 @@ export const en = {
       'Researcher in public administration and management science, specializing in evaluation research focused on public transportation policy including railways, buses, aviation, maritime transport, and taxis. Committed to developing and validating technologies that maximize human creativity in the age of generative AI.',
     viewProjects: 'View Projects',
     getInTouch: 'Get in Touch',
+    latestPresentation: 'Latest Presentation at the Japan Society for Policy Informatics',
   },
   about: {
     title: 'About Me',

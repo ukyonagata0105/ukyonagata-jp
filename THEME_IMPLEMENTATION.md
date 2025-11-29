@@ -110,3 +110,5 @@ export function MyComponent() {
 - Tailwind CSSの`darkMode: 'class'`設定を確認（デフォルトで有効）
 - すべての要素に適切な`dark:`プレフィックスクラスがあるか確認
 
+
+

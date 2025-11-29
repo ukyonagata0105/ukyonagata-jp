@@ -106,6 +106,26 @@ export default async function Home({ params }: PageParams) {
 
       {/* Hero Section */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        {/* Latest Presentation Banner */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 sm:p-6 mb-8 sm:mb-12 shadow-sm hover:shadow-md transition-shadow">
+          <div className="text-center">
+            <p className="text-fluid-base sm:text-fluid-lg text-gray-700 dark:text-gray-200 font-medium mb-2">
+              {t.hero.latestPresentation}
+            </p>
+            <a
+              href="https://researchmap.jp/ukyonagata/presentations/51760653"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-semibold text-fluid-sm sm:text-fluid-base"
+            >
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              ResearchMap
+            </a>
+          </div>
+        </div>
+
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-fluid-5xl font-bold text-gray-900 dark:text-white mb-2">
             {t.hero.name}

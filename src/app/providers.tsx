@@ -31,16 +31,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (!mounted) return;
 
     const updateTheme = () => {
+      const root = document.documentElement;
       const isDark =
         theme === 'dark' ||
         (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
       setResolvedTheme(isDark ? 'dark' : 'light');
       
+      // クラスを更新
+      root.classList.remove('light', 'dark');
       if (isDark) {
-        document.documentElement.classList.add('dark');
+        root.classList.add('dark');
       } else {
-        document.documentElement.classList.remove('dark');
+        root.classList.add('light');
       }
     };
 
@@ -49,8 +52,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // システムテーマの変更を監視
     if (theme === 'system') {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      mediaQuery.addEventListener('change', updateTheme);
-      return () => mediaQuery.removeEventListener('change', updateTheme);
+      const handleChange = () => updateTheme();
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
     }
   }, [theme, mounted]);
 
