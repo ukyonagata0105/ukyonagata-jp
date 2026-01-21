@@ -25,7 +25,6 @@ export default async function Home({ params }: PageParams) {
     url: 'https://ukyonagata.jp',
     sameAs: [
       'https://x.com/ukyokyongt',
-      'https://researchmap.jp/ukyonagata',
       'https://github.com/ukyonagata0105',
     ],
     affiliation: [
@@ -51,7 +50,7 @@ export default async function Home({ params }: PageParams) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* 構造化データの挿入 */}
       <script
         type="application/ld+json"
@@ -76,9 +75,6 @@ export default async function Home({ params }: PageParams) {
               <a href="#research" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                 {t.nav.research}
               </a>
-              <a href="#qualifications" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-                {t.nav.qualifications}
-              </a>
               <a href="#contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                 {t.nav.contact}
               </a>
@@ -95,7 +91,6 @@ export default async function Home({ params }: PageParams) {
                   { href: '#about', label: t.nav.about },
                   { href: '#projects', label: t.nav.projects },
                   { href: '#research', label: t.nav.research },
-                  { href: '#qualifications', label: t.nav.qualifications },
                   { href: '#contact', label: t.nav.contact },
                 ]}
               />
@@ -106,27 +101,7 @@ export default async function Home({ params }: PageParams) {
 
       {/* Hero Section */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-        {/* Latest Presentation Banner */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 sm:p-6 mb-8 sm:mb-12 shadow-sm hover:shadow-md transition-shadow">
-          <div className="text-center">
-            <p className="text-fluid-base sm:text-fluid-lg text-gray-700 dark:text-gray-200 font-medium mb-2">
-              {t.hero.latestPresentation}
-            </p>
-            <a
-              href="https://researchmap.jp/ukyonagata/presentations/51760653"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-semibold text-fluid-sm sm:text-fluid-base"
-            >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-              ResearchMap
-            </a>
-          </div>
-        </div>
-
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-12 sm:mb-16 bg-gray-50 dark:bg-gray-800 rounded-xl p-8 sm:p-12">
           <h2 className="text-fluid-5xl font-bold text-gray-900 dark:text-white mb-2">
             {t.hero.name}
           </h2>
@@ -157,7 +132,7 @@ export default async function Home({ params }: PageParams) {
           <h3 className="text-fluid-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">
             {t.about.title}
           </h3>
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 sm:p-8">
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 sm:p-8 border border-gray-200 dark:border-gray-700">
             <p className="text-gray-600 dark:text-gray-300 text-fluid-base leading-relaxed mb-4">
               {t.about.paragraph1}
             </p>
@@ -173,7 +148,7 @@ export default async function Home({ params }: PageParams) {
             {t.projects.title}
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6 hover:shadow-md transition-shadow">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
               <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
                 {t.projects.maasCreative.title}
               </h4>
@@ -228,58 +203,58 @@ export default async function Home({ params }: PageParams) {
           
           {/* Research Fields and Keywords */}
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 border border-gray-200 dark:border-gray-700">
               <h4 className="text-fluid-lg font-semibold text-gray-900 dark:text-white mb-3">
                 {t.research.researchFields.title}
               </h4>
-              <div className="flex flex-wrap gap-2">
-                {t.research.researchFields.fields.map((field, index) => (
-                  <span
-                    key={index}
-                    className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 sm:px-3 py-1 rounded text-fluid-xs"
-                  >
-                    {field}
-                  </span>
-                ))}
-              </div>
+<div className="flex flex-wrap gap-2">
+                  {t.research.researchFields.fields.map((field, index) => (
+                    <span
+                      key={index}
+                      className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 sm:px-3 py-1 rounded text-fluid-xs"
+                    >
+                      {field}
+                    </span>
+                  ))}
+                </div>
             </div>
             
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6">
               <h4 className="text-fluid-lg font-semibold text-gray-900 dark:text-white mb-3">
                 {t.research.researchKeywords.title}
               </h4>
-              <div className="flex flex-wrap gap-2">
-                {t.research.researchKeywords.keywords.map((keyword, index) => (
-                  <span
-                    key={index}
-                    className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 sm:px-3 py-1 rounded text-fluid-xs"
-                  >
-                    {keyword}
-                  </span>
-                ))}
-              </div>
+<div className="flex flex-wrap gap-2">
+                  {t.research.researchKeywords.keywords.map((keyword, index) => (
+                    <span
+                      key={index}
+                      className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 sm:px-3 py-1 rounded text-fluid-xs"
+                    >
+                      {keyword}
+                    </span>
+                  ))}
+                </div>
             </div>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 border border-gray-200 dark:border-gray-700">
               <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
                 {t.research.publicTransport.title}
               </h4>
               <p className="text-fluid-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
                 {t.research.publicTransport.description}
               </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-fluid-xs">
-                  {locale === 'ja' ? '公共交通' : 'Public Transport'}
-                </span>
-                <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded text-fluid-xs">
-                  {locale === 'ja' ? 'モビリティ' : 'Mobility'}
-                </span>
-                <span className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded text-fluid-xs">
-                  {locale === 'ja' ? '公共政策学' : 'Public Policy'}
-                </span>
-              </div>
+<div className="flex flex-wrap gap-2">
+                  <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-fluid-xs">
+                    {locale === 'ja' ? '公共交通' : 'Public Transport'}
+                  </span>
+                  <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-fluid-xs">
+                    {locale === 'ja' ? 'モビリティ' : 'Mobility'}
+                  </span>
+                  <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-fluid-xs">
+                    {locale === 'ja' ? '公共政策学' : 'Public Policy'}
+                  </span>
+                </div>
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6">
@@ -289,39 +264,28 @@ export default async function Home({ params }: PageParams) {
               <p className="text-fluid-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
                 {t.research.aiPolicy.description}
               </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded text-fluid-xs">
-                  AI/LLM
-                </span>
-                <span className="bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200 px-2 py-1 rounded text-fluid-xs">
-                  {locale === 'ja' ? '創造性' : 'Creativity'}
-                </span>
-                <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-2 py-1 rounded text-fluid-xs">
-                  {locale === 'ja' ? '官民連携' : 'Public-Private Partnership'}
-                </span>
-              </div>
+<div className="flex flex-wrap gap-2">
+                  <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-fluid-xs">
+                    AI/LLM
+                  </span>
+                  <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-fluid-xs">
+                    {locale === 'ja' ? '創造性' : 'Creativity'}
+                  </span>
+                  <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-fluid-xs">
+                    {locale === 'ja' ? '官民連携' : 'Public-Private Partnership'}
+                  </span>
+                </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6 mb-4 sm:mb-6">
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 mb-4 sm:mb-6 border border-gray-200 dark:border-gray-700">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
               <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white">
                 {t.research.publications.title}
               </h4>
-              <a
-                href="https://researchmap.jp/ukyonagata"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-fluid-xs flex items-center"
-              >
-                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                ResearchMap
-              </a>
             </div>
             <div className="space-y-4">
-              <div className="border-l-4 border-blue-500 pl-4">
+              <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
                 <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
                   {t.research.publications.paper1.title}
                 </h5>
@@ -333,7 +297,7 @@ export default async function Home({ params }: PageParams) {
                 </p>
               </div>
 
-              <div className="border-l-4 border-green-500 pl-4">
+              <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
                 <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
                   {t.research.publications.paper2.title}
                 </h5>
@@ -345,7 +309,7 @@ export default async function Home({ params }: PageParams) {
                 </p>
               </div>
 
-              <div className="border-l-4 border-purple-500 pl-4">
+              <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
                 <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
                   {t.research.publications.paper3.title}
                 </h5>
@@ -360,12 +324,12 @@ export default async function Home({ params }: PageParams) {
           </div>
 
           {/* Presentations Section */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6 mb-4 sm:mb-6">
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 mb-4 sm:mb-6 border border-gray-200 dark:border-gray-700">
             <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white mb-4">
               {t.research.presentations.title}
             </h4>
             <div className="space-y-4">
-              <div className="border-l-4 border-orange-500 pl-4">
+              <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
                 <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
                   {t.research.presentations.presentation1.title}
                 </h5>
@@ -379,7 +343,7 @@ export default async function Home({ params }: PageParams) {
                 )}
               </div>
 
-              <div className="border-l-4 border-pink-500 pl-4">
+              <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
                 <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
                   {t.research.presentations.presentation2.title}
                 </h5>
@@ -393,7 +357,7 @@ export default async function Home({ params }: PageParams) {
                 )}
               </div>
 
-              <div className="border-l-4 border-teal-500 pl-4">
+              <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
                 <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
                   {t.research.presentations.presentation3.title}
                 </h5>
@@ -409,7 +373,7 @@ export default async function Home({ params }: PageParams) {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6">
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 border border-gray-200 dark:border-gray-700">
             <h4 className="text-fluid-lg font-semibold text-gray-900 dark:text-white mb-3">
               {t.research.education.title}
             </h4>
@@ -420,28 +384,6 @@ export default async function Home({ params }: PageParams) {
               <p>• {t.research.education.bachelor}</p>
               <p>• {t.research.education.lecturer}</p>
             </div>
-            <div className="mt-4">
-              <a href="https://researchmap.jp/ukyonagata" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
-                {t.research.education.researchMap}
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Qualifications Section */}
-        <section id="qualifications" className="mb-12 sm:mb-16 scroll-mt-20">
-          <h3 className="text-fluid-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">
-            {t.qualifications.title}
-          </h3>
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6">
-              <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                {t.qualifications.travelManager.title}
-              </h4>
-              <p className="text-fluid-sm text-gray-600 dark:text-gray-300">
-                {t.qualifications.travelManager.description}
-              </p>
-            </div>
           </div>
         </section>
 
@@ -450,7 +392,7 @@ export default async function Home({ params }: PageParams) {
           <h3 className="text-fluid-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
             {t.contact.title}
           </h3>
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 sm:p-8 mb-6">
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 sm:p-8 mb-6 border border-gray-200 dark:border-gray-700">
             {t.contact.description && (
               <p className="text-fluid-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">
                 {t.contact.description}
@@ -458,7 +400,7 @@ export default async function Home({ params }: PageParams) {
             )}
             
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
-              <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-5 sm:p-6">
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 border border-gray-200 dark:border-gray-700">
                 <h4 className="text-fluid-lg font-semibold text-gray-900 dark:text-white mb-3">
                   {t.contact.businessInquiry}
                 </h4>
@@ -502,17 +444,6 @@ export default async function Home({ params }: PageParams) {
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
                 <span>@ukyokyongt</span>
-              </a>
-              <a
-                href="https://researchmap.jp/ukyonagata"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center sm:justify-start space-x-2 text-fluid-sm text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors"
-              >
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span>{t.contact.researchMap}</span>
               </a>
             </div>
           </div>
