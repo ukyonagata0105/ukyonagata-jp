@@ -14,6 +14,7 @@ export const en = {
     viewProjects: 'View Projects',
     getInTouch: 'Get in Touch',
     latestPresentation: 'Latest Presentation at the Japan Society for Policy Informatics',
+    introSkip: 'Skip',
   },
   about: {
     title: 'About Me',
@@ -60,14 +61,16 @@ export const en = {
       keywords: ['Creativity', 'Public-Private Partnership', 'Mobility', 'Public Transportation', 'MaaS', 'Wicked Problem', 'New Public', 'Policy Formation'],
     },
     publicTransport: {
-      title: 'Regional Public Transportation Policy Research',
+      title: 'Regional Public Transport Policy and Governance',
       description:
-        'Research on policy formation, governance, and subsidy systems for regional public transportation. Exploring new approaches to public transportation policy from the perspective of restrained operation of "collaboration and co-creation" among various organizations, which is the central concept in the MaaS concept.',
+        'Research focused on policy formation and governance in regional public transport, including inter-organizational collaboration and subsidy systems.',
+      tags: ['Public Transport', 'Governance', 'Mobility'],
     },
     aiPolicy: {
-      title: 'AI Utilization and Administrative Creativity',
+      title: 'AI Utilization in Public Policy',
       description:
-        'Research on "Regional Public Transportation" policy domain and policy development as a wicked problem. Proposing the concept of "administrative creativity" to counter artificial intelligence, based on discourse analysis grounded in the "New Public" concept.',
+        'Research on the use of AI in the formulation, evaluation, and implementation of public policy to improve policy processes.',
+      tags: ['AI/LLM', 'Public Policy', 'Policy Making'],
     },
     publications: {
       title: 'Key Publications',
@@ -82,11 +85,6 @@ export const en = {
         authors: 'He Lok, Ukyo Nagata, Yipeng Le',
         journal: 'Journal of JSCE, 80(9) 23-00238, 2024',
         subtitle: 'Focusing on arguments for escaping deficit compensation',
-      },
-      paper3: {
-        title: 'Structural Transformation of Public Transportation',
-        publisher: 'PUBFUN: NexPub Authors Press, July 2022',
-        subtitle: '',
       },
     },
     presentations: {

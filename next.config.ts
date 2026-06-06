@@ -8,19 +8,9 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true
   },
-  experimental: {
-    optimizePackageImports: ['lucide-react']
-  },
   skipTrailingSlashRedirect: true,
-  
-  // For single-page application behavior
   generateEtags: false,
   poweredByHeader: false,
-  
-  // Generate index.html for root that redirects to /ja
-  async generateBuildId() {
-    return 'build-id';
-  }
 };
 
 export default nextConfig;

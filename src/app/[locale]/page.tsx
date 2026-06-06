@@ -2,6 +2,7 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { MobileNav } from '@/components/MobileNav';
 import { ThemeBackground } from '@/components/ThemeBackground';
+import { SiteIntro } from '@/components/SiteIntro';
 import { getTranslation } from '@/lib/i18n/translations/index';
 import { type Locale } from '@/lib/i18n/locales';
 
@@ -51,6 +52,11 @@ export default async function Home({ params }: PageParams) {
 
   return (
     <div className="relative min-h-screen">
+      <SiteIntro
+        name={t.hero.name}
+        subtitle={t.hero.subtitle}
+        skipLabel={t.hero.introSkip}
+      />
       <ThemeBackground />
       <script
         type="application/ld+json"
@@ -219,11 +225,7 @@ export default async function Home({ params }: PageParams) {
                 {t.research.publicTransport.description}
               </p>
               <div className="flex flex-wrap gap-2">
-                {[
-                  locale === 'ja' ? '公共交通' : 'Public Transport',
-                  locale === 'ja' ? 'モビリティ' : 'Mobility',
-                  locale === 'ja' ? '公共政策学' : 'Public Policy',
-                ].map((tag) => (
+                {t.research.publicTransport.tags.map((tag) => (
                   <span key={tag} className="theme-badge">{tag}</span>
                 ))}
               </div>
@@ -237,7 +239,7 @@ export default async function Home({ params }: PageParams) {
                 {t.research.aiPolicy.description}
               </p>
               <div className="flex flex-wrap gap-2">
-                {['AI/LLM', locale === 'ja' ? '創造性' : 'Creativity', locale === 'ja' ? '官民連携' : 'Public-Private Partnership'].map((tag) => (
+                {t.research.aiPolicy.tags.map((tag) => (
                   <span key={tag} className="theme-badge">{tag}</span>
                 ))}
               </div>
@@ -249,21 +251,17 @@ export default async function Home({ params }: PageParams) {
               {t.research.publications.title}
             </h4>
             <div className="space-y-4">
-              {[t.research.publications.paper1, t.research.publications.paper2, t.research.publications.paper3].map((paper) => (
+              {[t.research.publications.paper1, t.research.publications.paper2].map((paper) => (
                 <div key={paper.title} className="theme-accent-border">
                   <h5 className="font-semibold text-forest-dark mb-1">{paper.title}</h5>
-                  <p className="text-fluid-sm theme-muted-text mb-1">
+                  {paper.subtitle && (
+                    <p className="text-fluid-sm theme-body-text mb-1">{paper.subtitle}</p>
+                  )}
+                  <p className="text-fluid-sm theme-muted-text">
                     {'authors' in paper && paper.authors
                       ? `${paper.authors} / ${paper.journal}`
-                      : 'journal' in paper
-                        ? paper.journal
-                        : 'publisher' in paper
-                          ? paper.publisher
-                          : ''}
+                      : paper.journal}
                   </p>
-                  {paper.subtitle && (
-                    <p className="text-fluid-sm theme-body-text">{paper.subtitle}</p>
-                  )}
                 </div>
               ))}
             </div>
@@ -277,27 +275,14 @@ export default async function Home({ params }: PageParams) {
               {[t.research.presentations.presentation1, t.research.presentations.presentation2, t.research.presentations.presentation3].map((item) => (
                 <div key={item.title} className="theme-accent-border">
                   <h5 className="font-semibold text-forest-dark mb-1">{item.title}</h5>
-                  <p className="text-fluid-sm theme-muted-text mb-1">
+                  {item.subtitle && (
+                    <p className="text-fluid-sm theme-body-text mb-1">{item.subtitle}</p>
+                  )}
+                  <p className="text-fluid-sm theme-muted-text">
                     {item.conference} / {item.date}
                   </p>
-                  {item.subtitle && (
-                    <p className="text-fluid-sm theme-body-text">{item.subtitle}</p>
-                  )}
                 </div>
               ))}
-            </div>
-          </div>
-
-          <div className="theme-card p-5 sm:p-6">
-            <h4 className="text-fluid-lg font-semibold text-forest-dark mb-3">
-              {t.research.education.title}
-            </h4>
-            <div className="space-y-2 text-fluid-sm theme-body-text">
-              <p>• {t.research.education.doctorate}</p>
-              <p>• {t.research.education.company}</p>
-              <p>• {t.research.education.masters}</p>
-              <p>• {t.research.education.bachelor}</p>
-              <p>• {t.research.education.lecturer}</p>
             </div>
           </div>
         </section>

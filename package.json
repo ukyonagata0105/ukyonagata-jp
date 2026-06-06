@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "next dev",
+    "dev:clean": "rm -rf .next node_modules/.cache && next dev",
+    "clean:artifacts": "rm -rf .next out node_modules/.cache",
+    "dev:turbo": "next dev --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
