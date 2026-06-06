@@ -22,7 +22,7 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
     <select
       onChange={handleChange}
       value={currentLocale}
-      className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="p-2 theme-control text-fluid-sm focus:outline-none focus:ring-2 focus:ring-forest/40"
       aria-label="言語を選択"
     >
       {locales.map((locale) => (

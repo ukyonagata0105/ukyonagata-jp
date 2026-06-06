@@ -5,16 +5,39 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #000000;
+  --foreground: #1a3d2e;
+  --forest: #1e6b45;
+  --forest-dark: #145232;
+  --forest-light: #2d8f5e;
+  --mint: #d4edda;
+  --mint-light: #edf7f0;
+  --lime: #8bc34a;
+  --sky: #5dade2;
+  --sky-light: #d6eaf8;
+  --royal: #2e86c1;
+  --royal-dark: #1a5276;
+  --card-bg: rgba(255, 255, 255, 0.82);
+  --card-border: rgba(30, 107, 69, 0.12);
+  --badge-bg: rgba(212, 237, 218, 0.8);
+  --badge-text: #1e6b45;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-forest: var(--forest);
+  --color-forest-dark: var(--forest-dark);
+  --color-forest-light: var(--forest-light);
+  --color-mint: var(--mint);
+  --color-mint-light: var(--mint-light);
+  --color-lime: var(--lime);
+  --color-sky: var(--sky);
+  --color-sky-light: var(--sky-light);
+  --color-royal: var(--royal);
+  --color-royal-dark: var(--royal-dark);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  
-  /* 流動的フォントサイズ */
+
   --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
   --font-size-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
   --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
@@ -26,66 +49,183 @@
   --font-size-5xl: clamp(3rem, 2.55rem + 2.25vw, 4rem);
 }
 
-/* ダークモード対応 */
 .dark {
-  --background: #121212;
-  --foreground: #ffffff;
+  --background: #0f1f18;
+  --foreground: #e8f5e9;
+  --forest: #4caf7a;
+  --forest-dark: #2e7d57;
+  --forest-light: #6ecf9a;
+  --mint: #1a3328;
+  --mint-light: #142820;
+  --lime: #7cb342;
+  --sky: #64b5f6;
+  --sky-light: #1a2e3d;
+  --royal: #42a5f5;
+  --royal-dark: #1565c0;
+  --card-bg: rgba(20, 40, 32, 0.85);
+  --card-border: rgba(76, 175, 122, 0.2);
+  --badge-bg: rgba(30, 107, 69, 0.35);
+  --badge-text: #a5d6a7;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --background: #121212;
-    --foreground: #ffffff;
+    --background: #0f1f18;
+    --foreground: #e8f5e9;
+    --forest: #4caf7a;
+    --forest-dark: #2e7d57;
+    --forest-light: #6ecf9a;
+    --mint: #1a3328;
+    --mint-light: #142820;
+    --lime: #7cb342;
+    --sky: #64b5f6;
+    --sky-light: #1a2e3d;
+    --royal: #42a5f5;
+    --royal-dark: #1565c0;
+    --card-bg: rgba(20, 40, 32, 0.85);
+    --card-border: rgba(76, 175, 122, 0.2);
+    --badge-bg: rgba(30, 107, 69, 0.35);
+    --badge-text: #a5d6a7;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* スムーズな遷移 */
 * {
-  transition-property: background-color, border-color, color;
+  transition-property: background-color, border-color, color, box-shadow;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
-/* 流動的フォントサイズクラス */
-.text-fluid-xs {
+.text-fluid-xs { font-size: var(--font-size-xs); }
+.text-fluid-sm { font-size: var(--font-size-sm); }
+.text-fluid-base { font-size: var(--font-size-base); }
+.text-fluid-lg { font-size: var(--font-size-lg); }
+.text-fluid-xl { font-size: var(--font-size-xl); }
+.text-fluid-2xl { font-size: var(--font-size-2xl); }
+.text-fluid-3xl { font-size: var(--font-size-3xl); }
+.text-fluid-4xl { font-size: var(--font-size-4xl); }
+.text-fluid-5xl { font-size: var(--font-size-5xl); }
+
+/* Theme components */
+.theme-header {
+  border-bottom: 1px solid var(--card-border);
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+}
+
+.theme-nav-link {
+  color: var(--forest-dark);
+  opacity: 0.75;
+}
+.theme-nav-link:hover {
+  opacity: 1;
+  color: var(--forest);
+}
+
+.theme-hero {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(8px);
+}
+
+.theme-section-title {
+  color: var(--forest-dark);
+  font-weight: 700;
+}
+
+.theme-subtitle {
+  color: var(--royal);
+  font-weight: 600;
+}
+
+.theme-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(6px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.theme-card:hover {
+  border-color: rgba(30, 107, 69, 0.28);
+  box-shadow: 0 4px 24px rgba(30, 107, 69, 0.08);
+}
+
+.theme-badge {
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
   font-size: var(--font-size-xs);
 }
 
-.text-fluid-sm {
-  font-size: var(--font-size-sm);
+.theme-btn-primary {
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+  color: white;
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+.theme-btn-primary:hover {
+  box-shadow: 0 4px 16px rgba(30, 107, 69, 0.35);
+  transform: translateY(-1px);
 }
 
-.text-fluid-base {
-  font-size: var(--font-size-base);
+.theme-btn-secondary {
+  border: 2px solid var(--royal);
+  color: var(--royal-dark);
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+  background: transparent;
+}
+.theme-btn-secondary:hover {
+  background: var(--sky-light);
 }
 
-.text-fluid-lg {
-  font-size: var(--font-size-lg);
+.theme-link {
+  color: var(--royal);
+}
+.theme-link:hover {
+  color: var(--royal-dark);
+  text-decoration: underline;
 }
 
-.text-fluid-xl {
-  font-size: var(--font-size-xl);
+.theme-accent-border {
+  border-left: 4px solid var(--forest-light);
+  padding-left: 1rem;
 }
 
-.text-fluid-2xl {
-  font-size: var(--font-size-2xl);
+.theme-control {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 9999px;
+  color: var(--foreground);
+}
+.theme-control:hover {
+  border-color: rgba(30, 107, 69, 0.3);
+  background: var(--mint-light);
 }
 
-.text-fluid-3xl {
-  font-size: var(--font-size-3xl);
+.theme-footer {
+  border-top: 1px solid var(--card-border);
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
 }
 
-.text-fluid-4xl {
-  font-size: var(--font-size-4xl);
+.theme-body-text {
+  color: var(--foreground);
+  opacity: 0.8;
 }
 
-.text-fluid-5xl {
-  font-size: var(--font-size-5xl);
+.theme-muted-text {
+  color: var(--foreground);
+  opacity: 0.6;
 }

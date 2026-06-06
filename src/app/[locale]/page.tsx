@@ -1,6 +1,7 @@
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { MobileNav } from '@/components/MobileNav';
+import { ThemeBackground } from '@/components/ThemeBackground';
 import { getTranslation } from '@/lib/i18n/translations/index';
 import { type Locale } from '@/lib/i18n/locales';
 
@@ -15,7 +16,6 @@ export default async function Home({ params }: PageParams) {
   const locale = resolvedParams.locale as Locale;
   const t = getTranslation(locale);
 
-  // 構造化データ（JSON-LD）
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -50,39 +50,37 @@ export default async function Home({ params }: PageParams) {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* 構造化データの挿入 */}
+    <div className="relative min-h-screen">
+      <ThemeBackground />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      {/* Header */}
-      <header className="border-b bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm sticky top-0 z-30">
+
+      <header className="theme-header sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav className="flex justify-between items-center">
-            <h1 className="text-fluid-2xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-fluid-2xl font-bold text-forest-dark">
               Ukyo Nagata
             </h1>
-            
-            {/* デスクトップナビゲーション */}
+
             <div className="hidden lg:flex items-center space-x-6">
-              <a href="#about" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <a href="#about" className="theme-nav-link text-fluid-sm transition-colors">
                 {t.nav.about}
               </a>
-              <a href="#projects" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <a href="#projects" className="theme-nav-link text-fluid-sm transition-colors">
                 {t.nav.projects}
               </a>
-              <a href="#research" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <a href="#research" className="theme-nav-link text-fluid-sm transition-colors">
                 {t.nav.research}
               </a>
-              <a href="#contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <a href="#contact" className="theme-nav-link text-fluid-sm transition-colors">
                 {t.nav.contact}
               </a>
               <LanguageSwitcher currentLocale={locale} />
               <ThemeToggle />
             </div>
 
-            {/* モバイルナビゲーション */}
             <div className="flex lg:hidden items-center space-x-2">
               <LanguageSwitcher currentLocale={locale} />
               <ThemeToggle />
@@ -99,285 +97,202 @@ export default async function Home({ params }: PageParams) {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-        <div className="text-center mb-12 sm:mb-16 bg-gray-50 dark:bg-gray-800 rounded-xl p-8 sm:p-12">
-          <h2 className="text-fluid-5xl font-bold text-gray-900 dark:text-white mb-2">
+      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="theme-hero text-center mb-12 sm:mb-16 p-8 sm:p-12">
+          <h2 className="text-fluid-5xl font-bold text-forest-dark mb-2">
             {t.hero.name}
           </h2>
-          <h3 className="text-fluid-3xl font-semibold text-blue-600 dark:text-blue-400 mb-4 sm:mb-6">
+          <h3 className="text-fluid-3xl theme-subtitle mb-4 sm:mb-6">
             {t.hero.subtitle}
           </h3>
-          <p className="text-fluid-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-fluid-lg theme-body-text max-w-3xl mx-auto leading-relaxed">
             {t.hero.description}
           </p>
           <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-            <a
-              href="#projects"
-              className="bg-blue-600 text-white px-6 sm:px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-            >
+            <a href="#projects" className="theme-btn-primary inline-block">
               {t.hero.viewProjects}
             </a>
-            <a
-              href="#contact"
-              className="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-6 sm:px-8 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors font-medium"
-            >
+            <a href="#contact" className="theme-btn-secondary inline-block">
               {t.hero.getInTouch}
             </a>
           </div>
         </div>
 
-        {/* About Section */}
         <section id="about" className="mb-12 sm:mb-16 scroll-mt-20">
-          <h3 className="text-fluid-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">
+          <h3 className="text-fluid-3xl theme-section-title mb-6 sm:mb-8 text-center">
             {t.about.title}
           </h3>
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 sm:p-8 border border-gray-200 dark:border-gray-700">
-            <p className="text-gray-600 dark:text-gray-300 text-fluid-base leading-relaxed mb-4">
+          <div className="theme-card p-6 sm:p-8">
+            <p className="theme-body-text text-fluid-base leading-relaxed mb-4">
               {t.about.paragraph1}
             </p>
-            <p className="text-gray-600 dark:text-gray-300 text-fluid-base leading-relaxed">
+            <p className="theme-body-text text-fluid-base leading-relaxed">
               {t.about.paragraph2}
             </p>
           </div>
         </section>
 
-        {/* Projects Section */}
         <section id="projects" className="mb-12 sm:mb-16 scroll-mt-20">
-          <h3 className="text-fluid-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">
+          <h3 className="text-fluid-3xl theme-section-title mb-6 sm:mb-8 text-center">
             {t.projects.title}
           </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
-              <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                {t.projects.maasCreative.title}
-              </h4>
-              <p className="text-fluid-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
-                {t.projects.maasCreative.description}
-              </p>
-              <a href="https://maas-creative.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline text-fluid-sm">
-                {t.projects.maasCreative.visitProject}
-              </a>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6 hover:shadow-md transition-shadow">
-              <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                {t.projects.policyEvaluation.title}
-              </h4>
-              <p className="text-fluid-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
-                {t.projects.policyEvaluation.description}
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6 hover:shadow-md transition-shadow">
-              <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                {t.projects.liquitous.title}
-              </h4>
-              <p className="text-fluid-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
-                {t.projects.liquitous.description}
-              </p>
-              <a href="https://liquitous.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline text-fluid-sm">
-                {t.projects.liquitous.visitProject}
-              </a>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6 hover:shadow-md transition-shadow">
-              <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                {t.projects.marpTemplate.title}
-              </h4>
-              <p className="text-fluid-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
-                {t.projects.marpTemplate.description}
-              </p>
-              <a href="https://github.com/ukyonagata0105/marptemplate" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline text-fluid-sm">
-                {t.projects.marpTemplate.viewOnGithub}
-              </a>
-            </div>
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+            {[
+              {
+                title: t.projects.maasCreative.title,
+                description: t.projects.maasCreative.description,
+                link: { href: 'https://maas-creative.com', label: t.projects.maasCreative.visitProject },
+              },
+              {
+                title: t.projects.liquitous.title,
+                description: t.projects.liquitous.description,
+                link: { href: 'https://liquitous.com', label: t.projects.liquitous.visitProject },
+              },
+              {
+                title: t.projects.ruleMakersDao.title,
+                description: t.projects.ruleMakersDao.description,
+                link: { href: 'https://rulemakers.io', label: t.projects.ruleMakersDao.visitProject },
+              },
+              {
+                title: t.projects.minatoMediaMuseum.title,
+                description: t.projects.minatoMediaMuseum.description,
+                link: { href: 'https://minato-media-museum.com', label: t.projects.minatoMediaMuseum.visitProject },
+              },
+            ].map((project) => (
+              <div key={project.title} className="theme-card p-5 sm:p-6">
+                <h4 className="text-fluid-xl font-semibold text-forest-dark mb-2 sm:mb-3">
+                  {project.title}
+                </h4>
+                <p className="text-fluid-sm theme-body-text mb-3 sm:mb-4">
+                  {project.description}
+                </p>
+                {project.link && (
+                  <a
+                    href={project.link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="theme-link text-fluid-sm"
+                  >
+                    {project.link.label}
+                  </a>
+                )}
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* Research Section */}
         <section id="research" className="mb-12 sm:mb-16 scroll-mt-20">
-          <h3 className="text-fluid-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">
+          <h3 className="text-fluid-3xl theme-section-title mb-6 sm:mb-8 text-center">
             {t.research.title}
           </h3>
-          
-          {/* Research Fields and Keywords */}
+
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 border border-gray-200 dark:border-gray-700">
-              <h4 className="text-fluid-lg font-semibold text-gray-900 dark:text-white mb-3">
+            <div className="theme-card p-5 sm:p-6">
+              <h4 className="text-fluid-lg font-semibold text-forest-dark mb-3">
                 {t.research.researchFields.title}
               </h4>
-<div className="flex flex-wrap gap-2">
-                  {t.research.researchFields.fields.map((field, index) => (
-                    <span
-                      key={index}
-                      className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 sm:px-3 py-1 rounded text-fluid-xs"
-                    >
-                      {field}
-                    </span>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-2">
+                {t.research.researchFields.fields.map((field, index) => (
+                  <span key={index} className="theme-badge">{field}</span>
+                ))}
+              </div>
             </div>
-            
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6">
-              <h4 className="text-fluid-lg font-semibold text-gray-900 dark:text-white mb-3">
+
+            <div className="theme-card p-5 sm:p-6">
+              <h4 className="text-fluid-lg font-semibold text-forest-dark mb-3">
                 {t.research.researchKeywords.title}
               </h4>
-<div className="flex flex-wrap gap-2">
-                  {t.research.researchKeywords.keywords.map((keyword, index) => (
-                    <span
-                      key={index}
-                      className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 sm:px-3 py-1 rounded text-fluid-xs"
-                    >
-                      {keyword}
-                    </span>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-2">
+                {t.research.researchKeywords.keywords.map((keyword, index) => (
+                  <span key={index} className="theme-badge">{keyword}</span>
+                ))}
+              </div>
             </div>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 border border-gray-200 dark:border-gray-700">
-              <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+            <div className="theme-card p-5 sm:p-6">
+              <h4 className="text-fluid-xl font-semibold text-forest-dark mb-2 sm:mb-3">
                 {t.research.publicTransport.title}
               </h4>
-              <p className="text-fluid-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
+              <p className="text-fluid-sm theme-body-text mb-3 sm:mb-4">
                 {t.research.publicTransport.description}
               </p>
-<div className="flex flex-wrap gap-2">
-                  <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-fluid-xs">
-                    {locale === 'ja' ? '公共交通' : 'Public Transport'}
-                  </span>
-                  <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-fluid-xs">
-                    {locale === 'ja' ? 'モビリティ' : 'Mobility'}
-                  </span>
-                  <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-fluid-xs">
-                    {locale === 'ja' ? '公共政策学' : 'Public Policy'}
-                  </span>
-                </div>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  locale === 'ja' ? '公共交通' : 'Public Transport',
+                  locale === 'ja' ? 'モビリティ' : 'Mobility',
+                  locale === 'ja' ? '公共政策学' : 'Public Policy',
+                ].map((tag) => (
+                  <span key={tag} className="theme-badge">{tag}</span>
+                ))}
+              </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 sm:p-6">
-              <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+            <div className="theme-card p-5 sm:p-6">
+              <h4 className="text-fluid-xl font-semibold text-forest-dark mb-2 sm:mb-3">
                 {t.research.aiPolicy.title}
               </h4>
-              <p className="text-fluid-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
+              <p className="text-fluid-sm theme-body-text mb-3 sm:mb-4">
                 {t.research.aiPolicy.description}
               </p>
-<div className="flex flex-wrap gap-2">
-                  <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-fluid-xs">
-                    AI/LLM
-                  </span>
-                  <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-fluid-xs">
-                    {locale === 'ja' ? '創造性' : 'Creativity'}
-                  </span>
-                  <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-fluid-xs">
-                    {locale === 'ja' ? '官民連携' : 'Public-Private Partnership'}
-                  </span>
-                </div>
+              <div className="flex flex-wrap gap-2">
+                {['AI/LLM', locale === 'ja' ? '創造性' : 'Creativity', locale === 'ja' ? '官民連携' : 'Public-Private Partnership'].map((tag) => (
+                  <span key={tag} className="theme-badge">{tag}</span>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 mb-4 sm:mb-6 border border-gray-200 dark:border-gray-700">
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
-              <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white">
-                {t.research.publications.title}
-              </h4>
-            </div>
+          <div className="theme-card p-5 sm:p-6 mb-4 sm:mb-6">
+            <h4 className="text-fluid-xl font-semibold text-forest-dark mb-4">
+              {t.research.publications.title}
+            </h4>
             <div className="space-y-4">
-              <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
-                <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
-                  {t.research.publications.paper1.title}
-                </h5>
-                <p className="text-fluid-sm text-gray-600 dark:text-gray-400 mb-1">
-                  {t.research.publications.paper1.journal}
-                </p>
-                <p className="text-fluid-sm text-gray-600 dark:text-gray-300">
-                  {t.research.publications.paper1.subtitle}
-                </p>
-              </div>
-
-              <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
-                <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
-                  {t.research.publications.paper2.title}
-                </h5>
-                <p className="text-fluid-sm text-gray-600 dark:text-gray-400 mb-1">
-                  {t.research.publications.paper2.authors} / {t.research.publications.paper2.journal}
-                </p>
-                <p className="text-fluid-sm text-gray-600 dark:text-gray-300">
-                  {t.research.publications.paper2.subtitle}
-                </p>
-              </div>
-
-              <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
-                <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
-                  {t.research.publications.paper3.title}
-                </h5>
-                <p className="text-fluid-sm text-gray-600 dark:text-gray-400 mb-1">
-                  {t.research.publications.paper3.publisher}
-                </p>
-                <p className="text-fluid-sm text-gray-600 dark:text-gray-300">
-                  {t.research.publications.paper3.subtitle}
-                </p>
-              </div>
+              {[t.research.publications.paper1, t.research.publications.paper2, t.research.publications.paper3].map((paper) => (
+                <div key={paper.title} className="theme-accent-border">
+                  <h5 className="font-semibold text-forest-dark mb-1">{paper.title}</h5>
+                  <p className="text-fluid-sm theme-muted-text mb-1">
+                    {'authors' in paper && paper.authors
+                      ? `${paper.authors} / ${paper.journal}`
+                      : 'journal' in paper
+                        ? paper.journal
+                        : 'publisher' in paper
+                          ? paper.publisher
+                          : ''}
+                  </p>
+                  {paper.subtitle && (
+                    <p className="text-fluid-sm theme-body-text">{paper.subtitle}</p>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Presentations Section */}
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 mb-4 sm:mb-6 border border-gray-200 dark:border-gray-700">
-            <h4 className="text-fluid-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="theme-card p-5 sm:p-6 mb-4 sm:mb-6">
+            <h4 className="text-fluid-xl font-semibold text-forest-dark mb-4">
               {t.research.presentations.title}
             </h4>
             <div className="space-y-4">
-              <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
-                <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
-                  {t.research.presentations.presentation1.title}
-                </h5>
-                <p className="text-fluid-sm text-gray-600 dark:text-gray-400 mb-1">
-                  {t.research.presentations.presentation1.conference} / {t.research.presentations.presentation1.date}
-                </p>
-                {t.research.presentations.presentation1.subtitle && (
-                  <p className="text-fluid-sm text-gray-600 dark:text-gray-300">
-                    {t.research.presentations.presentation1.subtitle}
+              {[t.research.presentations.presentation1, t.research.presentations.presentation2, t.research.presentations.presentation3].map((item) => (
+                <div key={item.title} className="theme-accent-border">
+                  <h5 className="font-semibold text-forest-dark mb-1">{item.title}</h5>
+                  <p className="text-fluid-sm theme-muted-text mb-1">
+                    {item.conference} / {item.date}
                   </p>
-                )}
-              </div>
-
-              <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
-                <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
-                  {t.research.presentations.presentation2.title}
-                </h5>
-                <p className="text-fluid-sm text-gray-600 dark:text-gray-400 mb-1">
-                  {t.research.presentations.presentation2.conference} / {t.research.presentations.presentation2.date}
-                </p>
-                {t.research.presentations.presentation2.subtitle && (
-                  <p className="text-fluid-sm text-gray-600 dark:text-gray-300">
-                    {t.research.presentations.presentation2.subtitle}
-                  </p>
-                )}
-              </div>
-
-              <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
-                <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
-                  {t.research.presentations.presentation3.title}
-                </h5>
-                <p className="text-fluid-sm text-gray-600 dark:text-gray-400 mb-1">
-                  {t.research.presentations.presentation3.conference} / {t.research.presentations.presentation3.date}
-                </p>
-                {t.research.presentations.presentation3.subtitle && (
-                  <p className="text-fluid-sm text-gray-600 dark:text-gray-300">
-                    {t.research.presentations.presentation3.subtitle}
-                  </p>
-                )}
-              </div>
+                  {item.subtitle && (
+                    <p className="text-fluid-sm theme-body-text">{item.subtitle}</p>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 border border-gray-200 dark:border-gray-700">
-            <h4 className="text-fluid-lg font-semibold text-gray-900 dark:text-white mb-3">
+          <div className="theme-card p-5 sm:p-6">
+            <h4 className="text-fluid-lg font-semibold text-forest-dark mb-3">
               {t.research.education.title}
             </h4>
-            <div className="space-y-2 text-fluid-sm text-gray-600 dark:text-gray-300">
+            <div className="space-y-2 text-fluid-sm theme-body-text">
               <p>• {t.research.education.doctorate}</p>
               <p>• {t.research.education.company}</p>
               <p>• {t.research.education.masters}</p>
@@ -387,28 +302,27 @@ export default async function Home({ params }: PageParams) {
           </div>
         </section>
 
-        {/* Contact Section */}
         <section id="contact" className="text-center scroll-mt-20">
-          <h3 className="text-fluid-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
+          <h3 className="text-fluid-3xl theme-section-title mb-6 sm:mb-8">
             {t.contact.title}
           </h3>
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 sm:p-8 mb-6 border border-gray-200 dark:border-gray-700">
+          <div className="theme-card p-6 sm:p-8 mb-6">
             {t.contact.description && (
-              <p className="text-fluid-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">
+              <p className="text-fluid-base theme-body-text mb-6 sm:mb-8">
                 {t.contact.description}
               </p>
             )}
-            
+
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
-              <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 sm:p-6 border border-gray-200 dark:border-gray-700">
-                <h4 className="text-fluid-lg font-semibold text-gray-900 dark:text-white mb-3">
+              <div className="theme-card p-5 sm:p-6">
+                <h4 className="text-fluid-lg font-semibold text-forest-dark mb-3">
                   {t.contact.businessInquiry}
                 </h4>
                 <a
                   href="https://maas-creative.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-fluid-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                  className="theme-link inline-flex items-center text-fluid-sm"
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -416,14 +330,14 @@ export default async function Home({ params }: PageParams) {
                   {t.contact.businessInquiryLink}
                 </a>
               </div>
-              
-              <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-5 sm:p-6">
-                <h4 className="text-fluid-lg font-semibold text-gray-900 dark:text-white mb-3">
+
+              <div className="theme-card p-5 sm:p-6">
+                <h4 className="text-fluid-lg font-semibold text-forest-dark mb-3">
                   {t.contact.personalInquiry}
                 </h4>
                 <a
                   href="mailto:s18568un@gmail.com"
-                  className="inline-flex items-center text-fluid-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors break-all"
+                  className="theme-link inline-flex items-center text-fluid-sm break-all"
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -433,27 +347,24 @@ export default async function Home({ params }: PageParams) {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-              <a
-                href="https://x.com/ukyokyongt"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center sm:justify-start space-x-2 text-fluid-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-              >
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-                <span>@ukyokyongt</span>
-              </a>
-            </div>
+            <a
+              href="https://x.com/ukyokyongt"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="theme-link inline-flex items-center justify-center space-x-2 text-fluid-sm"
+            >
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+              <span>@ukyokyongt</span>
+            </a>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+      <footer className="theme-footer relative z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-          <div className="text-center text-gray-600 dark:text-gray-400">
+          <div className="text-center theme-muted-text">
             <p className="text-fluid-sm">{t.footer.copyright}</p>
             {t.footer.builtWith && (
               <p className="mt-2 text-fluid-xs">{t.footer.builtWith}</p>
@@ -464,4 +375,3 @@ export default async function Home({ params }: PageParams) {
     </div>
   );
 }
-

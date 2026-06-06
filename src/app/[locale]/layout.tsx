@@ -1,19 +1,7 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import '../globals.css';
-import { ThemeProvider } from '../providers';
+import { HtmlLang } from '@/components/HtmlLang';
 import { locales, type Locale } from '@/lib/i18n/locales';
 import { getTranslation } from '@/lib/i18n/translations';
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -55,12 +43,12 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
     alternates: {
       canonical: currentUrl,
       languages: {
-        'ja': `${siteUrl}/ja`,
-        'en': `${siteUrl}/en`,
-        'th': `${siteUrl}/th`,
-        'dz': `${siteUrl}/dz`,
-        'ne': `${siteUrl}/ne`,
-        'my': `${siteUrl}/my`,
+        ja: `${siteUrl}/ja`,
+        en: `${siteUrl}/en`,
+        th: `${siteUrl}/th`,
+        dz: `${siteUrl}/dz`,
+        ne: `${siteUrl}/ne`,
+        my: `${siteUrl}/my`,
       },
     },
     openGraph: {
@@ -99,7 +87,7 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
       },
     },
     verification: {
-      google: 'your-google-verification-code', // Google Search Consoleで取得
+      google: 'your-google-verification-code',
     },
   };
 }
@@ -117,15 +105,11 @@ export default async function LocaleLayout({
 }: PageParams) {
   const resolvedParams = await params;
   const locale = resolvedParams.locale as Locale;
-  
+
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-white`}>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <>
+      <HtmlLang locale={locale} />
+      {children}
+    </>
   );
 }
-

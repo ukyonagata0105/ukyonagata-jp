@@ -30,22 +30,23 @@ export const ja = {
         '「More Creative Public.」をテーマに、AIと人間の協働を通じて人間の可能性を最大化する技術を開発する事業会社です。生成AIをツール、UIの両面で活用し、評価に関するシステムや計画技術の支援ツールなどを開発しています。',
       visitProject: 'プロジェクトを見る →',
     },
-    policyEvaluation: {
-      title: '政策評価分析システム (Evaluation Format)',
-      description:
-        'RAGチャットボットを備えたAI駆動型の政策評価分析システム。PDF文書から政策データを自動的に抽出・構造化し、自治体横断分析とインテリジェントなQ&A機能を実現します。',
-    },
     liquitous: {
       title: 'Liquitous',
       description:
         '参加型ガバナンスと合意形成のためのシビックエンゲージメントプラットフォームを開発する企業です。公共交通に関するプロジェクトに関わっています。',
       visitProject: 'プロジェクトを見る →',
     },
-    marpTemplate: {
-      title: 'Marp Template',
+    ruleMakersDao: {
+      title: 'Rule Makers DAO',
       description:
-        'Marp（Markdownプレゼンテーション）を使用したプロフェッショナルなプレゼンテーションテンプレート。構造化されたガイドラインと強化されたスタイリングでスライド作成をサポート。',
-      viewOnGithub: 'GitHubで見る →',
+        '法・民・政が連携してルールメイキングを行う一般社団法人。同団体内で、システム開発・パブリックアフェアーズ（PA）に関する最前線の研究・実践を行っています。',
+      visitProject: 'プロジェクトを見る →',
+    },
+    minatoMediaMuseum: {
+      title: 'NPO法人みなとメディアミュージアム',
+      description:
+        '茨城県ひたちなか市那珂湊駅周辺で芸術祭を開催する文化芸術NPO。私はDAOプロジェクトとして、この団体にDAOの仕組みを導入し、芸術実践・地域実践を支える方法の確立に取り組んでいます。',
+      visitProject: 'プロジェクトを見る →',
     },
   },
   research: {
@@ -84,8 +85,7 @@ export const ja = {
       paper3: {
         title: '公共交通の構造転換',
         publisher: 'PUBFUN : ネクパブ・オーサーズプレス, 2022年7月',
-        subtitle:
-          '地域公共交通活性化・再生政策の批判的考察と地域交通経営公社(ATMA)導入の提案',
+        subtitle: '',
       },
     },
     presentations: {

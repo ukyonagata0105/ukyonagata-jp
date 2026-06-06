@@ -30,22 +30,23 @@ export const en = {
         'A business company developing technologies that maximize human potential through AI-human collaboration under the theme "More Creative Public." Utilizing generative AI in both tools and UI, developing evaluation systems and planning technology support tools.',
       visitProject: 'Visit Project →',
     },
-    policyEvaluation: {
-      title: 'Policy Evaluation Analysis System (Evaluation Format)',
-      description:
-        'AI-powered policy evaluation analysis system with RAG chatbot. Automatically extracts and structures policy data from PDF documents, enabling cross-municipal analysis and intelligent Q&A capabilities.',
-    },
     liquitous: {
       title: 'Liquitous',
       description:
         'A company that develops civic engagement platforms for participatory governance and consensus-building. Involved in public transportation projects.',
       visitProject: 'Visit Project →',
     },
-    marpTemplate: {
-      title: 'Marp Template',
+    ruleMakersDao: {
+      title: 'Rule Makers DAO',
       description:
-        'Professional presentation template using Marp (Markdown Presentation) with structured guidelines and enhanced styling for creating slides.',
-      viewOnGithub: 'View on GitHub →',
+        'A general incorporated association where law, civil society, and government collaborate on rule-making. Within the organization, I conduct research and practice at the forefront of system development and public affairs (PA).',
+      visitProject: 'Visit Project →',
+    },
+    minatoMediaMuseum: {
+      title: 'NPO Minato Media Museum',
+      description:
+        'A cultural arts NPO that hosts art festivals around Nakaminato Station in Hitachinaka City, Ibaraki. Through a DAO project, I am working to introduce DAO mechanisms to the organization and establish ways to support artistic and community practice.',
+      visitProject: 'Visit Project →',
     },
   },
   research: {
@@ -85,8 +86,7 @@ export const en = {
       paper3: {
         title: 'Structural Transformation of Public Transportation',
         publisher: 'PUBFUN: NexPub Authors Press, July 2022',
-        subtitle:
-          'Critical examination of regional public transportation revitalization/regeneration policies and proposal for introducing ATMA (Area Transit Management Authority)',
+        subtitle: '',
       },
     },
     presentations: {

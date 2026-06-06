@@ -50,13 +50,13 @@ export function MobileNav({ items }: MobileNavProps) {
     <div className="relative lg:hidden">
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+        className="p-2 theme-control transition-colors"
         aria-label="メニュー"
         aria-expanded={isOpen}
         aria-controls="mobile-navigation-panel"
       >
         <svg
-          className="w-6 h-6 text-gray-700 dark:text-gray-300"
+          className="w-6 h-6 text-forest-dark"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -85,21 +85,21 @@ export function MobileNav({ items }: MobileNavProps) {
           <div
             ref={panelRef}
             id="mobile-navigation-panel"
-            className="fixed inset-x-4 top-20 z-50 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-2xl"
+            className="fixed inset-x-4 top-20 z-50 rounded-2xl theme-card shadow-2xl"
             role="dialog"
             aria-modal="true"
           >
-            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-800">
-              <span className="text-base font-semibold text-gray-900 dark:text-white">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--card-border)]">
+              <span className="text-base font-semibold text-forest-dark">
                 Menu
               </span>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="p-2 theme-control transition-colors"
                 aria-label="閉じる"
               >
                 <svg
-                  className="w-5 h-5 text-gray-700 dark:text-gray-300"
+                  className="w-5 h-5 text-forest-dark"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -114,16 +114,16 @@ export function MobileNav({ items }: MobileNavProps) {
               </button>
             </div>
 
-            <nav className="flex flex-col divide-y divide-gray-200 dark:divide-gray-800">
+            <nav className="flex flex-col divide-y divide-[var(--card-border)]">
               {items.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="flex items-center justify-between px-5 py-4 text-lg font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  className="flex items-center justify-between px-5 py-4 text-lg font-medium text-forest-dark hover:bg-[var(--mint-light)] transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   <span>{item.label}</span>
-                  <span className="text-blue-600 dark:text-blue-400 text-sm">→</span>
+                  <span className="text-royal text-sm">→</span>
                 </a>
               ))}
             </nav>
