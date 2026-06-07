@@ -4,6 +4,7 @@ export const en = {
     projects: 'Projects',
     research: 'Research',
     qualifications: 'Qualifications',
+    presentation: 'Midterm Presentation',
     contact: 'Contact',
   },
   hero: {

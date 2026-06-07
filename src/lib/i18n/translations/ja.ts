@@ -4,6 +4,7 @@ export const ja = {
     projects: 'プロジェクト',
     research: '研究',
     qualifications: '資格・受賞歴',
+    presentation: '発表資料',
     contact: 'お問い合わせ',
   },
   hero: {

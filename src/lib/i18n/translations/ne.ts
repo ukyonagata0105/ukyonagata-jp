@@ -4,6 +4,7 @@ export const ne = {
     projects: 'परियोजनाहरू',
     research: 'अनुसन्धान',
     qualifications: 'योग्यता',
+    presentation: 'Presentation',
     contact: 'सम्पर्क',
   },
   hero: {

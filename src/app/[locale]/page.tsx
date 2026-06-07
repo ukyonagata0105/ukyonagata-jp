@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { MobileNav } from '@/components/MobileNav';
@@ -83,6 +84,9 @@ export default async function Home({ params }: PageParams) {
               <a href="#contact" className="theme-nav-link text-fluid-sm transition-colors">
                 {t.nav.contact}
               </a>
+              <Link href="/presentation" className="px-3 py-1.5 rounded-lg bg-forest-dark text-white text-fluid-sm font-medium hover:opacity-90 transition-opacity">
+                {t.nav.presentation}
+              </Link>
               <LanguageSwitcher currentLocale={locale} />
               <ThemeToggle />
             </div>
@@ -96,6 +100,7 @@ export default async function Home({ params }: PageParams) {
                   { href: '#projects', label: t.nav.projects },
                   { href: '#research', label: t.nav.research },
                   { href: '#contact', label: t.nav.contact },
+                  { href: '/presentation', label: t.nav.presentation },
                 ]}
               />
             </div>

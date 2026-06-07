@@ -4,6 +4,7 @@ export const dz = {
     projects: 'ལས་འཆར།',
     research: 'ཞིབ་འཇུག',
     qualifications: 'ཡོན་ཏན་དང་གྲགས་པ།',
+    presentation: 'Presentation',
     contact: 'འབྲེལ་གཏུག',
   },
   hero: {

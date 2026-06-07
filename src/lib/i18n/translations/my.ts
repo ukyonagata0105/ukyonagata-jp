@@ -4,6 +4,7 @@ export const my = {
     projects: 'ပရောဂျက်များ',
     research: 'သုတေသန',
     qualifications: 'အရည်အချင်း',
+    presentation: 'Presentation',
     contact: 'ဆက်သွယ်ရန်',
   },
   hero: {

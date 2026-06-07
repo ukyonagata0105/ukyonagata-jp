@@ -4,6 +4,7 @@ export const th = {
     projects: 'โครงการ',
     research: 'การวิจัย',
     qualifications: 'คุณสมบัติและรางวัล',
+    presentation: 'Presentation',
     contact: 'ติดต่อ',
   },
   hero: {
