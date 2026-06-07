@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>博士論文中間発表：政策のメタネイチャーを実現する</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --accent-start:#3b82f6;
+      --accent-end:#06b6d4;
+      --accent-glow: rgba(59, 130, 246, 0.5);
+      --bg-light:#f1f5f9;
+      --bg-white:#ffffff;
+      --fg-dark:#0f172a;
+      --fg-light:#64748b;
+      --header-h:56px;
+      --footer-h:36px;
+      --sidebar-w:260px;
+      --radius:14px;
+      --frame-gap:1.5rem;
+      --transition-speed: 0.4s;
+    }
+    body.dark-mode {
+      --bg-light: #1e293b;
+      --bg-white: #0f172a;
+      --fg-dark: #f1f5f9;
+      --fg-light: #cbd5e1;
+      --accent-glow: rgba(6, 182, 212, 0.5);
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:"Segoe UI",Roboto,"Noto Sans JP",sans-serif;background:linear-gradient(135deg,var(--accent-start),var(--accent-end));color:var(--fg-dark);height:100vh;overflow:hidden;display:flex;transition:color 0.3s ease,background-color 0.3s ease;}
+    #sidebar{position:fixed;top:0;left:0;height:100vh;width:var(--sidebar-w);background:var(--bg-white);border-right:1px solid #e2e8f0;padding:1.5rem 1rem;z-index:1100;overflow-y:auto;transition:transform var(--transition-speed) ease-in-out,background-color 0.3s ease;box-shadow:2px 0 15px rgba(0,0,0,0.1);}
+    body.dark-mode #sidebar{border-right-color:rgba(203,213,225,0.1);}
+    #sidebar.hidden{transform:translateX(-100%);}
+    #sidebar h1{font-size:1.1rem;margin-bottom:1.5rem;color:var(--accent-start);display:flex;align-items:center;}
+    #sidebar h1 i{margin-right:8px;}
+    #sidebar nav a{display:flex;align-items:center;margin:.35rem 0;padding:.6rem .75rem;border-radius:6px;color:var(--fg-light);text-decoration:none;transition:.3s;font-size:0.85rem;}
+    #sidebar nav a i{margin-right:8px;width:18px;text-align:center;}
+    #sidebar nav a:hover,#sidebar nav a.active{background:linear-gradient(90deg,var(--accent-start),var(--accent-end));color:#fff;transform:translateX(3px);}
+    main{margin-left:var(--sidebar-w);flex:1;position:relative;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:margin-left 0.3s ease-in-out;}
+    .slide-header{position:fixed;left:var(--sidebar-w);right:0;top:0;height:var(--header-h);display:flex;align-items:center;justify-content:center;padding:0 1.5rem;color:#fff;background:rgba(0,0,0,0.1);backdrop-filter:blur(5px);transition:left 0.3s ease-in-out;}
+    .slide-footer{position:fixed;left:var(--sidebar-w);right:0;bottom:0;height:var(--footer-h);display:flex;align-items:center;justify-content:center;padding:0 1.5rem;color:#fff;background:rgba(0,0,0,0.1);backdrop-filter:blur(5px);transition:left 0.3s ease-in-out;font-size:0.85rem;}
+    section{position:absolute;inset:var(--header-h) var(--frame-gap) var(--footer-h) var(--frame-gap);display:none;overflow:hidden;}
+    section.active{display:flex;animation:fade .35s ease;flex-direction:column;justify-content:flex-start;align-items:center;}
+    .slide-card{width:100%;height:100%;background:linear-gradient(145deg,var(--bg-white),#f8fafc);border:1px solid rgba(255,255,255,0.7);border-radius:var(--radius);box-shadow:0 4px 18px rgba(0,0,0,.1);padding:clamp(1.5rem,4vw,3rem);overflow-y:auto;display:flex;flex-direction:column;transition:background-color 0.3s ease;}
+    body.dark-mode .slide-card{background:linear-gradient(145deg,var(--bg-white),#1e293b);border:1px solid rgba(255,255,255,0.1);}
+    .slide-card h2{font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--accent-start);text-align:center;margin-bottom:1rem;}
+    .slide-card h3{font-size:clamp(1.2rem,2.5vw,1.5rem);color:var(--fg-dark);margin:1rem 0 0.5rem;text-align:left;}
+    .slide-card p,.slide-card ul,.slide-card ol{font-size:clamp(0.95rem,1.8vw,1.15rem);margin:.6rem 0;line-height:1.7;}
+    .slide-card ul,.slide-card ol{text-align:left;padding-left:1.5rem;}
+    .slide-card li{margin:0.3rem 0;}
+    .accent-text{background:linear-gradient(90deg,var(--accent-start),var(--accent-end));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:bold;}
+    .highlight-box{background:var(--bg-light);border-left:4px solid var(--accent-start);padding:1rem 1.2rem;border-radius:8px;margin:1rem 0;}
+    .comparison-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.95rem;}
+    .comparison-table th{background:linear-gradient(90deg,var(--accent-start),var(--accent-end));color:#fff;padding:0.6rem;text-align:left;}
+    .comparison-table td{padding:0.5rem 0.6rem;border-bottom:1px solid #e2e8f0;}
+    body.dark-mode .comparison-table td{border-bottom-color:#334155;}
+    .process-flow{display:flex;justify-content:space-around;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin:1.5rem 0;}
+    .process-step{display:flex;flex-direction:column;align-items:center;max-width:180px;text-align:center;}
+    .step-icon{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--accent-start),var(--accent-end));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;margin-bottom:0.5rem;}
+    .step-text{font-weight:bold;font-size:0.9rem;margin-bottom:0.3rem;}
+    .step-desc{font-size:0.8rem;color:var(--fg-light);}
+    .arrow-right{font-size:1.5rem;color:var(--accent-start);align-self:center;}
+    .sim-media-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0.5rem 0 1rem;}
+    .sim-video-wrap{display:flex;flex-direction:column;align-items:center;gap:0.4rem;}
+    .sim-video{width:100%;max-height:180px;border-radius:8px;background:#000;object-fit:contain;}
+    .sim-caption{font-size:0.85rem;color:var(--fg-light);text-align:center;}
+    #dark-mode-toggle{position:fixed;top:12px;right:20px;background:rgba(0,0,0,0.2);border:none;color:white;font-size:1.3rem;cursor:pointer;z-index:1200;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(5px);transition:all 0.3s ease;}
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+    @media(max-width:768px){
+      main{margin-left:0;}
+      #sidebar{transform:translateX(-100%);}
+      #sidebar.visible{transform:translateX(0);}
+      .slide-header,.slide-footer{left:0;}
+      .sim-media-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+  <div id="file-protocol-warning" hidden style="position:fixed;top:0;left:0;right:0;z-index:2000;background:#7f1d1d;color:#fff;padding:0.75rem 1rem;font-size:0.9rem;text-align:center;">
+    Cursor / ブラウザの <code>file://</code> プレビューでは動画が再生できません。
+    ターミナルで <code>pnpm serve</code> を実行し、
+    <a id="local-server-link" href="http://127.0.0.1:8765/midterm_presentation.html" style="color:#fde68a;">http://127.0.0.1:8765/midterm_presentation.html</a>
+    を外部ブラウザで開いてください。
+  </div>
+  <button id="dark-mode-toggle"><i class="fas fa-moon"></i></button>
+
+  <div id="sidebar">
+    <h1><i class="fas fa-graduation-cap"></i>中間発表</h1>
+    <nav>
+      <a href="#" data-slide="0"><i class="fas fa-home"></i>タイトル</a>
+      <a href="#" data-slide="1"><i class="fas fa-undo-alt"></i>地方分権の逆回転</a>
+      <a href="#" data-slide="2"><i class="fas fa-bus"></i>規範生成能力の欠如</a>
+      <a href="#" data-slide="3"><i class="fas fa-globe"></i>メタネイチャーの射程</a>
+      <a href="#" data-slide="4"><i class="fas fa-history"></i>政策合理化60年の挫折</a>
+      <a href="#" data-slide="5"><i class="fas fa-times-circle"></i>PPBSの失敗</a>
+      <a href="#" data-slide="6"><i class="fas fa-times-circle"></i>NPMの失敗</a>
+      <a href="#" data-slide="7"><i class="fas fa-times-circle"></i>EBPMの失敗</a>
+      <a href="#" data-slide="8"><i class="fas fa-wall"></i>三波に共通する壁</a>
+      <a href="#" data-slide="9"><i class="fas fa-link"></i>Web3という先行実験</a>
+      <a href="#" data-slide="10"><i class="fas fa-robot"></i>生成AIが開いた問い</a>
+      <a href="#" data-slide="11"><i class="fas fa-question-circle"></i>四つのRQ</a>
+      <a href="#" data-slide="12"><i class="fas fa-sitemap"></i>論文構成</a>
+      <a href="#" data-slide="13"><i class="fas fa-flag"></i>── RQ1</a>
+      <a href="#" data-slide="14"><i class="fas fa-stethoscope"></i>診断：MaaS（第2章）</a>
+      <a href="#" data-slide="15"><i class="fas fa-bullseye"></i>診断：パーパス（第3章）</a>
+      <a href="#" data-slide="16"><i class="fas fa-chart-bar"></i>診断：同型化（第4章）</a>
+      <a href="#" data-slide="17"><i class="fas fa-clipboard-check"></i>診断の小括</a>
+      <a href="#" data-slide="18"><i class="fas fa-gavel"></i>RQ1 応答</a>
+      <a href="#" data-slide="19"><i class="fas fa-flag"></i>── RQ2</a>
+      <a href="#" data-slide="20"><i class="fas fa-balance-scale"></i>規範の営み</a>
+      <a href="#" data-slide="21"><i class="fas fa-brain"></i>AIの限界</a>
+      <a href="#" data-slide="22"><i class="fas fa-layer-group"></i>包含関係</a>
+      <a href="#" data-slide="23"><i class="fas fa-handshake"></i>役割分担・AI補完</a>
+      <a href="#" data-slide="24"><i class="fas fa-plane"></i>航空管制</a>
+      <a href="#" data-slide="25"><i class="fas fa-users"></i>RQ2 応答</a>
+      <a href="#" data-slide="26"><i class="fas fa-flag"></i>── RQ3</a>
+      <a href="#" data-slide="27"><i class="fas fa-microscope"></i>バイアス定義・操作化</a>
+      <a href="#" data-slide="28"><i class="fas fa-play-circle"></i>シミュ動画</a>
+      <a href="#" data-slide="29"><i class="fas fa-flask"></i>主要知見</a>
+      <a href="#" data-slide="30"><i class="fas fa-cogs"></i>制度設計原則</a>
+      <a href="#" data-slide="31"><i class="fas fa-check-circle"></i>RQ3 応答</a>
+      <a href="#" data-slide="32"><i class="fas fa-flag"></i>── RQ4</a>
+      <a href="#" data-slide="33"><i class="fas fa-shield-alt"></i>三段階設計</a>
+      <a href="#" data-slide="34"><i class="fas fa-drafting-compass"></i>RQ4 構想（実証未完）</a>
+      <a href="#" data-slide="35"><i class="fas fa-vial"></i>Verdict実証</a>
+      <a href="#" data-slide="36"><i class="fas fa-road"></i>制度設計（今後）</a>
+      <a href="#" data-slide="37"><i class="fas fa-flag-checkered"></i>まとめ</a>
+    </nav>
+  </div>
+
+  <div class="slide-header">博士論文中間発表｜永田右京</div>
+
+  <main>
+    <!-- Slide 0: Title -->
+    <section id="slide0">
+      <div class="slide-card" style="justify-content:center;align-items:center;text-align:center;">
+        <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);">政策のメタネイチャーを実現する</h2>
+        <p style="font-size:1.1rem;color:var(--fg-light);margin-top:0.5rem;">生成AIと人間の協調的関係性の設計：公共交通政策を事例として</p>
+        <p style="margin-top:2rem;font-size:1rem;">永田右京</p>
+        <p style="font-size:0.9rem;color:var(--fg-light);">2026年6月｜博士論文中間発表</p>
+      </div>
+    </section>
+
+    <!-- Slide 1: 地方分権の逆回転 -->
+    <section id="slide1">
+      <div class="slide-card">
+        <h2>地方分権の「逆回転」——2024年地方自治法改正</h2>
+        <img src="media/slide_local_gov_reversal.png" style="max-height:360px;width:100%;object-fit:contain;margin:0.8rem auto;display:block;" alt="地方分権の逆回転図">
+        <h3>2000年の到達点</h3>
+        <ul>
+          <li>地方分権一括法（1999年成立・2000年施行）——国と自治体の関係を「上下・主従」から「対等・協力」へ転換</li>
+          <li>機関委任事務制度の廃止——国は法令の範囲内でしか自治体を拘束できなくなった</li>
+        </ul>
+        <h3>2024年の逆回転</h3>
+        <ul>
+          <li>地方自治法改正（令和6年法律第65号、2024年6月19日成立）——第14章「国と地方公共団体との関係等の特例」を新設</li>
+          <li>「国民の安全に重大な影響を及ぼす事態」に個別法不要・閣議決定のみで国が自治体に包括的指示権を行使可能</li>
+          <li>白藤（2024）：「包括的な指示権の行使によって地方自治体を国に従属させるもの」</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>なぜ逆回転が起きたか——</strong>自治体が自律的に政策を生成できないから、有事に国が介入せざるをえない。権限を与えたが、規範的判断力は地域に根付かなかった。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: 公共交通政策の実態 -->
+    <section id="slide2">
+      <div class="slide-card">
+        <h2>公共交通政策が示す「規範生成能力の欠如」</h2>
+        <h3>2023年改正：全自治体に計画策定を義務化</h3>
+        <ul>
+          <li>地域公共交通活性化・再生法改正（2023年）——987自治体に地域公共交通計画の策定を義務化</li>
+          <li>しかし計画を作る能力と規範を定義する能力は別問題——義務化は「何のために」を問わない</li>
+        </ul>
+        <h3>実態（本論文 第3・4章の実証）</h3>
+        <ul>
+          <li>42自治体中、客観的評価に耐える効果定義ができていたのは<strong>1自治体のみ</strong>（第3章アンケート調査）</li>
+          <li>運輸局ダミーの説明力（R²=13.8〜17.2%）が地理的特性（R²=0.1〜2.2%）を大幅に上回る——「どこに所属するか」が「どこにいるか」より評価基準を規定（第4章）</li>
+          <li>A市：B/C&gt;1を要件とされたが算出基準なく「わからない数字は出せない」（ヒアリング）</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>権限の移譲は行われた——しかし「何のために政策を行うか」を自律的に決める能力は移らなかった。</strong>→ これが本研究の問いを立ち上げる構造的問題。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: メタネイチャー概念 -->
+    <section id="slide3">
+      <div class="slide-card">
+        <h2>問いの射程——「政策のメタネイチャー的環境」</h2>
+        <img src="media/metanature_landscape.png" style="max-height:300px;width:100%;object-fit:cover;margin:0.5rem auto;display:block;border-radius:10px;" alt="メタネイチャー的政策環境のランドスケープ">
+        <h3>斉藤（2025）のメタネイチャー</h3>
+        <ul>
+          <li>AGIと極度の自動化が進んだ社会において、人工環境が「新たな自然」となる状態——<strong>人間が農耕で自然を「手入れ」してリソースを得るように、自動化されたシステムを「手入れ」して産出を得るパターン</strong>（斉藤 2025）</li>
+          <li>環境自体が自律的に生産・分配の動作を続け、中央の指示なしに一定品質の機能が維持される</li>
+        </ul>
+        <h3>政策への接続（本研究）</h3>
+        <ul>
+          <li>「政策のメタネイチャー的環境」＝一定品質の政策が、中央省庁なしにどの地域でも自律的に生成・評価され続ける状態</li>
+          <li>地方分権の逆回転を招いた構造的問題——「規範生成能力の欠如」——への根本的応答</li>
+        </ul>
+        <div class="highlight-box">
+          <p>メタネイチャーの定義において人間コミュニティーが「何が成されるべきか」を決める主体——これが本構想の前提であり、論証の中心軸。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: 政策合理化60年の挫折（概観） -->
+    <section id="slide4">
+      <div class="slide-card">
+        <h2>政策合理化60年の挫折——同じ壁への三度の衝突</h2>
+        <img src="media/slide_three_waves_wall.png" style="max-height:340px;width:100%;object-fit:contain;margin:0.8rem auto;display:block;" alt="PPBS・NPM・EBPMの三波と規範的選択の壁">
+        <div class="process-flow">
+          <div class="process-step">
+            <div class="step-icon"><i class="fas fa-calculator"></i></div>
+            <div class="step-text">PPBS</div>
+            <div class="step-desc">1961年〜<br>政策を工学に還元</div>
+          </div>
+          <div class="arrow-right">→</div>
+          <div class="process-step">
+            <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="step-text">NPM</div>
+            <div class="step-desc">1980年代〜<br>政策を経営に還元</div>
+          </div>
+          <div class="arrow-right">→</div>
+          <div class="process-step">
+            <div class="step-icon"><i class="fas fa-microscope"></i></div>
+            <div class="step-text">EBPM</div>
+            <div class="step-desc">2000年代〜<br>政策を科学に還元</div>
+          </div>
+        </div>
+        <div class="highlight-box">
+          <p>どのツールを使っても、<strong>政策が本質的に価値・規範の選択と調整という作業であるという事実を、より精緻な計算・経営・科学で「迂回」しようとした——三波はいずれも同じ壁に突き当たった</strong>（Sugitani 2021, 2024; Wildavsky 1969; Hood 1991; Parkhurst 2017）。では、規範的選択を支援する技術は存在するか。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: PPBSの失敗（型D） -->
+    <section id="slide5">
+      <div class="slide-card">
+        <h2>PPBSの失敗——政策を工学に還元できない</h2>
+        <ul>
+          <li>マクナマラ国防長官のもと米国防総省に導入（1961年）——費用便益分析で最適資源配分を実現しようとした（Schick 1966）</li>
+          <li>ジョンソン政権が全連邦省庁へ拡大適用（1965年）——政策を数式で解ける問題に変換する試み</li>
+          <li>1971年、ニクソン政権が連邦全体へのPPBS適用を廃止</li>
+          <li>Wildavsky（1969）：防衛省で成立した前提条件——「高品質な分析が予算プロセスを通じて行動に結びつく環境」——は国内政策の大半の省庁には存在しない</li>
+          <li>「コスト削減か移動権の確保か、効率か公平か」——こうした問いに「正しい答え」を計算する方法は存在しない（Rittel &amp; Webber 1973; Sugitani 2021）</li>
+        </ul>
+        <div class="highlight-box">
+          <p>失敗の理由は技術的なものではなかった。問題は、<strong>政策目標そのものが競合する価値の間での規範的選択によって決まる</strong>という、政策という営みの根本的な性格にあった。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: NPMの失敗（型D） -->
+    <section id="slide6">
+      <div class="slide-card">
+        <h2>NPMの失敗——政策を経営に還元できない</h2>
+        <ul>
+          <li>サッチャー改革（1979年〜）を起点に英・豪・NZへ波及——Hood（1991）：業績管理・競争・顧客志向・結果重視の体系として整理</li>
+          <li>日本では橋本行財政改革（1996〜）→中央省庁再編・独立行政法人制度の創設（2001年）（Sugitani 2024）</li>
+          <li>Pollitt &amp; Bouckaert（2017）12か国比較：NPM型改革は「<strong>測定の逆説</strong>」を招いた——数値として測定しやすいアウトプットが目標化し、本来の政策目的が埋没する</li>
+          <li>「何を指標とするか」という問いは価値判断であり、効率と公平のどちらを優先するかは市場原理では決まらない（Hood 1991）</li>
+        </ul>
+        <div class="highlight-box">
+          <p>NPMもPPBSと同じ問題につまずいた——<strong>規範的選択を回避したまま効率化を追求した</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: EBPMの失敗（型D） -->
+    <section id="slide7">
+      <div class="slide-card">
+        <h2>EBPMの失敗——政策を科学に還元できない</h2>
+        <ul>
+          <li>2000年代以降、「証拠に基づく政策形成（EBPM）」が第三の波として普及（Sanderson 2002）。日本では2017年にEBPM推進委員会を設置（Sugitani 2024）</li>
+          <li>Parkhurst（2017）のイシュー・バイアス——RCTの適用可能なテーマに政策課題が誘導され、<strong>定量化しにくいがゆえに政治的・社会的に重要な問題が周辺化</strong>される</li>
+          <li>エビデンス階層を課すルールは「<strong>偏向を動員する</strong>」可能性を持つ（Parkhurst 2017）</li>
+          <li>「よりよいエビデンス」の追求は「よりよい問い」を立てることを代替しない（Sugitani 2022）</li>
+        </ul>
+        <div class="highlight-box">
+          <p>PPBS・NPM・EBPMの三波は、<strong>政策が本質的に価値・規範の選択と調整という作業であるという事実を回避しようとした点で同じ過ちを犯している</strong>（Sugitani 2021, 2024; Rittel &amp; Webber 1973）。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: 三波に共通する壁 -->
+    <section id="slide8">
+      <div class="slide-card">
+        <h2>三波に共通する壁——「規範の選択の迂回」</h2>
+        <table class="comparison-table">
+          <tr><th>波</th><th>還元先</th><th>失敗の核心</th><th>残した問い</th></tr>
+          <tr><td><strong>PPBS</strong><br>1961年〜</td><td>工学<br>（最適化計算）</td><td>目標設定自体が価値判断——計算の外にある</td><td>「何を指標とするか」は誰が決めるか</td></tr>
+          <tr><td><strong>NPM</strong><br>1980年代〜</td><td>経営<br>（市場原理）</td><td>効率と公平の選択は市場で決まらない</td><td>「測定の逆説」を回避する設計は可能か</td></tr>
+          <tr><td><strong>EBPM</strong><br>2000年代〜</td><td>科学<br>（統計的証拠）</td><td>「よい問い」は「よいエビデンス」で代替できない</td><td>問いを立てる主体は誰か</td></tr>
+        </table>
+        <div class="highlight-box">
+          <p>どのツールを使っても、問題設定の段階で規範的選択が先行して行われている。合理化は規範の選択を省略できない——では、その選択を支援する技術は存在するか。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 9: Web3という先行実験（新設） -->
+    <section id="slide9">
+      <div class="slide-card">
+        <h2>Web3という先行実験——同じ夢・同じ壁</h2>
+        <h3>同じビジョンを先に追った</h3>
+        <ul>
+          <li>ビットコイン（2009年）——「ビザンチン将軍問題」を暗号学的ハッシュ関数＋分散台帳で解決（斉藤 2018）</li>
+          <li>DAO（Decentralized Autonomous Organization）——スマートコントラクトによる規則の自動執行・分散的ガバナンスを実現</li>
+          <li>政策ガバナンスの分散化——中央省庁に依存しない政策評価の技術的射程が見えた</li>
+        </ul>
+        <h3>突き当たった壁——規範的判断はコードに書けない</h3>
+        <ul>
+          <li>De Filippi et al.（2020）：ブロックチェーンは「確信の機械」——ネットワーク設計・ガバナンスには依然として人間の信頼が必要</li>
+          <li>スマートコントラクトが実行できるのは事前に定義されたルールのみ——「この政策は望ましいか」は処理不能（オラクル問題）</li>
+          <li>21のDAOにおける投票権集中・ガバナンスの形骸化（Feichtinger et al. 2024）——分散設計が集権的運用に帰着</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>Web3はコードで規範的判断を代替できないことを実証した——60年の合理化が突き当たった同じ壁。</strong>→ 生成AIは異なる回路を持つか。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 10: 生成AIが開いた問い -->
+    <section id="slide10">
+      <div class="slide-card">
+        <h2>生成AIが開いた問い——「規範の支援」という新回路</h2>
+        <img src="media/slide_web3_llm_circuit.png" style="max-height:320px;width:100%;object-fit:contain;margin:0.5rem auto;display:block;" alt="Web3とLLMの対比：規範的判断の壁を迂回する新回路">
+        <ul>
+          <li>Constitutional AI・LLM as a Judge——価値原則の埋め込みと秘密保護下での評価を技術的射程に入れつつある</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>しかし——</strong>「AIが支援できる」は「AIが判断できる」ではない。規範の創造・更新は誰が担うのか。この問いが三つのRQを立ち上げる。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 11: 四つのRQ -->
+    <section id="slide11">
+      <div class="slide-card">
+        <h2>四つの問い（Research Questions）</h2>
+        <table class="comparison-table">
+          <tr><th>RQ</th><th>問い</th><th>応答する章</th></tr>
+          <tr><td><strong>RQ1</strong></td><td>非理想的な政策形成プロセスはどのようなものか</td><td>第2〜4章（診断）</td></tr>
+          <tr><td><strong>RQ2</strong></td><td>生成AIはメタネイチャー的政策環境を理論的にどこまで支えられるか</td><td>第5章（理論・計算論）</td></tr>
+          <tr><td><strong>RQ3</strong></td><td>合理的政策は必要か——認知バイアスは政策実現においてすべて悪か</td><td>第6章（計算論的実証）</td></tr>
+          <tr><td><strong>RQ4</strong></td><td>メタネイチャー的政策環境は技術的に実現できるか</td><td>第7〜8章（設計・実装）</td></tr>
+        </table>
+        <p style="margin-top:1rem;">四層は「<strong>なぜ必要か → どこまで可能か → 合理性前提は不要か → どう作るか</strong>」という一本の論証線をなしている。</p>
+        <div class="highlight-box">
+          <p>これらは「政策のメタネイチャー」を実現しようとするとき避けて通れない、構造的な懐疑論への段階的応答である。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 12: 論文構成 -->
+    <section id="slide12">
+      <div class="slide-card">
+        <h2>本日の構成</h2>
+        <p>①序論（slide 1–11）→ ②診断：規範が内発できていない実態（第2–4章）→ ③RQ1–3への応答（第5–8章）→ ④今後の実証と制度設計</p>
+        <table class="comparison-table">
+          <tr><th>章</th><th>役割</th><th>状態</th></tr>
+          <tr><td>第1章</td><td>序論：政策のメタネイチャー</td><td>✅</td></tr>
+          <tr><td>第2章</td><td>診断：MaaS・交通まちづくり</td><td>✅</td></tr>
+          <tr><td>第3章</td><td>診断：パーパス設定（42自治体）</td><td>✅</td></tr>
+          <tr><td>第4章</td><td>診断：評価指標の同型化（987自治体）</td><td>✅</td></tr>
+          <tr><td>第5章</td><td>RQ2：生成AIの理論的限界と役割</td><td>✅</td></tr>
+          <tr><td>第6章</td><td>RQ3：認知バイアスの計算論的分析（22,000回）</td><td>✅</td></tr>
+          <tr><td>第7章</td><td>RQ4：政策生成システム設計</td><td>✅</td></tr>
+          <tr><td>第8章</td><td>RQ4：Verdict実証計画</td><td>🔨</td></tr>
+          <tr><td>第9章</td><td>制度設計への示唆</td><td>🔨</td></tr>
+          <tr><td>第10章</td><td>結論・都市計画への展開</td><td>🔨</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- Slide 13: RQ1 扉 -->
+    <section id="slide13">
+      <div class="slide-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:60vh;">
+        <div style="font-size:clamp(4rem,12vw,7rem);font-weight:900;color:var(--accent-start);letter-spacing:0.05em;line-height:1;">RQ1</div>
+      </div>
+    </section>
+
+    <!-- Slide 14: 診断 MaaS -->
+    <section id="slide14">
+      <div class="slide-card">
+        <h2>第2章：「連携・共創」は言説に留まっている</h2>
+        <p>MaaS（Mobility as a Service）：複数の交通モードをシームレスに統合し、単一のプラットフォームで提供するモビリティサービスの概念（Heikkilä 2014）。「交通まちづくり」の共創モデルとして日本版MaaSが2020年に38件認定された。</p>
+        <ul>
+          <li>38プロジェクト中92%が事業指標のみを評価基準として採用——地域生活の質・移動弱者への効果は計測されていない</li>
+          <li>市民参加の仕組みを設けたのはわずか5%（2/38）——有意義な市民参加の仕組みが確立されていない</li>
+          <li>STOフレームワーク（Spatial空間・Technical技術・Organizational組織）分析の結果：2018年以降、国のT層への関与が強まり、自治体の裁量はO層（日々の運営）へと後退——Heikkilä（2014）が前提とした「全ステークホルダーの協力体制」が最も欠落している</li>
+        </ul>
+        <div class="highlight-box">
+          <p>「連携」は言説であって実装ではない——次章では連携以前の問題、パーパス設定そのものの欠如を実証する。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 14: 診断 パーパス -->
+    <section id="slide15">
+      <div class="slide-card">
+        <h2>第3章：「連携」以前に——パーパスそのものが生成できていない</h2>
+        <img src="media/fig2_rationality_existing.png" style="max-height:260px;width:100%;object-fit:contain;margin:0.5rem auto;display:block;" alt="現状の計画合理性フレームワーク">
+        <p>「連携は言説に留まる」（第2章）を受け、連携以前の段階——「何のために交通を維持するか」というパーパス設定自体ができているかを検証する。</p>
+        <ul>
+          <li>北海道・東北運輸局管内で地域公共交通計画を策定した129自治体を対象にアンケート調査（回答42自治体）</li>
+          <li>42自治体中、客観的評価に耐える効果定義ができていたのは<strong>1自治体のみ</strong>——半数近くが「効果を定義している」と自己評価するが、定量的根拠を持つのは1件</li>
+          <li>効果を設定しなかった23自治体の最多要因：「設定する方法が分からない」（7件）——次いで「そのような意見が出なかった」「必要性を感じない」（各5件）</li>
+          <li>B/C&gt;1を要件化されながら算出基準が与えられないA市：「わからない数字を出すことはできない」として収益率（I/C）に置き換えて審査——クロスセクターベネフィットは計測不能</li>
+        </ul>
+        <div class="highlight-box">
+          <p>地域行政は「何のために交通を維持するか」を自律的に生成できていない——パーパスの外部付与。では、この外部付与のメカニズムは何か。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 15: 診断 同型化 -->
+    <section id="slide16">
+      <div class="slide-card">
+        <h2>第4章：なぜ「自律的に生成できない」のか——評価指標の同型化</h2>
+        <p>「パーパスが外部付与」（第3章）の定量的メカニズムを実証する。評価原則が上位組織から「所与として与えられている」構造を明らかにする。</p>
+        <ul>
+          <li>運輸局ダミーの説明力（R²=13.8〜17.2%）が地理的特性（R²=0.1〜2.2%）を大幅に上回る——全国987自治体・12,568指標のOLS回帰分析（2024年）</li>
+          <li>「どこに所属するか」が「どこにいるか」より評価基準を規定——DiMaggio &amp; Powell（1983）の同型化圧力（模倣的・規範的）が作動</li>
+          <li>形式上の「計画策定義務」は、すでに枠組みが与えられた後の参加にとどまる</li>
+        </ul>
+        <div class="highlight-box">
+          <p>「執政の創造性」は制度的に封じられている——評価原則をコミュニティ討議から内発させる設計が必要。だが、それは誰が担うのか。この問いが三つのRQを立ち上げる。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 16: 診断の小括 -->
+    <section id="slide17">
+      <div class="slide-card">
+        <h2>診断の小括——三章が示す構造的問題</h2>
+        <div class="highlight-box" style="font-size:1.1rem;">
+          <p>地域行政は、政策目的・評価基準・合意形成を自律的に生成できていない。第2章（実装ギャップ）→第3章（パーパス外部付与）→第4章（同型化メカニズム）は同一構造を三層で確認している。</p>
+        </div>
+        <p style="margin-top:1.5rem;">この診断から、四つのRQが立ち上がる：</p>
+        <ul>
+          <li><strong>RQ1（診断）：</strong>非理想的な政策形成プロセスはどのようなものか——第2〜4章で応答済み</li>
+          <li><strong>RQ2（理論）：</strong>生成AIはメタネイチャー的政策環境を理論的にどこまで支えられるか——第5章で応答</li>
+          <li><strong>RQ3（計算論）：</strong>合理的政策は必要か——認知バイアスはすべて悪か——第6章で応答</li>
+          <li><strong>RQ4（設計・実装）：</strong>メタネイチャー的政策環境は技術的に実現できるか——第7・8章で応答</li>
+        </ul>
+        <img src="media/fig4_rationality_proposed.png" style="max-height:220px;width:100%;object-fit:contain;margin:0.8rem auto;display:block;" alt="提案する計画合理性フレームワーク">
+      </div>
+    </section>
+
+    <!-- Slide 17: RQ1（型H） -->
+    <section id="slide18">
+      <div class="slide-card">
+        <h2>RQ1：非理想的な政策形成プロセスはどのようなものか</h2>
+        <p><strong>懐疑論：</strong>診断パートだけで十分ではないか——「現状が悪い」を示しても、改善の方向性は明らかにならない。規範生成を「誰が担うか」という問いは、政策の世界ではそれほど新しくないのではないか。</p>
+        <ul>
+          <li>第2〜4章の診断は「何が欠如しているか」を定量的に特定した——92%が事業指標のみ、運輸局R²=13.8〜17.2%、42自治体中1のみ効果定義</li>
+          <li>「非理想的プロセスの特定」はメタネイチャー実現の設計要件を導出するために不可欠——どこを修正するかを知らずに技術的解決策は設計できない</li>
+          <li>診断の蓄積がRQ2・RQ3の応答に論理的根拠を与える——三層は独立ではなく累積的な論証線をなす</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>RQ1の結論：</strong>非理想的プロセスの核心は「規範の外部付与」と「同型化による内発能力の消失」である——この診断が、AIを「判断主体」ではなく「規範支援ツール」として位置づける理論的根拠となる。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 18: RQ2 扉 -->
+    <section id="slide19">
+      <div class="slide-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:60vh;">
+        <div style="font-size:clamp(4rem,12vw,7rem);font-weight:900;color:var(--accent-start);letter-spacing:0.05em;line-height:1;">RQ2</div>
+      </div>
+    </section>
+
+    <!-- Slide 19: 規範の営み -->
+    <section id="slide20">
+      <div class="slide-card">
+        <h2>政策は規範を扱う営みである</h2>
+        <ul>
+          <li>社会的問題を「厄介な問題」（wicked problem）として類型化すると、科学的・工学的方法で解ける「御しやすい問題」（tame problem）と本質的に区別される（Rittel &amp; Webber 1973）</li>
+          <li>政策論上とりわけ重要なのは、<strong>問題の定義自体がステイクホルダーごとに異なる</strong>という性質——何が「問題」かは利害関係者の価値判断によって規定される</li>
+          <li>「よりよい」「より悪い」という評価しかできないという性質もそこから派生する</li>
+          <li>「移動権をどこまで保障するか」「どの地区の路線を優先するか」という問いに正解はなく、競合する価値の間での<strong>規範的選択</strong>が求められる</li>
+          <li>政策において合理的計算が限界に達するのは能力の問題ではなく、<strong>問題の構造的な性格</strong>に由来する（Sugitani 2021）</li>
+        </ul>
+        <img src="media/fig1_fischer_matrix.png" style="max-height:300px;width:100%;object-fit:contain;margin:0.8rem auto;display:block;" alt="Fischer政策正当化四層">
+        <div class="highlight-box">
+          <p>AIが有効なのは Fischer 層①（技術的検証）のみ——層②以上は心的システムによる偶有的な規範的選択を必要とし、「AIは環境、人間は主体」という役割分担を理論的に要請する。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 19: AIの限界 -->
+    <section id="slide21">
+      <div class="slide-card">
+        <h2>AIの原理的限界：創造システム理論</h2>
+        <p>「AIが政策規範を生成できないのはなぜか」——この問いに理論的に答える（井庭 2010；Luhmann 1984；Zönnchen et al. 2025）。</p>
+        <ul>
+          <li>政策規範の更新は「創造」の一形態——《発見》とは《アイデア》・《関連づけ》・《帰結》という<strong>三つの偶有的選択の総合</strong>によって生じる事態（Iba 2010）</li>
+          <li>AIは高度な《発見メディア》（言語・概念の複合性縮減、シミュレーション支援）として機能しうる</li>
+          <li>しかしAIは「もっともらしさ」を追求するよう設計されており、偶有的な選択——「別様でもありえた」はずのズレ——を<strong>構造的に排除する</strong></li>
+          <li>ルーマンのSinn論による補強：LLMは「社会的に形成された言語パターンの再帰的な反射」にとどまり、独立した思考でも偶有的な意味選択でもない（Zönnchen et al. 2025）</li>
+        </ul>
+        <div class="highlight-box">
+          <p>AIは《発見メディア》として機能できるが、規範の創造主体にはなれない——「わかり合えなさ」がないAIは偶有的な意味選択ができず、規範の揺らぎと更新を生み出せない（Luhmann 1984）。ゆえに規範の創造は人間が担わなければならない。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 20: 包含関係 -->
+    <section id="slide22">
+      <div class="slide-card">
+        <h2>Sinn処理と政策規範創造の包含関係</h2>
+        <p>ルーマンのSinn（意味）概念：「過剰な可能性の中から意味ある参照を選択すること」——センス・メイキングとは偶有的な選択の連鎖である。この選択ができる存在のみが《発見》の主体たりうる（Luhmann 1984; Zönnchen et al. 2025）。</p>
+        <img src="media/fig2_sinn_containment.png" style="max-height:360px;width:100%;object-fit:contain;margin:0.8rem auto;display:block;" alt="Sinn包含関係図">
+        <div class="highlight-box">
+          <p>AIは最外円（Sinnを偶有的に選択できる存在）に属さない→内側の円にも属さない。したがって<strong>AIは政策規範の創造から原理的に排除される</strong>（Zönnchen et al. 2025; Iba 2010; Luhmann 1984）。</p>
+          <p style="margin-top:0.5rem;font-size:0.9rem;">（Zönnchen et al. 2025; Iba 2010; Luhmann 1984 に基づく）</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 21: 役割分担 -->
+    <section id="slide23">
+      <div class="slide-card">
+        <h2>人間が規範を定義し、AIが補助する</h2>
+        <img src="media/slide_human_ai_roles.png" style="max-height:300px;width:100%;object-fit:contain;margin:0.5rem auto;display:block;" alt="人間とAIの役割分担図">
+        <p style="margin-top:0.8rem;">AIは人間の規範生成能力（本論文が第9章で「執政の創造性」として提案する概念）を代替するものではなく、<strong>「杖」</strong>として補完する——メタネイチャーの定義（斉藤 2025）が前提とする「人間が何が成されるべきかを決める」構造と完全に整合する。</p>
+        <ul>
+          <li>データ分析・選択肢提示で認知負荷を軽減——人間が規範的判断に集中できる環境を整える</li>
+          <li>秘密保護下で専門知を政策プロセスに接続——競合事業者間の情報を匿名化したまま評価</li>
+          <li>市民討議を支援し、規範生成の場を整える——Constitutional AIによる原則の制度的埋め込み</li>
+        </ul>
+        <div class="highlight-box">
+          <p>「人間が規範を選び続ける」は実践的に成立するのか——認知バイアスを持つ人間が実際に政策協調を達成できるのか。この問いがRQ3へ接続する。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 22: 航空管制 -->
+    <section id="slide24">
+      <div class="slide-card">
+        <h2>航空管制：人間-AI役割分担の実践モデル</h2>
+        <img src="media/fig3_solution_space_atc.png" style="max-height:300px;width:100%;object-fit:contain;margin:0.8rem auto;display:block;" alt="航空管制ソリューションスペース図">
+        <ul>
+          <li>ユーバーリングン事故（2002年）：TCASと管制官が互いに矛盾する指示を出した——規範的権威の競合が直接死亡事故を招いた</li>
+          <li>事故後の改善方向＝「TCASに従う」という規範を人間が明示的に決定——技術と規範の階層が再設計された</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>ATCの教訓：</strong>自動化の目的は人間オペレータの排除ではなく、限られた認知資源を規範的判断に集中させるための設計——政策のメタネイチャーにおけるAIの位置づけと同型。「バイアスのある人間が本当に規範的判断を担えるか」という問いが残る。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 24: RQ2（型H） -->
+    <section id="slide25">
+      <div class="slide-card">
+        <h2>RQ2：生成AIはメタネイチャー的政策環境を理論的にどこまで支えられるか</h2>
+        <p><strong>懐疑論：</strong>「人間が規範を選び続ける」は理論的に正しくても、認知バイアスを持つ人間が実践的に政策協調を達成できるのか。「理想的発話状況」（ハーバーマス）は現実的に高コストではないか。</p>
+        <div class="highlight-box">
+          <p>生成AIが支援できるとしても、その恩恵を受ける人間側が協調の前提条件を満たせないなら、メタネイチャー的環境は絵に描いた餅ではないか。</p>
+        </div>
+        <ul>
+          <li>「バイアスの選択的管理」という計算論的応答——全員が理想的に合理的でなければ熟議は機能しないという強い仮定は不要</li>
+          <li>拒否権プレーヤー連鎖をN関節ロボットアームにマッピングした計算論モデルで22,000回の実験を実施（第6章）</li>
+          <li>バイアス種別ごとに協調への影響を定量化——制度設計による管理可能性を実証</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Slide 27: RQ3 扉 -->
+    <section id="slide26">
+      <div class="slide-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:60vh;">
+        <div style="font-size:clamp(4rem,12vw,7rem);font-weight:900;color:var(--accent-start);letter-spacing:0.05em;line-height:1;">RQ3</div>
+      </div>
+    </section>
+
+    <!-- Slide 28: バイアス定義と操作化 -->
+    <section id="slide27">
+      <div class="slide-card">
+        <h2>三種の認知バイアス——定義とモデルへの組み込み方</h2>
+        <table class="comparison-table">
+          <tr><th>バイアス</th><th>定義</th><th>モデルへの操作化</th></tr>
+          <tr>
+            <td><strong>現状維持バイアス</strong><br><small>b<sub>sq</sub> ∈ [0,1]</small></td>
+            <td>現在の状態を維持することを選好する傾向（Samuelson &amp; Zeckhauser 1988）——政策変更への抵抗として実証</td>
+            <td>政策スタンス変化量への減衰係数：<br>dθ/dt|<sub>biased</sub> = (1 − b<sub>sq</sub>) · dθ/dt<br>b=1で完全固着</td>
+          </tr>
+          <tr>
+            <td><strong>確証バイアス</strong><br><small>b<sub>cf</sub> ∈ [−1,1]</small></td>
+            <td>既存の信念を確認する情報を優先的に処理する傾向——適度な確証バイアスは自信維持・協調参加を促す可能性もある（Bergerot et al. 2024）</td>
+            <td>協調係数のスケーリング：<br>k' = k · (1 + b<sub>cf</sub> · 0.5)<br>正値=過剰な自信、負値=過度の自己疑念</td>
+          </tr>
+          <tr>
+            <td><strong>狭い視野</strong><br><small>b<sub>nf</sub> ∈ [0,1]</small></td>
+            <td>局所的最適化に焦点を当て全体最適を見落とす傾向（Kahneman 2011）——代替案比較・機会費用考慮の抑制として交通政策で実証</td>
+            <td>実効速度を局所目標速度へシフト：<br>ṽ = (1 − b<sub>nf</sub>) · v<sub>coord</sub> + b<sub>nf</sub> · v<sub>local</sub><br>b=1で完全な局所最適化</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- Slide 29: シミュレーション動画 -->
+    <section id="slide28">
+      <div class="slide-card">
+        <h2>協調ロボット制御モデル（シミュレーション）</h2>
+        <p>拒否権プレーヤー連鎖をN関節ロボットアームにマッピングし、政策目標（赤円）への収束を比較する（バイアス強度 b=0.8、関節5に付与）。</p>
+        <div class="sim-media-grid">
+          <div class="sim-video-wrap">
+            <video class="sim-video" src="media/robot_arm_baseline.mp4" muted loop playsinline controls></video>
+            <div class="sim-caption">① ベースライン（バイアスなし）：協調的に収束</div>
+          </div>
+          <div class="sim-video-wrap">
+            <video class="sim-video" src="media/robot_arm_confirmation.mp4" muted loop playsinline controls></video>
+            <div class="sim-caption">② 確証バイアス：影響は限定的（許容可能）</div>
+          </div>
+          <div class="sim-video-wrap">
+            <video class="sim-video" src="media/robot_arm_status_quo.mp4" muted loop playsinline controls></video>
+            <div class="sim-caption">③ 現状維持バイアス：収束が遅延（管理可能）</div>
+          </div>
+          <div class="sim-video-wrap">
+            <video class="sim-video" src="media/robot_arm_narrow_framing.mp4" muted loop playsinline controls></video>
+            <div class="sim-caption">④ 狭い視野バイアス：軌道が乱れる（要対処）</div>
+          </div>
+        </div>
+        <div class="highlight-box">
+          <p><strong>見方：</strong>白線＝拒否権プレーヤーの連鎖、手先＝最終決定者、赤円＝政策目標の範囲、黄点＝いま追いかけている目標地点。22,000回の実験はこのモデル上で三種のバイアス効果を定量化した。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 26: シミュレーション知見 -->
+    <section id="slide29">
+      <div class="slide-card">
+        <h2>22,000回シミュレーションの主要知見</h2>
+        <img src="media/summary_bias_jp.png" style="max-height:300px;width:100%;object-fit:contain;margin:0.8rem auto;display:block;" alt="バイアス種別の協調影響サマリ">
+        <table class="comparison-table">
+          <tr><th>バイアス</th><th>効果量</th><th>判定・含意</th></tr>
+          <tr><td>確証バイアス</td><td>Cohen's d = −0.07（無視可能）</td><td>相対的に許容可能——「活用可能な資源」として扱う</td></tr>
+          <tr><td>現状維持バイアス</td><td>Cohen's d = −0.78（中程度）、R²=0.82</td><td>強度に比例した線形低下——発現しない構造的条件の設計が必要</td></tr>
+          <tr><td>狭い視野</td><td>Cohen's d = −0.80（中程度）、強度0.7超で顕著化</td><td>最も有害——横断的KPI導入で対処</td></tr>
+        </table>
+        <div class="highlight-box">
+          <p><strong>「認知バイアスがあっても政策協調は成立する」</strong>——確証バイアスは有意な影響なし、現状維持・狭い視野は有害だが選択的な制度設計で管理可能。では、その制度を実装するシステムとは何か。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 27: 制度設計原則 -->
+    <section id="slide30">
+      <div class="slide-card">
+        <h2>バイアス管理の制度設計原則</h2>
+        <img src="media/bias_countermeasures_jp.png" style="max-height:280px;width:100%;object-fit:contain;margin:0.8rem auto;display:block;" alt="バイアス別制度設計対応図">
+        <ul>
+          <li><strong>排除すべきバイアス——現状維持バイアス・狭い視野</strong>：これらを持たせない仕組みを組み込む。狭い視野には横断的KPI（地域全体の移動成功率・アクセシビリティ向上度など）の導入、多基準フレームワーク</li>
+          <li><strong>許容可能なバイアス——確証バイアス</strong>：協調パフォーマンスに有意な影響なし（Cohen's d = −0.07）。「活用可能な資源」として扱う——適度な自信は協調参加を促す</li>
+          <li>現状維持バイアスの制度設計の焦点は事後的管理ではなく<strong>予防</strong>——発現しない構造的条件の設計</li>
+        </ul>
+        <div class="highlight-box">
+          <p>ハーバーマス的な「理想的発話状況」——「全てのバイアスを排除した理想的人間」——を前提にする必要はない。<strong>認知バイアスを持つ人間でも、選択的な制度設計によって熟議と同等の協調効果を得られる</strong>（chapter3 結論）。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 31: RQ3 応答 -->
+    <section id="slide31">
+      <div class="slide-card">
+        <h2>RQ3：合理的政策は必要か——バイアスはすべて悪か</h2>
+        <p><strong>懐疑論：</strong>人間が認知バイアスを持つなら、そもそも「人間が規範を決める」というメタネイチャーの前提は現実的ではないのではないか。</p>
+        <ul>
+          <li>現状維持バイアス（Cohen's d = 0.31, p&lt;0.001）・狭い視野（強度0.7超で顕著化）：協調を破壊する → 制度的に排除すべき</li>
+          <li>確証バイアス（Cohen's d = −0.07, n.s.）：協調パフォーマンスに有意な影響なし → 「活用できる資源」として扱える</li>
+          <li>「合理的人間」を前提とする必要はない——バイアスの種類に応じた選択的制度設計で協調は実現する</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>協調と一定の最適化は実現する</strong>——「完全に合理的な政策形成」ではなく「バイアスを持つ人間の協調を制度で支える設計」こそがメタネイチャー実現の条件である。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 32: RQ4 扉 -->
+    <section id="slide32">
+      <div class="slide-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:60vh;">
+        <div style="font-size:clamp(4rem,12vw,7rem);font-weight:900;color:var(--accent-start);letter-spacing:0.05em;line-height:1;">RQ4</div>
+      </div>
+    </section>
+
+    <!-- Slide 30: 三段階設計 -->
+    <section id="slide33">
+      <div class="slide-card">
+        <h2>政策生成システムの三段階：Debate→Train→Judge</h2>
+        <p><strong>前提技術：</strong>Constitutional AI＝価値原則をAIに埋め込む学習手法（Anthropic 2022）。LLM as a Judge＝LLMが政策案を価値基準に照らして評価する手法。秘密計算＝データを暗号化したまま演算し、入力を開示せずに評価を実行する技術。</p>
+        <div class="process-flow">
+          <div class="process-step">
+            <div class="step-icon"><i class="fas fa-comments"></i></div>
+            <div class="step-text">Debate</div>
+            <div class="step-desc">市民討議<br>憲法的原則の<br>共同策定</div>
+          </div>
+          <div class="arrow-right">→</div>
+          <div class="process-step">
+            <div class="step-icon"><i class="fas fa-brain"></i></div>
+            <div class="step-text">Train</div>
+            <div class="step-desc">原則の埋め込み<br>Constitutional AI<br>訓練</div>
+          </div>
+          <div class="arrow-right">→</div>
+          <div class="process-step">
+            <div class="step-icon"><i class="fas fa-gavel"></i></div>
+            <div class="step-text">Judge</div>
+            <div class="step-desc">秘密保護下での<br>政策評価<br>人間が最終判断</div>
+          </div>
+        </div>
+        <table class="comparison-table" style="margin-top:0.8rem;font-size:0.9rem;">
+          <tr><th>三段階</th><th>メタネイチャーとの対応</th><th>診断が示した欠如への応答</th></tr>
+          <tr><td><strong>Debate</strong></td><td>人間コミュニティーが「何が成されるべきか」を決める主体</td><td>パーパスの外部付与 → 地域が規範を内発</td></tr>
+          <tr><td><strong>Train</strong></td><td>地域固有の価値原則をAI環境に埋め込む「手入れ」</td><td>同型化圧力 → 地域固有の評価原則を確立</td></tr>
+          <tr><td><strong>Judge</strong></td><td>中央省庁なしに政策が自律的に評価され続ける状態</td><td>実装ギャップ → 秘密保護下の自律評価を実現</td></tr>
+        </table>
+        <div class="highlight-box">
+          <p>このシステムは「政策のメタネイチャー的環境」の技術的実装である——<strong>中央省庁なしに、どの地域でも一定品質の政策が自律的に生成・評価され続ける状態</strong>（斉藤 2025）を、Debate（規範の内発）× Train（原則の埋め込み）× Judge（秘密保護評価）の三段階で実現する。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 33: RQ4 構想（実証未完） -->
+    <section id="slide34">
+      <div class="slide-card">
+        <h2>RQ4：設計構想——実証はこれから</h2>
+        <p><strong>問い（未応答）：</strong>秘密保護と民主的正当性の二重制約のもとで機能するシステムは実現可能か——「設計上は解ける」と「自治体環境で実際に動作する」は別問題である。</p>
+        <div class="highlight-box" style="border-color:#f59e0b;background:rgba(245,158,11,0.1);">
+          <p>⚠️ <strong>現時点は「構想段階」</strong>——第7章でアーキテクチャ設計を完了、第8章（Verdict実証）は2026年度内に実施予定。RQ4への応答は実証完了後に確定する。</p>
+        </div>
+        <ul>
+          <li>Constitutional AI × LLM as a Judge × 市民討議の統合アーキテクチャ（第7章設計済）——三要素の組み合わせで二重制約を同時に解く設計</li>
+          <li>Debate→Train→Judge の三段階——規範定義・原則埋め込み・秘密保護評価の機能分離</li>
+          <li>岩手県内自治体での実証実験（2026年度予定）——技術的実現可能性と制度的受容性を検証予定</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Slide 30: Verdict実証 -->
+    <section id="slide35">
+      <div class="slide-card">
+        <h2>第8章：Verdict実証計画（今後の実験）</h2>
+        <ul>
+          <li>技術的実現可能性：Debate→Train→Judgeが地方自治体環境で動作するか</li>
+          <li>制度的受容性：市民・自治体職員がプロセスを受け入れるか</li>
+          <li>運用課題の抽出：モデル更新・原則見直し・評価活用の方法</li>
+          <li>対象：岩手県内の複数自治体（2026年度内）</li>
+          <li>テーマ：地域公共交通政策の評価</li>
+          <li>評価軸：①AIによる評価結果の妥当性、②市民参加プロセスの受容度、③秘密保護の技術的完全性</li>
+          <li>実証結果を受けてDebate→Train→Judgeアーキテクチャを改訂</li>
+          <li>都市計画・環境政策など他政策領域への拡張可能性を検討（第10章）</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Slide 31: 制度設計 -->
+    <section id="slide36">
+      <div class="slide-card">
+        <h2>第9章：制度設計への示唆（執筆予定）</h2>
+        <p>⚠️ <strong>以下は現時点の構想——第8章実証結果を受けて確定・修正する予定。</strong></p>
+        <p>生成AIを「杖」として活用するガバナンスの4原則（案）：</p>
+        <ul>
+          <li><strong>補完性：</strong>AIは人間の能力を補完し意思決定の質を高めるツールに徹する——規範の創造・更新は人間コミュニティーが担う</li>
+          <li><strong>透明性：</strong>AIの活用方法と限界を明示し、推論プロセスを検証可能にする——Debateの議事録・Trainの原則文書・Judgeの評価根拠を公開</li>
+          <li><strong>アカウンタビリティ：</strong>最終的な価値判断と政策的責任は人間が負う——AIはあくまで「判断支援」であり「判断代行」ではない</li>
+          <li><strong>継続的学習：</strong>AIと人間の協調プロセスを継続的に改善・調整する——定期的なDebateによる原則見直しを制度化</li>
+        </ul>
+        <div class="highlight-box" style="border-color:#f59e0b;background:rgba(245,158,11,0.1);">
+          <p>第2〜4章の診断・第5〜6章の理論的知見を統合した制度提言——第8章実証後に精緻化し、地方分権の逆回転に対する応答として第9章に執筆予定。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 32: まとめ（型I、新RQ構造） -->
+    <section id="slide37">
+      <div class="slide-card">
+        <h2>まとめ</h2>
+        <ol style="font-size:1.05rem;">
+          <li style="margin-bottom:1rem;">
+            <strong>「規範生成能力の欠如」という診断</strong><br>
+            2024年地方自治法改正（令和6年法律第65号）の逆回転は、地域行政が自律的に政策規範を生成できないことの帰結である。公共交通政策の実証（42自治体中1のみ効果定義・運輸局R²=13.8〜17.2%対地理R²=0.1〜2.2%）がこの構造を定量的に示す。
+          </li>
+          <li style="margin-bottom:1rem;">
+            <strong>「AIは環境、人間は主体」という理論的境界</strong><br>
+            生成AIはオプション生成・情報集約・規範的議論の支援に有効だが、規範の創造・更新は人間コミュニティーが担う——これはメタネイチャーの原典（斉藤 2025）が前提とする構造であり、第5・6章が創造システム理論・計算論的分析で確認する。
+          </li>
+          <li style="margin-bottom:1rem;">
+            <strong>「Debate→Train→Judge」という技術構想（実証未完）</strong><br>
+            秘密保護と民主的正当性の二重制約を、Constitutional AI × LLM as a Judge × 市民討議の統合で突破する設計を第7章で完了。第8章・岩手県内自治体での実証実験（2026年度内）が最終的な検証となる——RQ4への応答は実証後に確定する。
+          </li>
+        </ol>
+        <h3 style="margin-top:1rem;">今後の展開</h3>
+        <ul>
+          <li>第8章：岩手県内自治体でのVerdict実証実験（2026年度内）</li>
+          <li>第9〜10章の執筆：制度設計原則・都市計画への展開</li>
+          <li>最終提出：2027年1月</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <div class="slide-footer">
+    <span id="slide-counter">1 / 38</span>
+  </div>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('#sidebar nav a');
+    let current = 0;
+
+    function syncSlideVideos() {
+      document.querySelectorAll('video').forEach(video => {
+        video.pause();
+        video.currentTime = 0;
+      });
+      sections[current].querySelectorAll('video').forEach(video => {
+        video.play().catch(() => {});
+      });
+    }
+
+    function showSlide(n) {
+      if (n < 0 || n >= sections.length) return;
+      sections[current].classList.remove('active');
+      navLinks[current].classList.remove('active');
+      current = n;
+      sections[current].classList.add('active');
+      navLinks[current].classList.add('active');
+      document.getElementById('slide-counter').textContent = `${current + 1} / ${sections.length}`;
+      syncSlideVideos();
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        showSlide(parseInt(link.dataset.slide));
+      });
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); showSlide(current + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); showSlide(current - 1); }
+      if (e.key === 'Home') { e.preventDefault(); showSlide(0); }
+      if (e.key === 'End') { e.preventDefault(); showSlide(sections.length - 1); }
+    });
+
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) { diff > 0 ? showSlide(current + 1) : showSlide(current - 1); }
+    });
+
+    document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const icon = document.querySelector('#dark-mode-toggle i');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+    });
+
+    navLinks[0].classList.add('active');
+    sections[0].classList.add('active');
+
+    if (location.protocol === 'file:') {
+      const warning = document.getElementById('file-protocol-warning');
+      warning.hidden = false;
+      document.body.style.paddingTop = '2.5rem';
+    }
+  </script>
+</body>
+</html>
