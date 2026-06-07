@@ -24,8 +24,6 @@
       background: #fff; color: #0f172a; font-size: 1rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
     button:hover { opacity: 0.88; }
     .err { color: #f87171; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.2rem; }
-    #slide-wrap { position: fixed; inset: 0; display: none; }
-    #slide-wrap iframe { width: 100%; height: 100%; border: none; }
   </style>
 </head>
 <body>
@@ -37,28 +35,17 @@
     <button onclick="check()">入室する</button>
     <p class="err" id="err"></p>
   </div>
-  <div id="slide-wrap">
-    <iframe id="frame" src="" title="中間発表資料" allow="autoplay"></iframe>
-  </div>
   <script>
-    if (sessionStorage.getItem('pres_ok') === '1') unlock();
     document.getElementById('pw').addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
     function check() {
       if (document.getElementById('pw').value === 'metanature2026') {
         sessionStorage.setItem('pres_ok', '1');
-        unlock();
+        window.location.href = '/_slides/index.html';
       } else {
         document.getElementById('err').textContent = 'パスワードが違います';
         document.getElementById('pw').value = '';
         document.getElementById('pw').focus();
       }
-    }
-    function unlock() {
-      document.getElementById('gate').style.display = 'none';
-      document.body.style.background = 'none';
-      const wrap = document.getElementById('slide-wrap');
-      document.getElementById('frame').src = '/_slides/index.html';
-      wrap.style.display = 'block';
     }
   </script>
 </body>
