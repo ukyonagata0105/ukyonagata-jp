@@ -67,6 +67,11 @@
     .sim-video{width:100%;max-height:180px;border-radius:8px;background:#000;object-fit:contain;}
     .sim-caption{font-size:0.85rem;color:var(--fg-light);text-align:center;}
     #dark-mode-toggle{position:fixed;top:12px;right:20px;background:rgba(0,0,0,0.2);border:none;color:white;font-size:1.3rem;cursor:pointer;z-index:1200;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(5px);transition:all 0.3s ease;}
+    #zoom-controls{position:fixed;top:12px;right:66px;display:flex;align-items:center;gap:4px;z-index:1200;background:rgba(0,0,0,0.2);backdrop-filter:blur(5px);border-radius:20px;padding:4px 10px;}
+    #zoom-controls button{background:none;border:none;color:white;font-size:1.1rem;cursor:pointer;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s;}
+    #zoom-controls button:hover{background:rgba(255,255,255,0.2);}
+    #zoom-label{color:white;font-size:0.78rem;min-width:34px;text-align:center;font-weight:600;}
+    .slide-card{zoom:1;}
     .slide-refs{margin-top:auto;padding-top:0.6rem;border-top:1px solid rgba(100,116,139,0.2);font-size:0.72rem;color:var(--fg-light);line-height:1.5;text-align:left;}
     body.dark-mode .slide-refs{border-top-color:rgba(255,255,255,0.1);}
     @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -87,6 +92,11 @@
     を外部ブラウザで開いてください。
   </div>
   <button id="dark-mode-toggle"><i class="fas fa-moon"></i></button>
+  <div id="zoom-controls">
+    <button id="zoom-out" title="縮小">－</button>
+    <span id="zoom-label">100%</span>
+    <button id="zoom-in" title="拡大">＋</button>
+  </div>
 
   <div id="sidebar">
     <h1><i class="fas fa-graduation-cap"></i>中間発表</h1>
@@ -884,6 +894,24 @@
       icon.classList.toggle('fa-moon');
       icon.classList.toggle('fa-sun');
     });
+
+    // Zoom controls
+    const ZOOM_STEP = 0.1, ZOOM_MIN = 0.5, ZOOM_MAX = 2.0;
+    let zoomLevel = parseFloat(localStorage.getItem('slideZoom') || '1');
+    function applyZoom() {
+      document.querySelectorAll('.slide-card').forEach(el => el.style.zoom = zoomLevel);
+      document.getElementById('zoom-label').textContent = Math.round(zoomLevel * 100) + '%';
+      localStorage.setItem('slideZoom', zoomLevel);
+    }
+    document.getElementById('zoom-in').addEventListener('click', () => {
+      zoomLevel = Math.min(ZOOM_MAX, Math.round((zoomLevel + ZOOM_STEP) * 10) / 10);
+      applyZoom();
+    });
+    document.getElementById('zoom-out').addEventListener('click', () => {
+      zoomLevel = Math.max(ZOOM_MIN, Math.round((zoomLevel - ZOOM_STEP) * 10) / 10);
+      applyZoom();
+    });
+    applyZoom();
 
     navLinks[0].classList.add('active');
     sections[0].classList.add('active');
