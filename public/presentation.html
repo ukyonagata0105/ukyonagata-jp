@@ -38,11 +38,12 @@
   <script>
     document.getElementById('pw').addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
     function check() {
-      if (document.getElementById('pw').value === 'metanature2026') {
+      const val = document.getElementById('pw').value.trim();
+      if (val === 'metanature2026') {
         sessionStorage.setItem('pres_ok', '1');
         window.location.href = '/_slides/index.html';
       } else {
-        document.getElementById('err').textContent = 'パスワードが違います';
+        document.getElementById('err').textContent = 'パスワードが違います（半角英数で入力してください）';
         document.getElementById('pw').value = '';
         document.getElementById('pw').focus();
       }
