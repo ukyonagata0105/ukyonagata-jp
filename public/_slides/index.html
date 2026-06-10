@@ -29,21 +29,114 @@
       --accent-glow: rgba(6, 182, 212, 0.5);
     }
     *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:"Segoe UI",Roboto,"Noto Sans JP",sans-serif;background:linear-gradient(135deg,var(--accent-start),var(--accent-end));color:var(--fg-dark);height:100vh;overflow:hidden;display:flex;transition:color 0.3s ease,background-color 0.3s ease;}
-    #sidebar{position:fixed;top:0;left:0;height:100vh;width:var(--sidebar-w);background:var(--bg-white);border-right:1px solid #e2e8f0;padding:1.5rem 1rem;z-index:1100;overflow-y:auto;transition:transform var(--transition-speed) ease-in-out,background-color 0.3s ease;box-shadow:2px 0 15px rgba(0,0,0,0.1);}
+    html{min-height:100%;background:linear-gradient(135deg,var(--accent-start),var(--accent-end));}
+    body{
+      font-family:"Segoe UI",Roboto,"Noto Sans JP",sans-serif;
+      background:linear-gradient(135deg,var(--accent-start),var(--accent-end));
+      color:var(--fg-dark);
+      height:100vh;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:var(--sidebar-w) 1fr;
+      grid-template-rows:var(--header-h) 1fr var(--footer-h);
+      grid-template-areas:
+        "sidebar header"
+        "sidebar main"
+        "sidebar footer";
+      transition:color 0.3s ease,background-color 0.3s ease;
+    }
+    #sidebar{
+      grid-area:sidebar;
+      position:relative;
+      height:100%;
+      min-height:0;
+      width:var(--sidebar-w);
+      background:var(--bg-white);
+      border-right:1px solid #e2e8f0;
+      padding:0.85rem 0.75rem 1rem 1rem;
+      z-index:1100;
+      overflow-x:hidden;
+      overflow-y:auto;
+      transition:transform var(--transition-speed) ease-in-out,background-color 0.3s ease;
+      box-shadow:2px 0 15px rgba(0,0,0,0.1);
+    }
     body.dark-mode #sidebar{border-right-color:rgba(203,213,225,0.1);}
     #sidebar.hidden{transform:translateX(-100%);}
-    #sidebar h1{font-size:1.1rem;margin-bottom:1.5rem;color:var(--accent-start);display:flex;align-items:center;}
-    #sidebar h1 i{margin-right:8px;}
-    #sidebar nav a{display:flex;align-items:center;margin:.35rem 0;padding:.6rem .75rem;border-radius:6px;color:var(--fg-light);text-decoration:none;transition:.3s;font-size:0.85rem;}
-    #sidebar nav a i{margin-right:8px;width:18px;text-align:center;}
-    #sidebar nav a:hover,#sidebar nav a.active{background:linear-gradient(90deg,var(--accent-start),var(--accent-end));color:#fff;transform:translateX(3px);}
-    main{margin-left:var(--sidebar-w);flex:1;position:relative;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:margin-left 0.3s ease-in-out;}
-    .slide-header{position:fixed;left:var(--sidebar-w);right:0;top:0;height:var(--header-h);display:flex;align-items:center;justify-content:center;padding:0 1.5rem;color:#fff;background:rgba(0,0,0,0.1);backdrop-filter:blur(5px);transition:left 0.3s ease-in-out;}
-    .slide-footer{position:fixed;left:var(--sidebar-w);right:0;bottom:0;height:var(--footer-h);display:flex;align-items:center;justify-content:center;padding:0 1.5rem;color:#fff;background:rgba(0,0,0,0.1);backdrop-filter:blur(5px);transition:left 0.3s ease-in-out;font-size:0.85rem;}
-    section{position:absolute;inset:var(--header-h) var(--frame-gap) var(--footer-h) var(--frame-gap);display:none;overflow:hidden;}
+    #sidebar h1{font-size:1.05rem;margin-bottom:0.75rem;padding:0.35rem 0.5rem;color:var(--accent-start);display:flex;align-items:center;line-height:1.3;}
+    #sidebar h1 i{margin-right:8px;flex-shrink:0;}
+    #sidebar nav{display:flex;flex-direction:column;gap:0.15rem;}
+    #sidebar nav a{
+      display:flex;align-items:flex-start;
+      margin:0;padding:0.55rem 0.65rem;border-radius:6px;
+      color:var(--fg-light);text-decoration:none;transition:.25s;
+      font-size:0.82rem;line-height:1.35;
+    }
+    #sidebar nav a i{margin-right:8px;width:16px;min-width:16px;text-align:center;margin-top:0.15rem;flex-shrink:0;}
+    #sidebar nav a span{flex:1;min-width:0;}
+    #sidebar nav a:hover,#sidebar nav a.active{
+      background:linear-gradient(90deg,var(--accent-start),var(--accent-end));
+      color:#fff;
+      box-shadow:0 2px 8px rgba(59,130,246,0.25);
+    }
+    main{
+      grid-area:main;
+      margin-left:0;
+      flex:initial;
+      position:relative;
+      height:100%;
+      min-height:0;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg,var(--accent-start),var(--accent-end));
+      transition:background-color 0.3s ease;
+    }
+    .slide-header{
+      grid-area:header;
+      position:relative;
+      left:auto;right:auto;
+      width:100%;height:var(--header-h);
+      display:flex;align-items:center;justify-content:center;
+      padding:0 1.5rem;color:#fff;
+      background:rgba(0,0,0,0.12);
+      backdrop-filter:blur(5px);
+    }
+    .slide-footer{
+      grid-area:footer;
+      position:relative;
+      left:auto;right:auto;
+      width:100%;height:var(--footer-h);
+      display:flex;align-items:center;justify-content:center;
+      padding:0 1.5rem;color:#fff;
+      background:rgba(0,0,0,0.12);
+      backdrop-filter:blur(5px);
+      font-size:0.85rem;
+    }
+    section{position:absolute;inset:var(--frame-gap);display:none;overflow:hidden;}
     section.active{display:flex;animation:fade .35s ease;flex-direction:column;justify-content:flex-start;align-items:center;}
-    .slide-card{width:100%;height:100%;background:linear-gradient(145deg,var(--bg-white),#f8fafc);border:1px solid rgba(255,255,255,0.7);border-radius:var(--radius);box-shadow:0 4px 18px rgba(0,0,0,.1);padding:clamp(1.5rem,4vw,3rem);overflow-y:auto;display:flex;flex-direction:column;transition:background-color 0.3s ease;}
+    .slide-card{
+      width:100%;height:100%;
+      background:linear-gradient(145deg,var(--bg-white),#f8fafc);
+      border:1px solid rgba(255,255,255,0.7);
+      border-radius:var(--radius);
+      box-shadow:0 4px 18px rgba(0,0,0,.1);
+      padding:clamp(1.5rem,4vw,3rem);
+      overflow-y:auto;
+      display:flex;flex-direction:column;
+      transition:background-color 0.3s ease;
+      position:relative;
+    }
+    .slide-card::before{
+      content:'';
+      position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+      background:radial-gradient(circle at 20% 10%,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0) 55%);
+    }
+    body.dark-mode .slide-card::before{
+      background:radial-gradient(circle at 20% 10%,rgba(255,255,255,0.08) 0%,rgba(255,255,255,0) 55%);
+    }
+    .slide-card > *{position:relative;z-index:1;}
     body.dark-mode .slide-card{background:linear-gradient(145deg,var(--bg-white),#1e293b);border:1px solid rgba(255,255,255,0.1);}
     .slide-card h2{font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--accent-start);text-align:center;margin-bottom:1rem;}
     .slide-card h3{font-size:clamp(1.2rem,2.5vw,1.5rem);color:var(--fg-dark);margin:1rem 0 0.5rem;text-align:left;}
@@ -76,10 +169,19 @@
     body.dark-mode .slide-refs{border-top-color:rgba(255,255,255,0.1);}
     @keyframes fade{from{opacity:0}to{opacity:1}}
     @media(max-width:768px){
-      main{margin-left:0;}
-      #sidebar{transform:translateX(-100%);}
+      body{
+        grid-template-columns:1fr;
+        grid-template-rows:var(--header-h) 1fr var(--footer-h);
+        grid-template-areas:
+          "header"
+          "main"
+          "footer";
+      }
+      #sidebar{
+        position:fixed;top:0;left:0;height:100vh;
+        transform:translateX(-100%);
+      }
       #sidebar.visible{transform:translateX(0);}
-      .slide-header,.slide-footer{left:0;}
       .sim-media-grid{grid-template-columns:1fr;}
     }
   </style>
@@ -115,7 +217,7 @@
       <a href="#" data-slide="11"><i class="fas fa-circle"></i>四つの問い（Research Questions）</a>
       <a href="#" data-slide="12"><i class="fas fa-circle"></i>論文構造図</a>
       <a href="#" data-slide="13"><i class="fas fa-circle"></i>本日の構成</a>
-      <a href="#" data-slide="14"><i class="fas fa-circle"></i>スライド14</a>
+      <a href="#" data-slide="14"><i class="fas fa-circle"></i>RQ1（扉）：非理想的な政策形成プロセス</a>
       <a href="#" data-slide="15"><i class="fas fa-circle"></i>第2章（調査①）：MaaS実装分析——研究目的</a>
       <a href="#" data-slide="16"><i class="fas fa-circle"></i>第2章（調査①）：リサーチクエスチョンと仮説</a>
       <a href="#" data-slide="17"><i class="fas fa-circle"></i>第2章（調査①）：主要結果——38件の実装ギャップ</a>
@@ -133,7 +235,7 @@
       <a href="#" data-slide="29"><i class="fas fa-circle"></i>第4章：なぜ「自律的に生成できない」のか——評価指標…</a>
       <a href="#" data-slide="30"><i class="fas fa-circle"></i>診断の小括——三章が示す構造的問題</a>
       <a href="#" data-slide="31"><i class="fas fa-circle"></i>RQ1：非理想的な政策形成プロセスはどのようなものか</a>
-      <a href="#" data-slide="32"><i class="fas fa-circle"></i>スライド32</a>
+      <a href="#" data-slide="32"><i class="fas fa-circle"></i>RQ2（扉）：生成AIはどこまで支えられるか</a>
       <a href="#" data-slide="33"><i class="fas fa-circle"></i>第5章：研究目的——生成AI時代の政策規範</a>
       <a href="#" data-slide="34"><i class="fas fa-circle"></i>第5章：問い・理論的枠組み</a>
       <a href="#" data-slide="35"><i class="fas fa-circle"></i>第5章：理論的結果——「執政の創造性」の提案</a>
@@ -143,7 +245,7 @@
       <a href="#" data-slide="39"><i class="fas fa-circle"></i>人間が規範を定義し、AIが補助する</a>
       <a href="#" data-slide="40"><i class="fas fa-circle"></i>航空管制：人間-AI役割分担の実践モデル</a>
       <a href="#" data-slide="41"><i class="fas fa-circle"></i>RQ2 応答：生成AIは《発見メディア》として機能す…</a>
-      <a href="#" data-slide="42"><i class="fas fa-circle"></i>スライド42</a>
+      <a href="#" data-slide="42"><i class="fas fa-circle"></i>RQ3（扉）：合理的政策形成は必要か</a>
       <a href="#" data-slide="43"><i class="fas fa-circle"></i>第6章：研究目的——ハーバーマス批判への計算論的応答</a>
       <a href="#" data-slide="44"><i class="fas fa-circle"></i>第6章：問い・仮説・モデル設計</a>
       <a href="#" data-slide="45"><i class="fas fa-circle"></i>三種の認知バイアス——定義とモデルへの組み込み方</a>
@@ -151,7 +253,7 @@
       <a href="#" data-slide="47"><i class="fas fa-circle"></i>22,000回シミュレーションの主要知見</a>
       <a href="#" data-slide="48"><i class="fas fa-circle"></i>バイアス管理の制度設計原則</a>
       <a href="#" data-slide="49"><i class="fas fa-circle"></i>RQ3：合理的政策は必要か——バイアスはすべて悪か</a>
-      <a href="#" data-slide="50"><i class="fas fa-circle"></i>スライド50</a>
+      <a href="#" data-slide="50"><i class="fas fa-circle"></i>RQ4（扉）：メタネイチャー環境は実現できるか</a>
       <a href="#" data-slide="51"><i class="fas fa-circle"></i>第7章：研究目的——秘密保護と民主的正当性の両立</a>
       <a href="#" data-slide="52"><i class="fas fa-circle"></i>第7章：問い・設計課題</a>
       <a href="#" data-slide="53"><i class="fas fa-circle"></i>第7章：設計結果——三段階の診断問題への応答</a>
@@ -438,7 +540,8 @@
 
     <!-- 第2章（調査①）：研究目的と先行研究1——MaaSの概念と起源 -->
     <section id="slide15">
-        <h2>第2章（調査①）：MaaS実装分析——研究目的</h2>
+      <div class="slide-card">
+<h2>第2章（調査①）：MaaS実装分析——研究目的</h2>
         <h3>研究目的</h3>
         <p>日本版MaaSを「交通まちづくり」実践の一類型として分析し、①政策目標設定の状況と②市民の批判回路の整備状況を実証的に確認する。MaaSが「事業の手段」ではなく「政策の手段」として機能しているかを検証する。</p>
         <h3>交通まちづくりの定義</h3>
@@ -449,6 +552,7 @@
         <h3>STOフレームワーク（本章の分析モデル）</h3>
         <p>Van de Veldeが提唱：意思決定をS（戦略/10年以上）、T（戦術/1〜5年）、O（運営/日〜月単位）に分類。日本の政策変遷をこの枠組みで分析すると、国がS層からT1層・T2層へと関与を強め、自治体裁量がO層へ後退している構造が明らかになる。</p>
         <div class="slide-refs">太田和博（2003）「交通まちづくりの現状と課題」; Van de Velde（1999）"Organisational forms and entrepreneurship in public transport"</div>
+      </div>
     </section>
 
     <!-- 第2章（調査①）：先行研究——MaaSの国際的展開と日本版の特異性 -->
@@ -459,7 +563,8 @@
 
     <!-- 第2章（調査①）：問い・仮説——MaaS推進事業分析 -->
     <section id="slide16">
-        <h2>第2章（調査①）：リサーチクエスチョンと仮説</h2>
+      <div class="slide-card">
+<h2>第2章（調査①）：リサーチクエスチョンと仮説</h2>
         <h3>リサーチクエスチョン</h3>
         <ul>
           <li><strong>RQ①</strong>：日本版MaaS推進事業において、政策目標設定はどこに置かれているか——MaaS事業の事業性に関する指標のみか、地域への効果指標も含まれているか</li>
@@ -475,6 +580,7 @@
           <li>①：KPIに事業利用状況（利用者数・収益・接続事業者数）以外の指標があるか</li>
           <li>②：協議会等に交通事業者・システム供給者・学識者・自治体以外の市民参加があるか</li>
         </ul>
+      </div>
     </section>
 
     <!-- 第2章（調査①）：分析対象と方法——38件全件分析 -->
@@ -485,7 +591,8 @@
 
     <!-- 第2章（調査①）：主要結果——実装ギャップの定量化 -->
     <section id="slide17">
-        <h2>第2章（調査①）：主要結果——38件の実装ギャップ</h2>
+      <div class="slide-card">
+<h2>第2章（調査①）：主要結果——38件の実装ギャップ</h2>
         <h3>RQ①：目標設定</h3>
         <ul>
           <li>38件中<strong>35件（92%）</strong>がKPIを事業指標（利用率・収益・運営効率）のみで構成</li>
@@ -502,6 +609,7 @@
           <p><strong>仮説①②ともに確認</strong>——日本版MaaSは「交通まちづくり」の実装段階でその要件に合致しない。</p>
         </div>
         <div class="slide-refs">Heikkilä（2014）"Mobility as a Service – A Proposal for Action for the Public Administration"</div>
+      </div>
     </section>
 
     <!-- 第2章（調査①）：事例分析——ひたち圏域・鞆の浦 -->
@@ -555,7 +663,8 @@
 
     <!-- 第3章（調査①）：インタビュー調査——研究目的とパーパス -->
     <section id="slide19">
-        <h2>第3章（調査①）：インタビュー調査——研究目的</h2>
+      <div class="slide-card">
+<h2>第3章（調査①）：インタビュー調査——研究目的</h2>
         <h3>位置づけ</h3>
         <p>第2章が示した「目標設定の乖離・評価指標の同型化」を受け、地域公共交通活性化・再生法の運用を<strong>パーパス設定</strong>の観点から深掘りする実証・政策分析章。</p>
         <h3>パーパスの定義</h3>
@@ -567,6 +676,7 @@
           <li>「地方自治の本旨」（住民自治・団体自治）が公共交通計画において機能しているか</li>
         </ul>
         <div class="slide-refs">名和高司（2021）「パーパス経営」東洋経済新報社; Fischer（1980）; Hoppe（1993）</div>
+      </div>
     </section>
 
     <!-- 第3章（調査①）：先行研究——パーパス設定と計画フロー -->
@@ -577,7 +687,8 @@
 
     <!-- 第3章（調査①）：問い・仮説——B/C偏重と目標設定阻害 -->
     <section id="slide20">
-        <h2>第3章（調査①）：問い・仮説</h2>
+      <div class="slide-card">
+<h2>第3章（調査①）：問い・仮説</h2>
         <h3>問い</h3>
         <p>地域公共交通網形成計画において、費用便益比（B/C）偏重の制度的構造が「まちづくりへの連携」という本来の目標設定（パーパス生成）を阻害しているか</p>
         <h3>仮説（構造的問題の仮説）</h3>
@@ -593,6 +704,7 @@
           <li>基準③：合成の誤謬の認識（個別判断が全体最適と矛盾しないか）</li>
           <li>基準④：外部効果の内部化（CSBを計算できるか）</li>
         </ul>
+      </div>
     </section>
 
     <!-- 第3章（調査①）：インタビュー調査の設計 -->
@@ -603,7 +715,8 @@
 
     <!-- 第3章（調査①）：インタビュー結果——A市・B市 -->
     <section id="slide21">
-        <h2>第3章（調査①）：インタビュー結果①——A市・B市</h2>
+      <div class="slide-card">
+<h2>第3章（調査①）：インタビュー結果①——A市・B市</h2>
         <h3>A市：B/C要件がボトルネック（基準①②の機能不全）</h3>
         <ul>
           <li>国土交通省がB/C>1を再編実施計画の要件として課す——A市はB/Cの正確な予測手法を持たない</li>
@@ -617,6 +730,7 @@
           <li>財政制約と運転手不足により路線の刈込み・ダウンサイジングを余儀なくされた</li>
           <li>→ <strong>グッドハートの法則</strong>が発動：「持続可能性」指標が目的を侵食した典型例</li>
         </ul>
+      </div>
     </section>
 
     <!-- 第3章（調査①）：インタビュー結果——C村・考察 -->
@@ -627,7 +741,8 @@
 
     <!-- 第3章（調査②）：アンケート調査——調査目的 -->
     <section id="slide22">
-        <h2>第3章（調査②）：アンケート調査——目的と対象地域</h2>
+      <div class="slide-card">
+<h2>第3章（調査②）：アンケート調査——目的と対象地域</h2>
         <h3>調査②の位置づけ</h3>
         <p>インタビュー調査（調査①）の3事例が示した「パーパス設定阻害のメカニズム」が、より広範な自治体に当てはまるかを量的に検証する。「公共交通の地域への効果を客観的に評価できる形で定義しているか」を確認する。</p>
         <h3>確認の重点</h3>
@@ -641,6 +756,7 @@
           <li>調査①（インタビュー）対象地域と同一管内——問題構造の継続性</li>
           <li>地域公共交通維持が喫緊の課題——パーパス設定の有無が特に問われる文脈</li>
         </ul>
+      </div>
     </section>
 
     <!-- 第3章（調査②）：先行研究——移動権と地域の規範的根拠 -->
@@ -651,7 +767,8 @@
 
     <!-- 第3章（調査②）：問い・仮説——アンケート調査 -->
     <section id="slide23">
-        <h2>第3章（調査②）：問い・仮説</h2>
+      <div class="slide-card">
+<h2>第3章（調査②）：問い・仮説</h2>
         <h3>問い</h3>
         <ul>
           <li>北海道・東北運輸局管内において、自治体が公共交通の「効果」を客観的に定義できているか</li>
@@ -669,6 +786,7 @@
           <li>単なる利用者数増減の目標設定ではなく、地域課題との連関が明示されている</li>
           <li>第三者が検証・批判できる形式になっている</li>
         </ul>
+      </div>
     </section>
 
     <!-- 第3章（調査②）：調査設計と質問構成 -->
@@ -679,7 +797,8 @@
 
     <!-- 第3章（調査②）：主要結果——42自治体中1のみ効果定義 -->
     <section id="slide24">
-        <h2>第3章（調査②）：主要結果</h2>
+      <div class="slide-card">
+<h2>第3章（調査②）：主要結果</h2>
         <h3>効果定義の実態</h3>
         <ul>
           <li>「効果を定義している」と自己評価：<strong>約半数（21/42）</strong></li>
@@ -697,6 +816,7 @@
         <div class="highlight-box">
           <p>「方法が分からない」能力制約と「必要性を感じない」意識問題が主因——仮説②確認。42自治体中1という数値は仮説①を確認する（調査①のA市「わからない数字は出せない」と直接対応）。</p>
         </div>
+      </div>
     </section>
 
     <!-- 第3章（調査②）：Boswell四基準による解釈 -->
@@ -724,7 +844,8 @@
 
     <!-- 第4章：評価指標同型化——研究目的と分析枠組み -->
     <section id="slide26">
-        <h2>第4章：評価指標の運輸局間比較——研究目的</h2>
+      <div class="slide-card">
+<h2>第4章：評価指標の運輸局間比較——研究目的</h2>
         <h3>位置づけ</h3>
         <p>第2章（調査②）の予備的分析が示した「運輸局説明力 > 地理的特性説明力」を、より厳密な統計的手法・完全なデータセット（987自治体・12,568指標）で検証する。DiMaggio &amp; Powellの同型化理論の枠組みで、行政組織が評価指標選択を規定するメカニズムを実証する。</p>
         <h3>分析目的の三段階</h3>
@@ -736,6 +857,7 @@
         <h3>政策的含意</h3>
         <p>評価原則が上位組織から「所与として与えられている」構造——第7章のシステム設計（評価原則のコミュニティ討議による内発）の実証的根拠となる。</p>
         <div class="slide-refs">DiMaggio &amp; Powell（1983）"The Iron Cage Revisited"</div>
+      </div>
     </section>
 
     <!-- 第4章：先行研究——新制度論と運輸局の組織的起源 -->
@@ -746,7 +868,8 @@
 
     <!-- 第4章：問い・仮説——同型化メカニズムの実証 -->
     <section id="slide27">
-        <h2>第4章：問い・仮説</h2>
+      <div class="slide-card">
+<h2>第4章：問い・仮説</h2>
         <h3>問い</h3>
         <ul>
           <li>9つの地方運輸局間で、地域公共交通計画の評価指標選択パターンに有意な差があるか</li>
@@ -759,6 +882,7 @@
           <li>仮説②：全指標カテゴリにわたりKruskal-Wallis検定で有意差（p &lt; 0.05）が確認される</li>
           <li>仮説③：impactカテゴリを重視するクラスタは全体の5%未満にとどまる</li>
         </ul>
+      </div>
     </section>
 
     <!-- 第4章：データ収集と統計分析の設計 -->
@@ -769,7 +893,8 @@
 
     <!-- 第4章：主要結果——OLS回帰と運輸局説明力 -->
     <section id="slide28">
-        <h2>第4章：主要結果——運輸局説明力 vs 地理的特性</h2>
+      <div class="slide-card">
+<h2>第4章：主要結果——運輸局説明力 vs 地理的特性</h2>
         <ul>
           <li><strong>地理的・経済的特性のみ</strong>：R² = <strong>0.1%〜2.2%</strong>——地域の特性は評価指標選択にほぼ影響しない</li>
           <li><strong>財政力指数追加</strong>：向上はわずか——財政状況も規定要因として弱い</li>
@@ -781,6 +906,7 @@
           <p>「<strong>どこにいるか（地理）</strong>」ではなく「<strong>どこに所属するか（運輸局）</strong>」が評価基準を規定——DiMaggio &amp; Powellの同型化圧力が日本の地域公共交通計画においても作動。</p>
         </div>
         <div class="slide-refs">DiMaggio &amp; Powell（1983）"The Iron Cage Revisited"</div>
+      </div>
     </section>
 
     <!-- 第4章：クラスタリング結果と制度的ギャップ -->
@@ -849,7 +975,8 @@
 
     <!-- 第5章：生成AI時代の政策規範——研究目的と先行研究 -->
     <section id="slide33">
-        <h2>第5章：研究目的——生成AI時代の政策規範</h2>
+      <div class="slide-card">
+<h2>第5章：研究目的——生成AI時代の政策規範</h2>
         <h3>本章が答える問い</h3>
         <p>「なぜ人間による政策規範の判断でなければならないか」——生成AIの台頭により政策各分野でAI活用が急速に進む中、この問いに原理的に答えていない研究が多い。本章はこの問いに創造システム理論・ルーマン理論で理論的に答える。</p>
         <h3>先行研究の蓄積</h3>
@@ -861,11 +988,13 @@
         <h3>本章の主張</h3>
         <p>政策は本質的に価値・規範を処理する営みであり、規範の創造とその更新は「創造」という固有の事態である——AIはこの創造から原理的に排除される。</p>
         <div class="slide-refs">Schattschneider（1960）"The Semisovereign People"; Dryzek（1993）; Parkhurst（2017）"The Politics of Evidence"</div>
+      </div>
     </section>
 
     <!-- 第5章：問い・理論的枠組み——創造システム理論とSinn処理 -->
     <section id="slide34">
-        <h2>第5章：問い・理論的枠組み</h2>
+      <div class="slide-card">
+<h2>第5章：問い・理論的枠組み</h2>
         <h3>問い</h3>
         <ul>
           <li>政策規範の創造においてAIが原理的に排除され、人間が担い続けなければならない理由は何か</li>
@@ -877,11 +1006,13 @@
           <li><strong>ルーマンのSinn処理論</strong>：センス・メイキング＝「過剰な可能性の中から意味ある参照を選択すること」（Zönnchen et al. 2025）——AIは確率分布からのサンプリングを行うが、価値判断を伴った意味の地平からの選択（Sinn処理）ではない</li>
           <li><strong>Fischer四層モデル（Hoppe 1993体系化）</strong>：技術的検証→状況的妥当性→体制的正当化→合理的社会選択。AIは層①のみ、層②以上は心的システムのカップリングを必要とする</li>
         </ul>
+      </div>
     </section>
 
     <!-- 第5章：理論的結果——執政の創造性の定義 -->
     <section id="slide35">
-        <h2>第5章：理論的結果——「執政の創造性」の提案</h2>
+      <div class="slide-card">
+<h2>第5章：理論的結果——「執政の創造性」の提案</h2>
         <h3>AIが担える領域と担えない領域（Fischer四層）</h3>
         <table class="comparison-table">
           <tr><th>Fischer層</th><th>AIの役割</th><th>人間が必要な理由</th></tr>
@@ -893,6 +1024,7 @@
         <h3>「執政の創造性」の定義</h3>
         <p>社会の構成員同士のコミュニケーションを前提に、価値判断を基盤として、新たなガバナンスの範囲を生成・配分していき、以て政策の正当性を担保する実践的能力——AIが担えない層②〜④において人間コミュニティが果たすべき役割の総称。</p>
         <div class="slide-refs">Iba（2010）"An Autopoietic Systems Theory for Creativity"; Luhmann（1984）; Zönnchen et al.（2025）; Hoppe（1993）</div>
+      </div>
     </section>
     <!-- Slide 19: 規範の営み -->
     <section id="slide36">
@@ -1006,7 +1138,8 @@
 
     <!-- 第6章：認知バイアスと協調的ガバナンス——研究目的 -->
     <section id="slide43">
-        <h2>第6章：研究目的——ハーバーマス批判への計算論的応答</h2>
+      <div class="slide-card">
+<h2>第6章：研究目的——ハーバーマス批判への計算論的応答</h2>
         <h3>問いの出発点</h3>
         <p>第5章の理論（人間が規範を選び続ける）は理論的に正しくても、<strong>認知バイアスを持つ人間が実践的に政策協調を達成できるのか</strong>——ハーバーマスの「理想的発話状況」は現実に達成可能か、という問いへの応答が必要。</p>
         <h3>ハーバーマス批判の核心</h3>
@@ -1023,6 +1156,7 @@
           <p>本章の結論（先取り）：「認知バイアスがあっても政策協調は成立する」——確証バイアスは有意な影響なし、現状維持・狭い視野は有害だが選択的な制度設計で管理可能。「完全に合理的な人間」を前提とする必要はない。</p>
         </div>
         <div class="slide-refs">Rienstra &amp; Visser（2007）"Weakening deliberative democracy"; Bagg（2018）</div>
+      </div>
     </section>
 
     <!-- 第6章：先行研究——拒否権プレーヤー理論と三種の認知バイアス -->
@@ -1033,7 +1167,8 @@
 
     <!-- 第6章：問い・仮説・モデル設計——三種バイアスの計算論的分析 -->
     <section id="slide44">
-        <h2>第6章：問い・仮説・モデル設計</h2>
+      <div class="slide-card">
+<h2>第6章：問い・仮説・モデル設計</h2>
         <h3>問い</h3>
         <ul>
           <li>三種の認知バイアスが協調的ガバナンスの調整効率にどのような影響を与えるか</li>
@@ -1052,6 +1187,7 @@
           <li>確証バイアス b<sub>cf</sub>：協調係数のスケーリング k' = k · (1 + b<sub>cf</sub> · 0.5)</li>
           <li>狭い視野 b<sub>nf</sub>：実効速度を局所目標速度へシフト ṽ = (1−b<sub>nf</sub>) · v<sub>coord</sub> + b<sub>nf</sub> · v<sub>local</sub></li>
         </ul>
+      </div>
     </section>
     <!-- Slide 28: バイアス定義と操作化 -->
     <section id="slide45">
@@ -1167,7 +1303,8 @@
 
     <!-- 第7章：政策評価システム設計——研究目的と問題設定 -->
     <section id="slide51">
-        <h2>第7章：研究目的——秘密保護と民主的正当性の両立</h2>
+      <div class="slide-card">
+<h2>第7章：研究目的——秘密保護と民主的正当性の両立</h2>
         <h3>解決すべき問題</h3>
         <p>第3章実証（市民参加わずか5%）・第4章実証（評価指標の同型化）が示した問題に対し、理論的に必要な仕組み（「執政の創造性」を発揮できる制度）を技術・制度として実装するシステムを設計する。</p>
         <h3>二重の制約——従来手法で解けない問題</h3>
@@ -1182,6 +1319,7 @@
           <li>協働型評価：機密情報の取り扱いが困難</li>
         </ul>
         <div class="slide-refs">平塚市情報公開審査会答申第57号（2024）; 杉谷和哉（2019）; 奥田道大（2019）</div>
+      </div>
     </section>
 
     <!-- 第7章：先行研究——Constitutional AIとLLM as a Judge -->
@@ -1192,7 +1330,8 @@
 
     <!-- 第7章：問い・設計課題——三段階アーキテクチャ -->
     <section id="slide52">
-        <h2>第7章：問い・設計課題</h2>
+      <div class="slide-card">
+<h2>第7章：問い・設計課題</h2>
         <h3>問い</h3>
         <p>秘密保護と民主的正当性の二重制約のもとで機能する政策評価システムは、Constitutional AI × LLM as a Judge × 市民討議の統合によって実現可能か</p>
         <h3>設計課題の三段階</h3>
@@ -1207,6 +1346,7 @@
           <li>制度的整合性（第5章の設計原則①〜③との整合）</li>
           <li>診断問題（第2〜4章）への対応可否</li>
         </ul>
+      </div>
     </section>
 
     <!-- 第7章：Verdictのシステムアーキテクチャ -->
@@ -1217,7 +1357,8 @@
 
     <!-- 第7章：設計結果——三段階の診断問題への対応 -->
     <section id="slide53">
-        <h2>第7章：設計結果——三段階の診断問題への応答</h2>
+      <div class="slide-card">
+<h2>第7章：設計結果——三段階の診断問題への応答</h2>
         <table class="comparison-table">
           <tr><th>三段階</th><th>解決する診断問題</th><th>メカニズム</th></tr>
           <tr><td><strong>Debate</strong></td><td>パーパス設定の阻害（第3章）</td><td>地域が評価規範を内発——「何が成されるべきか」を市民が先に決める</td></tr>
@@ -1228,6 +1369,7 @@
           <p>Debate→Train→Judgeは「政策のメタネイチャー的環境」の技術的実装——中央省庁なしにどの地域でも一定品質の政策が自律的に生成・評価され続ける状態（斉藤 2025）の制度設計。</p>
         </div>
         <div class="slide-refs">斉藤健児（2025）「メタ・ネイチャーと組織経営の未来」</div>
+      </div>
     </section>
 
     <!-- 第7章：設計結果——秘密保護アーキテクチャの完成 -->
@@ -1290,7 +1432,8 @@
 
     <!-- 第8章：Verdict実証計画——研究目的 -->
     <section id="slide56">
-        <h2>第8章：研究目的——Verdict実証計画</h2>
+      <div class="slide-card">
+<h2>第8章：研究目的——Verdict実証計画</h2>
         <h3>位置づけ</h3>
         <p>第7章の設計提案を実際にソフトウェアとして実装し、地方自治体での実証実験を行うための計画を提示する。<strong>本章の執筆時点では実証実験は未実施</strong>——実証実験の設計と実装済みソフトウェアの概要を示す。</p>
         <h3>実証の三目的</h3>
@@ -1304,6 +1447,7 @@
           <li>さいたま市：保育所入所マッチング——技術的最適化（Fischer層①）と規範的選択（層②〜④）の分担モデル</li>
           <li>横須賀市：生成AI全庁導入（年間22,700時間改善）とチャットボット2.2%失言率——規範的判断は人間が不可欠</li>
         </ul>
+      </div>
     </section>
 
     <!-- 第8章：先行研究——第3・5・7章との接続 -->
@@ -1314,7 +1458,8 @@
 
     <!-- 第8章：問い・評価指標の設計 -->
     <section id="slide57">
-        <h2>第8章：問い・評価指標</h2>
+      <div class="slide-card">
+<h2>第8章：問い・評価指標</h2>
         <h3>問い（実証段階）</h3>
         <ul>
           <li>地方自治体の環境においてDebate→Train→Judgeの一連のプロセスが技術的に実行可能か</li>
@@ -1327,6 +1472,7 @@
           <li><strong>制度的指標</strong>：市民討議への参加率・原則策定の合意形成度・評価結果への信頼度・秘密保護への安心感</li>
           <li><strong>運用指標</strong>：モデル更新の頻度・原則見直しの必要性・評価結果の活用率</li>
         </ul>
+      </div>
     </section>
 
     <!-- 第8章：実証実験の5段階手順 -->
@@ -1337,7 +1483,8 @@
 
     <!-- 第8章：現時点の成果——実装済みVerdictシステム -->
     <section id="slide58">
-        <h2>第8章：現時点の成果——実装済みシステム（2026年6月）</h2>
+      <div class="slide-card">
+<h2>第8章：現時点の成果——実装済みシステム（2026年6月）</h2>
         <h3>Verdictの実装状況</h3>
         <table class="comparison-table">
           <tr><th>サブシステム</th><th>実装状況</th><th>技術スタック</th></tr>
@@ -1352,6 +1499,7 @@
           <li>ハイブリッド暗号化の実装確認——RSA-OAEP + AES-256-GCMによる評価結果の暗号化</li>
         </ul>
         <p style="font-size:0.9rem;color:var(--fg-light);">実際の自治体での動作検証・市民参加プロセスの実施はまだ行われていない——これが2026年度の実証課題。</p>
+      </div>
     </section>
 
     <!-- 第8章：期待される成果と想定課題 -->
@@ -1449,6 +1597,7 @@
       current = n;
       sections[current].classList.add('active');
       navLinks[current].classList.add('active');
+      navLinks[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       document.getElementById('slide-counter').textContent = `${current + 1} / ${sections.length}`;
       syncSlideVideos();
     }
