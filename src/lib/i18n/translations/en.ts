@@ -6,6 +6,7 @@ export const en = {
     qualifications: 'Qualifications',
     presentation: 'Midterm Presentation',
     contact: 'Contact',
+    profilePdf: 'Profile PDF',
   },
   hero: {
     name: 'Ukyo Nagata',
@@ -14,6 +15,7 @@ export const en = {
       'Researcher in public administration and management science, specializing in evaluation research focused on public transportation policy including railways, buses, aviation, maritime transport, and taxis. Committed to developing and validating technologies that maximize human creativity in the age of generative AI.',
     viewProjects: 'View Projects',
     getInTouch: 'Get in Touch',
+    downloadProfile: 'Download Profile PDF',
     latestPresentation: 'Latest Presentation at the Japan Society for Policy Informatics',
     introSkip: 'Skip',
   },
@@ -144,4 +146,3 @@ export const en = {
     toggle: 'Toggle theme',
   },
 } as const;
-

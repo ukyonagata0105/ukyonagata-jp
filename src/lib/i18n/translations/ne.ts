@@ -6,6 +6,7 @@ export const ne = {
     qualifications: 'योग्यता',
     presentation: 'Presentation',
     contact: 'सम्पर्क',
+    profilePdf: 'Profile PDF',
   },
   hero: {
     name: 'Ukyo Nagata',
@@ -14,6 +15,7 @@ export const ne = {
       'सार्वजनिक प्रशासन र व्यवस्थापन विज्ञानमा अनुसन्धानकर्ता। मूल्याङ्कन अनुसन्धानमा विशेषज्ञ। AI युगमा मानव रचनात्मकतालाई अधिकतम बनाएर समाजलाई राम्रो बनाउन प्रतिबद्ध।',
     viewProjects: 'परियोजनाहरू हेर्नुहोस्',
     getInTouch: 'सम्पर्कमा रहनुहोस्',
+    downloadProfile: 'Download Profile PDF',
     latestPresentation: 'नीति सूचना समाज सम्मेलन',
     introSkip: 'छोड्नुहोस्',
   },

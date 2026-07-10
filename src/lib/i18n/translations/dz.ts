@@ -6,6 +6,7 @@ export const dz = {
     qualifications: 'ཡོན་ཏན་དང་གྲགས་པ།',
     presentation: 'Presentation',
     contact: 'འབྲེལ་གཏུག',
+    profilePdf: 'Profile PDF',
   },
   hero: {
     name: 'Ukyo Nagata',
@@ -14,6 +15,7 @@ export const dz = {
       'བཅའ་ཁྲིམས་ཞིབ་འཇུག་པ་དང་དོ་དམ་ཞིབ་འཇུག་པ། ངོས་འཛིན་ཞིབ་འཇུག་ལ་ཆེད་སྔོན། AI ཡུག་གསར་གཏོད་དུས་སུ་མི་ལུགས་གསར་གཏོད་མང་དུ་གཏོང་ནས་སྤྱི་ཚོགས་དཀའ་ཆུང་བཟོ་བར་བརྩོན།',
     viewProjects: 'ལས་འཆར་ལྟ།',
     getInTouch: 'འབྲེལ་གཏུག་བྱ།',
+    downloadProfile: 'Download Profile PDF',
     latestPresentation: 'སྲིད་ཇུས་གཞི་འགྲེམས་ཚོགས་འདུ།',
     introSkip: 'མཆོངས།',
   },

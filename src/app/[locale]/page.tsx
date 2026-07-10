@@ -2,9 +2,9 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { MobileNav } from '@/components/MobileNav';
 import { ThemeBackground } from '@/components/ThemeBackground';
-import { SiteIntro } from '@/components/SiteIntro';
 import { getTranslation } from '@/lib/i18n/translations/index';
 import { type Locale } from '@/lib/i18n/locales';
+import { Download } from 'lucide-react';
 
 type PageParams = {
   params: Promise<{
@@ -16,6 +16,7 @@ export default async function Home({ params }: PageParams) {
   const resolvedParams = await params;
   const locale = resolvedParams.locale as Locale;
   const t = getTranslation(locale);
+  const profilePdfPath = `/ukyo-nagata-profile-${locale}.pdf`;
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -52,11 +53,6 @@ export default async function Home({ params }: PageParams) {
 
   return (
     <div className="relative min-h-screen">
-      <SiteIntro
-        name={t.hero.name}
-        subtitle={t.hero.subtitle}
-        skipLabel={t.hero.introSkip}
-      />
       <ThemeBackground />
       <script
         type="application/ld+json"
@@ -83,7 +79,14 @@ export default async function Home({ params }: PageParams) {
               <a href="#contact" className="theme-nav-link text-fluid-sm transition-colors">
                 {t.nav.contact}
               </a>
-              {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+              <a
+                href={profilePdfPath}
+                download
+                className="theme-nav-link inline-flex items-center gap-1.5 text-fluid-sm transition-colors"
+              >
+                <Download className="h-4 w-4" aria-hidden="true" />
+                {t.nav.profilePdf}
+              </a>
               <a href="/presentation.html" className="px-3 py-1.5 rounded-lg bg-forest-dark text-white text-fluid-sm font-medium hover:opacity-90 transition-opacity">
                 {t.nav.presentation}
               </a>
@@ -100,6 +103,7 @@ export default async function Home({ params }: PageParams) {
                   { href: '#projects', label: t.nav.projects },
                   { href: '#research', label: t.nav.research },
                   { href: '#contact', label: t.nav.contact },
+                  { href: profilePdfPath, label: t.nav.profilePdf },
                   { href: '/presentation.html', label: t.nav.presentation },
                 ]}
               />
@@ -125,6 +129,14 @@ export default async function Home({ params }: PageParams) {
             </a>
             <a href="#contact" className="theme-btn-secondary inline-block">
               {t.hero.getInTouch}
+            </a>
+            <a
+              href={profilePdfPath}
+              download
+              className="theme-btn-secondary inline-flex items-center justify-center gap-2"
+            >
+              <Download className="h-4 w-4" aria-hidden="true" />
+              {t.hero.downloadProfile}
             </a>
           </div>
         </div>

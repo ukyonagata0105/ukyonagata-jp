@@ -117,10 +117,19 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-* {
+button,
+a,
+select,
+.theme-card {
   transition-property: background-color, border-color, color, box-shadow;
   transition-duration: 0.2s;
   transition-timing-function: ease;
+}
+
+/* Defer paint/layout work for sections below the viewport. */
+main > section {
+  content-visibility: auto;
+  contain-intrinsic-block-size: auto 32rem;
 }
 
 .text-fluid-xs { font-size: var(--font-size-xs); }
@@ -171,7 +180,6 @@ body {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 1.25rem;
-  backdrop-filter: blur(6px);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .theme-card:hover {

@@ -6,6 +6,7 @@ export const ja = {
     qualifications: '資格・受賞歴',
     presentation: '発表資料',
     contact: 'お問い合わせ',
+    profilePdf: '自己紹介PDF',
   },
   hero: {
     name: '永田 右京',
@@ -14,6 +15,7 @@ export const ja = {
       '行政学・経営学の研究者。鉄道やバス、航空機、船舶、タクシーなどの公共交通政策を舞台にした評価研究を専門とし、生成AI時代における人間の創造性を最大限発揮させるための技術の開発・検証に取り組んでいます。',
     viewProjects: 'プロジェクトを見る',
     getInTouch: 'お問い合わせ',
+    downloadProfile: '自己紹介PDFをダウンロード',
     latestPresentation: '政策情報学会における発表内容はこちら',
     introSkip: 'スキップ',
   },
@@ -143,4 +145,3 @@ export const ja = {
     toggle: 'テーマ切り替え',
   },
 } as const;
-

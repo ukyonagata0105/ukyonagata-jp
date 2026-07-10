@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "generate:profile-pdf": "python3 scripts/generate-profile-pdf.py",
     "dev": "next dev",
     "dev:clean": "rm -rf .next node_modules/.cache && next dev",
     "clean:artifacts": "rm -rf .next out node_modules/.cache",

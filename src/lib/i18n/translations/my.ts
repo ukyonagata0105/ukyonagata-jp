@@ -6,6 +6,7 @@ export const my = {
     qualifications: 'အရည်အချင်း',
     presentation: 'Presentation',
     contact: 'ဆက်သွယ်ရန်',
+    profilePdf: 'Profile PDF',
   },
   hero: {
     name: 'Ukyo Nagata',
@@ -14,6 +15,7 @@ export const my = {
       'အုပ်ချုပ်ရေးနှင့် စီမံခန့်ခွဲမှုသိပ္ပံပညာရှင်။ အကဲဖြတ်ရေးသုတေသနကျွမ်းကျင်သူ။ AI ခေတ်တွင် လူသားဖန်တီးမှုစွမ်းရည်ကို အမြင့်ဆုံးတိုးမြှင့်ပြီး လူ့အဖွဲ့အစည်းကို ပိုမိုကောင်းမွန်အောင် ကြိုးပမ်းနေသူ။',
     viewProjects: 'ပရောဂျက်များကြည့်ရန်',
     getInTouch: 'ဆက်သွယ်ရန်',
+    downloadProfile: 'Download Profile PDF',
     latestPresentation: 'မူဝါဒသတင်းအချက်အလက်လူ့အဖွဲ့အစည်းအစည်းအဝေး',
     introSkip: 'ကျော်မည်',
   },

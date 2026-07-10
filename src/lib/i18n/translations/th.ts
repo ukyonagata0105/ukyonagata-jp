@@ -6,6 +6,7 @@ export const th = {
     qualifications: 'คุณสมบัติและรางวัล',
     presentation: 'Presentation',
     contact: 'ติดต่อ',
+    profilePdf: 'Profile PDF',
   },
   hero: {
     name: 'Ukyo Nagata',
@@ -14,6 +15,7 @@ export const th = {
       'นักวิจัยด้านรัฐประศาสนศาสตร์และวิทยาการจัดการ เชี่ยวชาญด้านการประเมิน มุ่งมั่นเพิ่มความคิดสร้างสรรค์ของมนุษย์ในยุค AI เพื่อสร้างสรรค์สังคมที่ดีขึ้น',
     viewProjects: 'ดูโครงการ',
     getInTouch: 'ติดต่อเรา',
+    downloadProfile: 'Download Profile PDF',
     latestPresentation: 'การนำเสนอล่าสุดที่สมาคมนโยบายสารสนเทศญี่ปุ่น',
     introSkip: 'ข้าม',
   },
@@ -143,4 +145,3 @@ export const th = {
     toggle: 'สลับธีม',
   },
 } as const;
-
