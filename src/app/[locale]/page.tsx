@@ -167,7 +167,7 @@ export default async function Home({ params }: PageParams) {
                   岩手県自治体の皆さまへの実証協力のお願い
                 </span>
                 <span className="mt-2 block text-fluid-sm theme-body-text">
-                  大林財団案件「Verdict」と岩手県案件「AI副代表」の概要、協力内容、問い合わせ先
+                  大林財団案件「Verdict」と岩手県案件「AI副代表」の概要、システム構成、実装状況、協力内容
                 </span>
               </span>
               <span className="inline-flex shrink-0 items-center gap-2 font-semibold text-forest">
