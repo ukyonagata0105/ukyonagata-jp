@@ -4,7 +4,7 @@ import { MobileNav } from '@/components/MobileNav';
 import { ThemeBackground } from '@/components/ThemeBackground';
 import { getTranslation } from '@/lib/i18n/translations/index';
 import { type Locale } from '@/lib/i18n/locales';
-import { Download } from 'lucide-react';
+import { ArrowUpRight, Download, FileText } from 'lucide-react';
 
 type PageParams = {
   params: Promise<{
@@ -17,6 +17,7 @@ export default async function Home({ params }: PageParams) {
   const locale = resolvedParams.locale as Locale;
   const t = getTranslation(locale);
   const profilePdfPath = `/ukyo-nagata-profile-${locale}.pdf`;
+  const municipalPilotPdfPath = '/iwate-municipal-pilot-cooperation-2026.pdf';
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -140,6 +141,45 @@ export default async function Home({ params }: PageParams) {
             </a>
           </div>
         </div>
+
+        {locale === 'ja' && (
+          <section
+            aria-labelledby="municipal-pilot-brief-title"
+            className="mb-12 sm:mb-16"
+          >
+            <a
+              href={municipalPilotPdfPath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="theme-card group flex flex-col gap-5 border-l-4 border-l-forest p-6 sm:flex-row sm:items-center sm:p-8"
+            >
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-mint text-forest">
+                <FileText className="h-7 w-7" aria-hidden="true" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="mb-1 block text-fluid-sm font-semibold text-forest">
+                  2026年8月〜11月・実証協力資料（PDF）
+                </span>
+                <span
+                  id="municipal-pilot-brief-title"
+                  className="block text-fluid-2xl font-bold text-forest-dark"
+                >
+                  岩手県自治体の皆さまへの実証協力のお願い
+                </span>
+                <span className="mt-2 block text-fluid-sm theme-body-text">
+                  大林財団案件「Verdict」と岩手県案件「AI副代表」の概要、協力内容、問い合わせ先
+                </span>
+              </span>
+              <span className="inline-flex shrink-0 items-center gap-2 font-semibold text-forest">
+                PDFを開く
+                <ArrowUpRight
+                  className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
+              </span>
+            </a>
+          </section>
+        )}
 
         <section id="about" className="mb-12 sm:mb-16 scroll-mt-20">
           <h3 className="text-fluid-3xl theme-section-title mb-6 sm:mb-8 text-center">
